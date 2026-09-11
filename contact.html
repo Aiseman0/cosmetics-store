@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Developed by  Sara Nauash (Group SE-2506) -->
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yello Beauty — Contact Us</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -63,7 +65,7 @@
       <div class="form-group">
         <label for="skintype">Select Your Skin Type:</label>
         <div class="shade-select">
-          <select id="skintype" name="skintype" style="width: 100%; margin-left: 0; padding: 10px;">
+          <select id="skintype" name="skintype" class="full-width-select">
             <option value="dry">Dry / Sensitive Skin</option>
             <option value="oily">Oily / Combination Skin</option>
             <option value="normal">Normal Skin</option>
@@ -73,7 +75,7 @@
 
       <div class="form-group">
         <label for="favcolor">Preferred Packaging Shade:</label>
-        <input type="color" id="favcolor" name="favcolor" value="#FFCC00" style="height: 40px; cursor: pointer;">
+        <input type="color" id="favcolor" name="favcolor" value="#FFCC00" class="color-picker-input">
       </div>
 
       <div class="form-group">
@@ -81,7 +83,7 @@
         <textarea id="message" name="message" rows="4" placeholder="Write your message here..." required></textarea>
       </div>
 
-      <button type="submit" class="btn-primary" style="width: 100%;">Submit Message</button>
+      <button type="submit" class="btn-primary btn-full">Submit Message</button>
     </form>
   </section>
 </main>
