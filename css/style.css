@@ -103,6 +103,23 @@ footer {
   color: #111111;
 }
 
+.btn-primary {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 12px 26px;
+  background-color: #111111;
+  color: #FFCC00;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #333333;
+}
+
 /* Developer & Story Profiles */
 .developer-profile {
   max-width: 600px;
@@ -209,6 +226,60 @@ footer {
   font-size: 18px;
   color: #111111;
   margin-top: auto;
+}
+
+/* Form Styles */
+.newsletter-section {
+  max-width: 500px;
+  margin: 0 auto 40px auto;
+  padding: 20px;
+  background: #FFFFFF;
+  border-radius: 12px;
+  border: 1px solid #E5E7EB;
+}
+
+.subscribe-form .form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.subscribe-form label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.subscribe-form input,
+.subscribe-form textarea {
+  padding: 10px;
+  border: 1px solid #CCC;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.subscribe-form input:focus,
+.subscribe-form textarea:focus {
+  border-color: #FF9900;
+  outline: none;
+}
+
+.full-width-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #CCC;
+}
+
+.color-picker-input {
+  height: 40px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn-full {
+  width: 100%;
 }
 
 /* Data Table Styles */
