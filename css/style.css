@@ -106,7 +106,7 @@ footer {
   100% { transform: translate(-100%, 0); }
 }
 
-/* --- Task 1: Header & Nav (Flexbox) --- */
+/* ---  Header & Nav (Flexbox) --- */
 #main-header {
   background-color: #FFFFFF;
   display: flex;
