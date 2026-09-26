@@ -5,123 +5,141 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yello Beauty — About Us</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="bg-light text-dark">
 
-<div class="page-grid-layout">
+<!-- Ticker Banner -->
+<div class="ticker-wrap bg-warning text-dark">
+  <div class="ticker">
+    <span class="ticker-item">✨ Glow like the Sun, shine like the Moon!</span>
+    <span class="ticker-item">🚚 Free shipping on orders over 15,000 ₸!</span>
+    <span class="ticker-item">💛 Welcome to Yello Beauty Store!</span>
 
-  <div class="ticker-wrap">
-    <div class="ticker">
-      <span>✨ Glow like the Sun, shine like the Moon!</span>
-      <span>🚚 Free shipping on orders over 15,000 ₸!</span>
-      <span>💛 Welcome to Yello Beauty Store!</span>
+  </div>
+</div>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top border-bottom border-warning border-3">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand fw-bold fs-3 text-white" href="index.html">Yello <span class="text-warning">Beauty</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#aboutNavbar" aria-controls="aboutNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="aboutNavbar">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link fw-semibold" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link fw-semibold" href="catalog.html">Catalog</a></li>
+        <li class="nav-item"><a class="nav-link active fw-semibold text-warning" href="about.html">About Us</a></li>
+        <li class="nav-item"><a class="nav-link fw-semibold" href="contact.html">Contact</a></li>
+      </ul>
     </div>
   </div>
+</nav>
 
-  <header id="main-header">
-    <div class="logo">
-      <h1>Yello <span>Beauty</span></h1>
-    </div>
-    <nav class="nav-menu">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="catalog.html">Catalog</a></li>
-        <li><a href="about.html" class="active">About Us</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+<div class="container my-4">
+  <div class="row">
+    <!-- Sidebar Navigation -->
+    <aside class="col-12 col-md-3 mb-4">
+      <div class="p-3 bg-white border border-warning rounded shadow-sm sticky-top" style="top: 80px;">
+        <h3 class="h5 fw-bold border-bottom border-warning pb-2">Quick Navigation</h3>
+        <ul class="nav flex-column sidebar-list">
+          <li class="nav-item"><a href="#story" class="nav-link text-dark fw-semibold ps-0">Our Story</a></li>
+          <li class="nav-item"><a href="#creators" class="nav-link text-dark fw-semibold ps-0">Creators</a></li>
+          <li class="nav-item"><a href="#shipping" class="nav-link text-dark fw-semibold ps-0">Shipping Options</a></li>
+        </ul>
+      </div>
+    </aside>
 
-  <aside class="sidebar">
-    <h3>Quick Navigation</h3>
-    <ul class="sidebar-list">
-      <li><a href="#story">Our Story</a></li>
-      <li><a href="#creators">Creators</a></li>
-      <li><a href="#shipping">Shipping Options</a></li>
-    </ul>
-  </aside>
+    <!-- Main Content -->
+    <main class="col-12 col-md-9">
+      <section class="hero-banner p-4 text-center rounded bg-warning text-dark mb-4 shadow-sm" id="about-top">
+        <h1 class="h2 fw-bold mb-1">About Our Brand</h1>
+        <p class="lead mb-0 fs-6">Glow like the Sun, shine like the Moon</p>
+      </section>
 
-  <main>
-    <section class="hero-banner">
-      <h1>About Our Brand</h1>
-      <p>Glow like the Sun, shine like the Moon</p>
-    </section>
-
-    <section id="story" class="developer-profile">
-      <h2>The Story of Yello Beauty</h2>
-      <div class="profile-card">
-        <p>
+      <!-- Brand Story -->
+      <section id="story" class="mb-5 p-4 bg-white border rounded shadow-sm">
+        <h2 class="h3 fw-bold border-bottom border-warning pb-2 mb-3">The Story of Yello Beauty</h2>
+        <p class="mb-0 fs-6 leading-relaxed text-muted">
           The name <strong>Yello Beauty</strong> combines the warmth of sunlight (<em>Yellow</em>) and the aesthetics of its two creators — Sara and Aisulu.
           The name Aisulu translates to "moon beauty," and our brand was born at the intersection of two harmonies: the day glow of the sun and the night charm of the moon.
           We create skincare that helps your skin glow at any time of day!
         </p>
-      </div>
-    </section>
+      </section>
 
-    <section id="creators" class="developer-profile">
-      <h2>Our Creators</h2>
-
-      <div class="profile-card profile-card-mb">
-        <img src="img/sara.jpeg" alt="Sara Nauash" class="profile-img">
-        <div>
-          <h3>Sara Nauash</h3>
-          <p><strong>Astana IT University student (SE-2506)</strong></p>
-          <p>Kind, smart, and creative developer. For this project, Sara created the "About Us" and "Contact" pages, integrated the brand history, built the interactive feedback form, and structured the shipping price table.</p>
+      <!-- Creators -->
+      <section id="creators" class="mb-5">
+        <h2 class="h3 fw-bold border-bottom border-warning pb-2 mb-3">Our Creators</h2>
+        <div class="row g-4">
+          <div class="col-12 col-md-6">
+            <div class="p-4 bg-white border rounded shadow-sm h-100 text-center">
+              <img src="img/sara.jpeg" alt="Sara Nauash" class="rounded-circle border border-warning border-3 mb-3" style="width: 100px; height: 100px; object-fit: cover;">
+              <h3 class="h5 fw-bold">Sara Nauash</h3>
+              <p class="text-warning fw-bold mb-2">Co-Founder & Developer</p>
+              <p class="small text-muted mb-0">Sara designed the brand structure, feedback systems, and delivery network to make beauty ordering seamless.</p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="p-4 bg-white border rounded shadow-sm h-100 text-center">
+              <img src="img/aisulu.jpeg" alt="Aisulu Amanzhol" class="rounded-circle border border-warning border-3 mb-3" style="width: 100px; height: 100px; object-fit: cover;">
+              <h3 class="h5 fw-bold">Aisulu Amanzhol</h3>
+              <p class="text-warning fw-bold mb-2">Co-Founder & Designer</p>
+              <p class="small text-muted mb-0">Aisulu curated the yellow-pearl aesthetic, layout structure, and catalog experience for every visitor.</p>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div class="profile-card">
-        <img src="img/aisulu.jpeg" alt="Aisulu Amanzhol" class="profile-img">
-        <div>
-          <h3>Aisulu Amanzhol</h3>
-          <p><strong>Astana IT University student (SE-2506)</strong></p>
-          <p>Talented, bright, and hardworking designer & developer. Aisulu developed the overall project layout, main CSS styles, yellow-and-pearl color palette, home banner, and product catalog.</p>
+      <!-- Shipping & Delivery Options -->
+      <section id="shipping" class="mb-4 p-4 bg-white border rounded shadow-sm">
+        <h2 class="h3 fw-bold border-bottom border-warning pb-2 mb-3">Shipping & Delivery Options</h2>
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped align-middle mb-0">
+            <thead class="table-warning">
+            <tr>
+              <th scope="col">Delivery Method</th>
+              <th scope="col">Estimated Time</th>
+              <th scope="col">Coverage Area</th>
+              <th scope="col">Price (₸)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>Standard Courier</td>
+              <td>2-3 Business Days</td>
+              <td>Astana & Almaty</td>
+              <td class="fw-bold">1,200 ₸</td>
+            </tr>
+            <tr>
+              <td>Express Shipping</td>
+              <td>Same Day Delivery</td>
+              <td>Astana City</td>
+              <td class="fw-bold">2,500 ₸</td>
+            </tr>
+            <tr>
+              <td>Regional Kazpost</td>
+              <td>4-7 Business Days</td>
+              <td>All Regions of Kazakhstan</td>
+              <td class="fw-bold">1,500 ₸</td>
+            </tr>
+            </tbody>
+          </table>
         </div>
-      </div>
-    </section>
-
-    <section id="shipping" class="shipping-info">
-      <h2>Shipping & Delivery Options</h2>
-      <table class="data-table">
-        <thead>
-        <tr>
-          <th>Delivery Method</th>
-          <th>Estimated Time</th>
-          <th>Coverage Area</th>
-          <th>Price (₸)</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>Standard Courier</td>
-          <td>2-3 Business Days</td>
-          <td>Astana & Almaty</td>
-          <td>1,200 ₸</td>
-        </tr>
-        <tr>
-          <td>Express Shipping</td>
-          <td>Same Day Delivery</td>
-          <td>Astana City</td>
-          <td>2,500 ₸</td>
-        </tr>
-        <tr>
-          <td>Regional Kazpost</td>
-          <td>4-7 Business Days</td>
-          <td>All Regions of Kazakhstan</td>
-          <td>1,500 ₸</td>
-        </tr>
-        </tbody>
-      </table>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2026 Yello Beauty. All rights reserved.</p>
-    <p>Team Members: Aisulu Amanzhol, Sara Nauash</p>
-  </footer>
-
+      </section>
+    </main>
+  </div>
 </div>
 
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-4 mt-5">
+  <div class="container">
+    <p class="mb-1">&copy; 2026 Yello Beauty Cosmetics. All rights reserved.</p>
+    <p class="mb-0 text-warning fw-semibold">Team Members: Aisulu Amanzhol, Sara Nauash (Group SE-2506)</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -5,194 +5,250 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yello Beauty — Catalog</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="bg-light text-dark">
 
-<div class="page-grid-layout">
-
-  <div class="ticker-wrap">
-    <div class="ticker">
-      <span>✨ Get -15% off with promo code YELLO15!</span>
-      <span>💄 100% Original Cosmetics!</span>
-      <span>🚚 Free shipping in Kazakhstan on orders over 15,000 ₸!</span>
-    </div>
+<!-- Ticker Banner -->
+<div class="ticker-wrap bg-warning text-dark">
+  <div class="ticker">
+    <span class="ticker-item">✨ Get -15% off with promo code YELLO15!</span>
+    <span class="ticker-item">💄 100% Original Cosmetics!</span>
+    <span class="ticker-item">🚚 Free shipping in Kazakhstan on orders over 15,000 ₸!</span>
   </div>
-
-  <header id="main-header">
-    <div class="logo">
-      <h1>Yello <span>Beauty</span></h1>
-    </div>
-    <nav class="nav-menu">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="catalog.html" class="active">Catalog</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="contact.html">Contacts</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <aside class="sidebar">
-    <h3>Categories</h3>
-    <ul class="sidebar-list">
-      <li><a href="#all-cosmetics" class="active-link">All Cosmetics (15)</a></li>
-      <li><a href="#skincare-serums">Skincare & Serums</a></li>
-      <li><a href="#face-eye-makeup">Face & Eye Makeup</a></li>
-      <li><a href="#lip-care-tints">Lip Care & Tints</a></li>
-    </ul>
-  </aside>
-
-  <main class="catalog-page">
-    <div class="hero-banner" id="all-cosmetics">
-      <h2 style="margin: 0; color: #111111;">Cosmetics Catalog</h2>
-    </div>
-
-
-    <h3 id="skincare-serums" class="category-heading-centered">Skincare & Serums</h3>
-    <div class="product-grid">
-
-      <div class="product-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCjDzaNn_iz9xewP4x6pDYzDnL6LgoZ9Rrs8Zx6CnF3A&s" alt="SKIN1004 Serum">
-        <h3>SKIN1004 Serum</h3>
-        <p class="description">Deep hydration and soothing care with pure Centella Asiatica.</p>
-        <p class="price">8,900 ₸</p>
-        <button class="btn-primary">Add to Cart</button>
-      </div>
-
-      <div class="product-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXzq3AeeF_39H3Xk8ubW2SMgU2RKsNwN2YKQV5acSkVA&s=10" alt="Cleansing Oil">
-        <h3>Anua Heartleaf Cleansing Oil</h3>
-        <p class="description">Pore-clearing deep cleansing oil enriched with natural botanical extract.</p>
-        <p class="price">9,800 ₸</p>
-        <button class="btn-primary">Add to Cart</button>
-      </div>
-
-      <div class="product-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkCKuWxRBB129-JLy3kir-GfvZ1GF7HTthJ1jNl-nKLQ&s=10" alt="Sunscreen">
-        <h3>Beauty of Joseon Sun Relief</h3>
-        <p class="description">Organic SPF 50+ sunscreen with rice bran water and grain extracts.</p>
-        <p class="price">6,500 ₸</p>
-        <button class="btn-primary">Add to Cart</button>
-      </div>
-
-      <div class="product-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv02s8_IzoPtj4yJ20Sh-047oBF4Plk7X41PZfkctyxA&s=10" alt="Face Cream">
-        <h3>Medicube Collagen Cream</h3>
-        <p class="description">Firming and plumping facial moisturizer for youthfully glowing skin.</p>
-        <p class="price">18,400 ₸</p>
-        <button class="btn-primary">Add to Cart</button>
-      </div>
-
-      <div class="product-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-Jk4E9lN78AYVdI_Eu587A7ybzOtgRN61iXBl01CW_Q&s=10" alt="Torriden Serum">
-        <h3>Torriden Dive-In Serum</h3>
-        <p class="description">5D Complex Hyaluronic Acid serum providing intense inner skin moisture.</p>
-        <p class="price">10,200 ₸</p>
-        <button class="btn-primary">Add to Cart</button>
-      </div>
-
-    </div>
-
-
-    <h3 id="face-eye-makeup" class="category-heading-centered">Face & Eye Makeup</h3>
-    <div class="product-grid">
-
-      <div class="product-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo96-gs9WtGXsNikY4iiLAcdpx4CVL70lM8N_02MLtoQ&s" alt="Clio Eyeshadow Palette">
-        <h3>Clio Eyeshadow Pro Palette</h3>
-        <p class="description">Richly pigmented matte and shimmer shades for professional makeup.</p>
-        <p class="price">15,000 ₸</p>
-        <button class="btn-primary">Add to Cart</button>
-      </div>
-
-      <div class="product-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNJCdorkttP8k-FzaKo75QjYgUxnHDWMsYy5O39XihhQ&s" alt="Foundation">
-        <h3>Charlotte Tilbury Foundation</h3>
-        <p class="description">Flawless skin effect with long-lasting coverage and natural finish.</p>
-        <p class="price">32,000 ₸</p>
-        <button class="btn-primary">Add to Cart</button>
-      </div>
-
-      <div class="product-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDOTcStQiqDsYPMtrxLh9tj6lzgmAJ4lO0ES7DAY95Pw&s=10" alt="Blush">
-        <h3>Rare Beauty Blush</h3>
-        <p class="description">Long-lasting liquid pigment that blends effortlessly for a healthy flush.</p>
-        <p class="price">13,500 ₸</p>
-        <button class="btn-primary">Add to Cart</button>
-      </div>
-
-      <div class="product-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR8njMtDkky8cL9SQr0DNeePM_5pbvBhM3nkXIS9b-2w&s=10" alt="TIRTIR Cushion">
-        <h3>TIRTIR Mask Fit Red Cushion</h3>
-        <p class="description">High coverage foundation cushion with 72-hour transfer-proof duration.</p>
-        <p class="price">14,800 ₸</p>
-        <button class="btn-primary">Add to Cart</button>
-      </div>
-
-      <div class="product-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJ8neQaGKniJY100TzsTsWv1zkvpXqiCyvyWV5pkDpFGABysN-E1hrdaA&s" alt="Mascara">
-        <h3>Maybelline Lash Sensational</h3>
-        <p class="description">Full-fan effect volume mascara with sensational fan effect brush.</p>
-        <p class="price">4,900 ₸</p>
-        <button class="btn-primary">Add to Cart</button>
-      </div>
-
-    </div>
-
-
-    <h3 id="lip-care-tints" class="category-heading-centered">Lip Care & Tints</h3>
-    <div class="product-grid">
-
-      <div class="product-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYw26nXaUA8jQ5zZ91IW-0nyY2VW8po73bYDqRQy5ZKQ&s=10" alt="Dior Lipstick">
-        <h3>Dior Addict Lipstick</h3>
-        <p class="description">Luxurious shine and hydration for your everyday natural glow.</p>
-        <p class="price">22,500 ₸</p>
-        <button class="btn-primary">Add to Cart</button>
-      </div>
-
-      <div class="product-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_Xf_QEz109I9fgge3h-yBsKSdEvKAQ33gBqvnRaRZSA&s=10" alt="Lip Mask">
-        <h3>Laneige Lip Sleeping Mask</h3>
-        <p class="description">Intensive overnight nourishment for soft, smooth, and plump lips.</p>
-        <p class="price">7,200 ₸</p>
-        <button class="btn-primary">Add to Cart</button>
-      </div>
-
-      <div class="product-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR49-49dO7CL669h74yR1tpKGlocj9HO397wdtGBxew5w&s=10" alt="Rom&nd Tint">
-        <h3>Rom&nd Juicy Lasting Tint</h3>
-        <p class="description">Tangy fruit-inspired glossy lip tint with vibrant long-wear color.</p>
-        <p class="price">5,900 ₸</p>
-        <button class="btn-primary">Add to Cart</button>
-      </div>
-
-      <div class="product-card">
-        <img src="https://www.rhodeskin.com/cdn/shop/files/strawberry-featured_6cadd776-583e-425c-ab12-ba20bf7380b3_2480x.jpg?v=1755975138" alt="Rhode Lip Treatment">
-        <h3>Rhode Peptide Lip Treatment</h3>
-        <p class="description">Nourishing lip layer for naturally plump, soft, and glossy lips.</p>
-        <p class="price">9,500 ₸</p>
-        <button class="btn-primary">Add to Cart</button>
-      </div>
-
-      <div class="product-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUloHD5h1L31MPvwI_JaFQ2NbnwSrwsTKGMo1CUKapSQ&s=10" alt="Peripera Tint">
-        <h3>Peripera Ink Velvet Tint</h3>
-        <p class="description">Silky smooth velvety texture providing vivid color for all-day wear.</p>
-        <p class="price">4,800 ₸</p>
-        <button class="btn-primary">Add to Cart</button>
-      </div>
-
-    </div>
-  </main>
-
-  <footer>
-    <p>&copy; 2026 Yello Beauty Cosmetics. All rights reserved.</p>
-    <p>Website developed by <strong>Aisulu & Sara</strong></p>
-  </footer>
-
 </div>
 
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top border-bottom border-warning border-3">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand fw-bold fs-3 text-white" href="index.html">Yello <span class="text-warning">Beauty</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#catalogNavbar" aria-controls="catalogNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="catalogNavbar">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link fw-semibold" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active fw-semibold text-warning" href="catalog.html">Catalog</a></li>
+        <li class="nav-item"><a class="nav-link fw-semibold" href="about.html">About Us</a></li>
+        <li class="nav-item"><a class="nav-link fw-semibold" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container my-4">
+  <div class="row">
+    <!-- Sidebar Navigation -->
+    <aside class="col-12 col-md-3 mb-4">
+      <div class="p-3 bg-white border border-warning rounded shadow-sm sticky-top" style="top: 80px;">
+        <h3 class="h5 fw-bold border-bottom border-warning pb-2">Categories</h3>
+        <ul class="nav flex-column sidebar-list">
+          <li class="nav-item"><a href="#all-cosmetics" class="nav-link text-dark fw-semibold ps-0">All Cosmetics (15)</a></li>
+          <li class="nav-item"><a href="#skincare-serums" class="nav-link text-dark fw-semibold ps-0">Skincare & Serums (5)</a></li>
+          <li class="nav-item"><a href="#face-eye-makeup" class="nav-link text-dark fw-semibold ps-0">Face & Eye Makeup (5)</a></li>
+          <li class="nav-item"><a href="#lip-care-tints" class="nav-link text-dark fw-semibold ps-0">Lip Care & Tints (5)</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="col-12 col-md-9">
+      <section class="hero-banner p-4 text-center rounded bg-warning text-dark mb-4 shadow-sm" id="all-cosmetics">
+        <h2 class="h2 fw-bold mb-0">Cosmetics Catalog</h2>
+      </section>
+
+      <!-- Category 1: Skincare & Serums -->
+      <h3 id="skincare-serums" class="h4 fw-bold pb-2 mb-3 border-bottom border-warning">Skincare & Serums</h3>
+      <div class="row g-4 mb-5">
+        <div class="col-12 col-md-4">
+          <div class="card h-100 shadow-sm border rounded p-3 product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCjDzaNn_iz9xewP4x6pDYzDnL6LgoZ9Rrs8Zx6CnF3A&s" class="card-img-top object-fit-contain" style="height: 160px;" alt="SKIN1004 Serum">
+            <div class="card-body d-flex flex-column px-0 pb-0">
+              <h5 class="card-title h6 fw-bold">SKIN1004 Serum</h5>
+              <p class="card-text text-muted small flex-grow-1">Deep hydration and soothing care with pure Centella Asiatica.</p>
+              <p class="fw-bold h5 text-dark mb-3">8,900 ₸</p>
+              <button class="btn btn-dark w-100 fw-bold btn-sm">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="card h-100 shadow-sm border rounded p-3 product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXzq3AeeF_39H3Xk8ubW2SMgU2RKsNwN2YKQV5acSkVA&s=10" class="card-img-top object-fit-contain" style="height: 160px;" alt="Cleansing Oil">
+            <div class="card-body d-flex flex-column px-0 pb-0">
+              <h5 class="card-title h6 fw-bold">Anua Heartleaf Cleansing Oil</h5>
+              <p class="card-text text-muted small flex-grow-1">Pore-clearing deep cleansing oil enriched with natural extract.</p>
+              <p class="fw-bold h5 text-dark mb-3">9,800 ₸</p>
+              <button class="btn btn-dark w-100 fw-bold btn-sm">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="card h-100 shadow-sm border rounded p-3 product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkCKuWxRBB129-JLy3kir-GfvZ1GF7HTthJ1jNl-nKLQ&s=10" class="card-img-top object-fit-contain" style="height: 160px;" alt="Sunscreen">
+            <div class="card-body d-flex flex-column px-0 pb-0">
+              <h5 class="card-title h6 fw-bold">Beauty of Joseon Sun Relief</h5>
+              <p class="card-text text-muted small flex-grow-1">Organic SPF 50+ sunscreen with rice bran water.</p>
+              <p class="fw-bold h5 text-dark mb-3">6,500 ₸</p>
+              <button class="btn btn-dark w-100 fw-bold btn-sm">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="card h-100 shadow-sm border rounded p-3 product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRQAPrsEnQr24syHL05VbGNXBjLL2xOf7zgNuWsAyh4A&s=10" class="card-img-top object-fit-contain" style="height: 160px;" alt="COSRX Toner">
+            <div class="card-body d-flex flex-column px-0 pb-0">
+              <h5 class="card-title h6 fw-bold">COSRX AHA/BHA Toner</h5>
+              <p class="card-text text-muted small flex-grow-1">Clarifying treatment toner for smooth skin texture.</p>
+              <p class="fw-bold h5 text-dark mb-3">7,500 ₸</p>
+              <button class="btn btn-dark w-100 fw-bold btn-sm">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="card h-100 shadow-sm border rounded p-3 product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe5WR2n1Gd1PK_d_7UVddmgyXZY6GEKjX3c7fsr0ibEA&s=10" class="card-img-top object-fit-contain" style="height: 160px;" alt="Some By Mi Cream">
+            <div class="card-body d-flex flex-column px-0 pb-0">
+              <h5 class="card-title h6 fw-bold">Some By Mi Miracle Cream</h5>
+              <p class="card-text text-muted small flex-grow-1">Calming cream for problem-prone and sensitive skin.</p>
+              <p class="fw-bold h5 text-dark mb-3">8,200 ₸</p>
+              <button class="btn btn-dark w-100 fw-bold btn-sm">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 2: Face & Eye Makeup -->
+      <h3 id="face-eye-makeup" class="h4 fw-bold pb-2 mb-3 border-bottom border-warning">Face & Eye Makeup</h3>
+      <div class="row g-4 mb-5">
+        <div class="col-12 col-md-4">
+          <div class="card h-100 shadow-sm border rounded p-3 product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo96-gs9WtGXsNikY4iiLAcdpx4CVL70lM8N_02MLtoQ&s" class="card-img-top object-fit-contain" style="height: 160px;" alt="Clio Eyeshadow">
+            <div class="card-body d-flex flex-column px-0 pb-0">
+              <h5 class="card-title h6 fw-bold">Clio Eyeshadow Pro Palette</h5>
+              <p class="card-text text-muted small flex-grow-1">Richly pigmented matte and shimmer shades.</p>
+              <p class="fw-bold h5 text-dark mb-3">15,000 ₸</p>
+              <button class="btn btn-dark w-100 fw-bold btn-sm">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="card h-100 shadow-sm border rounded p-3 product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNJCdorkttP8k-FzaKo75QjYgUxnHDWMsYy5O39XihhQ&s" class="card-img-top object-fit-contain" style="height: 160px;" alt="Foundation">
+            <div class="card-body d-flex flex-column px-0 pb-0">
+              <h5 class="card-title h6 fw-bold">Charlotte Tilbury Foundation</h5>
+              <p class="card-text text-muted small flex-grow-1">Flawless skin effect with long-lasting coverage.</p>
+              <p class="fw-bold h5 text-dark mb-3">32,000 ₸</p>
+              <button class="btn btn-dark w-100 fw-bold btn-sm">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="card h-100 shadow-sm border rounded p-3 product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDOTcStQiqDsYPMtrxLh9tj6lzgmAJ4lO0ES7DAY95Pw&s=10" class="card-img-top object-fit-contain" style="height: 160px;" alt="Blush">
+            <div class="card-body d-flex flex-column px-0 pb-0">
+              <h5 class="card-title h6 fw-bold">Rare Beauty Blush</h5>
+              <p class="card-text text-muted small flex-grow-1">Long-lasting liquid pigment that blends effortlessly.</p>
+              <p class="fw-bold h5 text-dark mb-3">13,500 ₸</p>
+              <button class="btn btn-dark w-100 fw-bold btn-sm">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="card h-100 shadow-sm border rounded p-3 product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUs47gTUK4zZfx8snSc3bGX8cmpYJVcPy_C_ZTdUEMBeiBdLO85YeGGQg&s=10" class="card-img-top object-fit-contain" style="height: 160px;" alt="Mascara">
+            <div class="card-body d-flex flex-column px-0 pb-0">
+              <h5 class="card-title h6 fw-bold">Maybelline Sky High Mascara</h5>
+              <p class="card-text text-muted small flex-grow-1">Full volume and length from every angle.</p>
+              <p class="fw-bold h5 text-dark mb-3">6,200 ₸</p>
+              <button class="btn btn-dark w-100 fw-bold btn-sm">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="card h-100 shadow-sm border rounded p-3 product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9TVDoIbC6Jw8lJvaHU0IT1nbtyAGUIesQVxqIMGwe7Q&s" class="card-img-top object-fit-contain" style="height: 160px;" alt="Cushion Foundation">
+            <div class="card-body d-flex flex-column px-0 pb-0">
+              <h5 class="card-title h6 fw-bold">Tirtir Mask Fit Cushion</h5>
+              <p class="card-text text-muted small flex-grow-1">Long-wearing glowing cushion foundation.</p>
+              <p class="fw-bold h5 text-dark mb-3">11,000 ₸</p>
+              <button class="btn btn-dark w-100 fw-bold btn-sm">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 3: Lip Care & Tints -->
+      <h3 id="lip-care-tints" class="h4 fw-bold pb-2 mb-3 border-bottom border-warning">Lip Care & Tints</h3>
+      <div class="row g-4 mb-4">
+        <div class="col-12 col-md-4">
+          <div class="card h-100 shadow-sm border rounded p-3 product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYw26nXaUA8jQ5zZ91IW-0nyY2VW8po73bYDqRQy5ZKQ&s=10" class="card-img-top object-fit-contain" style="height: 160px;" alt="Dior Lipstick">
+            <div class="card-body d-flex flex-column px-0 pb-0">
+              <h5 class="card-title h6 fw-bold">Dior Addict Lipstick</h5>
+              <p class="card-text text-muted small flex-grow-1">Luxurious shine and hydration for daily natural glow.</p>
+              <p class="fw-bold h5 text-dark mb-3">22,500 ₸</p>
+              <button class="btn btn-dark w-100 fw-bold btn-sm">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="card h-100 shadow-sm border rounded p-3 product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_Xf_QEz109I9fgge3h-yBsKSdEvKAQ33gBqvnRaRZSA&s=10" class="card-img-top object-fit-contain" style="height: 160px;" alt="Lip Mask">
+            <div class="card-body d-flex flex-column px-0 pb-0">
+              <h5 class="card-title h6 fw-bold">Laneige Lip Sleeping Mask</h5>
+              <p class="card-text text-muted small flex-grow-1">Intensive overnight nourishment for soft, plump lips.</p>
+              <p class="fw-bold h5 text-dark mb-3">7,200 ₸</p>
+              <button class="btn btn-dark w-100 fw-bold btn-sm">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="card h-100 shadow-sm border rounded p-3 product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR49-49dO7CL669h74yR1tpKGlocj9HO397wdtGBxew5w&s=10" class="card-img-top object-fit-contain" style="height: 160px;" alt="Rom&nd Tint">
+            <div class="card-body d-flex flex-column px-0 pb-0">
+              <h5 class="card-title h6 fw-bold">Rom&nd Juicy Lasting Tint</h5>
+              <p class="card-text text-muted small flex-grow-1">Glossy lip tint with vibrant long-wear color.</p>
+              <p class="fw-bold h5 text-dark mb-3">5,900 ₸</p>
+              <button class="btn btn-dark w-100 fw-bold btn-sm">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="card h-100 shadow-sm border rounded p-3 product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ41bEREWUs_rFNHsLg8nuc51z0XiaaOVkRrIdDsG35Ng&s=10" class="card-img-top object-fit-contain" style="height: 160px;" alt="Peripera Ink Tint">
+            <div class="card-body d-flex flex-column px-0 pb-0">
+              <h5 class="card-title h6 fw-bold">Peripera Ink Velvet Tint</h5>
+              <p class="card-text text-muted small flex-grow-1">Velvety smooth lip tint with high pigmentation.</p>
+              <p class="fw-bold h5 text-dark mb-3">4,800 ₸</p>
+              <button class="btn btn-dark w-100 fw-bold btn-sm">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="card h-100 shadow-sm border rounded p-3 product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE86RhLQCMmOn6jzD4KOyKxhXDdVO9qYvBYftd8tDJvQ&s" class="card-img-top object-fit-contain" style="height: 160px;" alt="Fenty Gloss Bomb">
+            <div class="card-body d-flex flex-column px-0 pb-0">
+              <h5 class="card-title h6 fw-bold">Fenty Beauty Gloss Bomb</h5>
+              <p class="card-text text-muted small flex-grow-1">Explosive shine lip gloss with conditioning shea butter.</p>
+              <p class="fw-bold h5 text-dark mb-3">12,000 ₸</p>
+              <button class="btn btn-dark w-100 fw-bold btn-sm">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-4 mt-5">
+  <div class="container">
+    <p class="mb-1">&copy; 2026 Yello Beauty Cosmetics. All rights reserved.</p>
+    <p class="mb-0 text-warning fw-semibold">Team Members: Aisulu Amanzhol, Sara Nauash (Group SE-2506)</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
