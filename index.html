@@ -1,87 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Developed by Aisulu Amanzhol (Group SE-2506) -->
+  <!-- Developed by Aisulu Amanzhol & Sara Nauash (Group SE-2506) -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yello Beauty — Home</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-light text-dark">
+<body>
 
 <!-- Ticker Banner -->
-<div class="ticker-wrap bg-warning text-dark">
+<div class="ticker-wrap">
   <div class="ticker">
     <span class="ticker-item">✨ Get -15% off with promo code YELLO15!</span>
     <span class="ticker-item">💄 100% Original Cosmetics!</span>
     <span class="ticker-item">🚚 Free shipping in Kazakhstan on orders over 15,000 ₸!</span>
-
   </div>
 </div>
+<!-- Live Clock (Task 5) -->
+<div id="datetime-display" class="datetime-display"></div>
 
 <!-- Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top border-bottom border-warning border-3">
-  <div class="container-fluid px-4">
-    <a class="navbar-brand fw-bold fs-3 text-white" href="index.html">Yello <span class="text-warning">Beauty</span></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="mainNavbar">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link active fw-semibold text-warning" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link fw-semibold" href="catalog.html">Catalog</a></li>
-        <li class="nav-item"><a class="nav-link fw-semibold" href="about.html">About Us</a></li>
-        <li class="nav-item"><a class="nav-link fw-semibold" href="contact.html">Contact</a></li>
+<nav class="navbar">
+  <div class="container-fluid navbar-container">
+    <a class="navbar-brand" href="index.html">Yello <span class="text-warning">Beauty</span></a>
+    <div class="navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav">
+        <li><a class="nav-link active text-warning" href="index.html">Home</a></li>
+        <li><a class="nav-link" href="catalog.html">Catalog</a></li>
+        <li><a class="nav-link" href="about.html">About Us</a></li>
+        <li><a class="nav-link" href="contact.html">Contact</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
-<div class="container my-4">
+<div class="container my-4" style="flex: 1;">
   <div class="row">
     <!-- Sidebar Navigation -->
     <aside class="col-12 col-md-3 mb-4">
-      <div class="p-3 bg-white border border-warning rounded shadow-sm sticky-top" style="top: 80px;">
-        <h3 class="h5 fw-bold border-bottom border-warning pb-2">Quick Navigation</h3>
-        <ul class="nav flex-column sidebar-list">
-          <li class="nav-item"><a href="#features" class="nav-link text-dark fw-semibold ps-0">Why Choose Us</a></li>
-          <li class="nav-item"><a href="#highlights" class="nav-link text-dark fw-semibold ps-0">Store Highlights</a></li>
-          <li class="nav-item"><a href="#featured" class="nav-link text-dark fw-semibold ps-0">Featured Brand</a></li>
-          <li class="nav-item"><a href="#carousel-section" class="nav-link text-dark fw-semibold ps-0">All Products Showcase</a></li>
+      <div class="sidebar-box">
+        <h3 class="sidebar-title">Quick Navigation</h3>
+        <ul class="sidebar-list">
+          <li><a href="#features" class="sidebar-link">Why Choose Us</a></li>
+          <li><a href="#highlights" class="sidebar-link">Store Highlights</a></li>
+          <li><a href="#featured" class="sidebar-link">Featured Brand</a></li>
+          <li><a href="#carousel-section" class="sidebar-link">All Products Showcase</a></li>
         </ul>
+        <!-- Task 3 & 4 Buttons -->
+        <div class="sidebar-buttons">
+          <button id="bg-color-btn" class="btn btn-dark w-100 mb-2">🎨 Change BG Color</button>
+          <button id="open-popup-btn" class="btn btn-warning w-100">🎁 Special Offer Popup</button>
+        </div>
       </div>
     </aside>
 
     <!-- Main Content -->
     <main class="col-12 col-md-9">
-      <section class="hero-banner p-4 text-center rounded bg-warning text-dark mb-4 shadow-sm" id="home-top">
-        <h1 class="h2 fw-bold mb-1">Sun-Kissed Glow for Your Beauty</h1>
-        <p class="lead mb-0 fs-6">100% original cosmetics from the world's best brands</p>
+      <section class="hero-banner" id="home-top">
+        <h1 class="hero-title">Sun-Kissed Glow for Your Beauty</h1>
+        <p class="hero-lead">100% original cosmetics from the world's best brands</p>
       </section>
 
       <!-- Features Section -->
-      <section id="features" class="mb-5">
-        <h2 class="h3 fw-bold mb-3">Why Choose Yello Beauty</h2>
+      <section id="features" class="mb-3">
+        <h2 class="section-title">Why Choose Yello Beauty</h2>
         <div class="row g-4">
           <div class="col-12 col-md-4">
-            <div class="p-4 bg-white border border-warning rounded shadow-sm h-100 text-center">
+            <div class="feature-card">
               <div class="fs-1 mb-2">🌟</div>
-              <h3 class="h5 fw-bold">100% Authentic</h3>
+              <h3 class="h5 fw-bold mb-1">100% Authentic</h3>
               <p class="small text-muted mb-0">Quality guarantee on all products</p>
             </div>
           </div>
           <div class="col-12 col-md-4">
-            <div class="p-4 bg-white border border-warning rounded shadow-sm h-100 text-center">
+            <div class="feature-card">
               <div class="fs-1 mb-2">💛</div>
-              <h3 class="h5 fw-bold">Trending Selection</h3>
+              <h3 class="h5 fw-bold mb-1">Trending Selection</h3>
               <p class="small text-muted mb-0">Top brands and bestsellers only</p>
             </div>
           </div>
           <div class="col-12 col-md-4">
-            <div class="p-4 bg-white border border-warning rounded shadow-sm h-100 text-center">
+            <div class="feature-card">
               <div class="fs-1 mb-2">📦</div>
-              <h3 class="h5 fw-bold">Fast Shipping</h3>
+              <h3 class="h5 fw-bold mb-1">Fast Shipping</h3>
               <p class="small text-muted mb-0">Same-day dispatch nationwide</p>
             </div>
           </div>
@@ -89,40 +91,40 @@
       </section>
 
       <!-- Store Highlights Section -->
-      <section id="highlights" class="mb-5 p-4 bg-white border rounded shadow-sm">
-        <h2 class="h3 fw-bold mb-2 border-bottom border-warning pb-2">Our Key Guarantees</h2>
+      <section id="highlights" class="content-box">
+        <h2 class="box-title border-bottom-warning">Our Key Guarantees</h2>
         <p class="text-muted small mb-3">We carefully select every beauty item to ensure your skin receives gentle, effective, and safe care.</p>
 
         <div class="custom-card-group">
           <div class="custom-card text-center">
-            <div class="fs-2 mb-2">✨</div>
-            <h3 class="h5 fw-bold">Dermatologist Tested</h3>
+            <div class="fs-2 mb-1">✨</div>
+            <h3 class="h6 fw-bold mb-1">Dermatologist Tested</h3>
             <p class="small text-muted mb-0">Formulated and tested for safety on sensitive skin.</p>
           </div>
           <div class="custom-card text-center">
-            <div class="fs-2 mb-2">🌿</div>
-            <h3 class="h5 fw-bold">Clean Formulas</h3>
+            <div class="fs-2 mb-1">🌿</div>
+            <h3 class="h6 fw-bold mb-1">Clean Formulas</h3>
             <p class="small text-muted mb-0">Cruelty-free products with gentle natural ingredients.</p>
           </div>
           <div class="custom-card text-center">
-            <div class="fs-2 mb-2">💧</div>
-            <h3 class="h5 fw-bold">Deep Hydration</h3>
+            <div class="fs-2 mb-1">💧</div>
+            <h3 class="h6 fw-bold mb-1">Deep Hydration</h3>
             <p class="small text-muted mb-0">Targeted hydration for a radiant and healthy skin barrier.</p>
           </div>
         </div>
       </section>
 
       <!-- Featured Brand Section -->
-      <section id="featured" class="mb-5 p-4 bg-white border rounded shadow-sm">
+      <section id="featured" class="content-box">
         <div class="row align-items-center">
-          <div class="col-12 col-md-4 text-center mb-3 mb-md-0">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS16k_rE04I0RqTCfu9F0EXaQfh_0-t4hHA4qrtEXFvLQ&s=10" alt="Featured Product" class="img-fluid rounded border border-warning p-1" style="max-height: 120px;">
+          <div class="col-12 col-md-4 text-center mb-2 mb-md-0">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS16k_rE04I0RqTCfu9F0EXaQfh_0-t4hHA4qrtEXFvLQ&s=10" alt="Featured Product" class="featured-img">
           </div>
           <div class="col-12 col-md-8">
-            <h2 class="h4 fw-bold mb-2">Featured Brand of the Month: SKIN1004</h2>
-            <p class="text-muted mb-3 small">Discover Madagascar Centella Asiatica skincare line for profound soothing and hydration.</p>
+            <h2 class="h5 fw-bold mb-1">Featured Brand of the Month: SKIN1004</h2>
+            <p class="text-muted mb-2 small">Discover Madagascar Centella Asiatica skincare line for profound soothing and hydration.</p>
 
-            <div class="btn-group" role="group" aria-label="Brand Actions">
+            <div class="btn-group">
               <a href="catalog.html#skincare-serums" class="btn btn-warning btn-sm fw-bold">Explore Line</a>
               <a href="contact.html" class="btn btn-outline-dark btn-sm">Ask Advisor</a>
             </div>
@@ -130,110 +132,115 @@
         </div>
       </section>
 
-      <!-- Carousel Section (9 items) -->
-      <section id="carousel-section" class="mb-4 p-4 bg-white border rounded shadow-sm">
-        <h2 class="h3 fw-bold mb-3 text-center">Full Product Showcase</h2>
-        <div id="beautyCarousel" class="carousel slide shadow rounded overflow-hidden bg-light" data-bs-ride="carousel">
+      <!-- Carousel Section -->
+      <section id="carousel-section" class="content-box">
+        <h2 class="section-title text-center mb-2">Full Product Showcase</h2>
+        <div id="beautyCarousel" class="carousel">
           <div class="carousel-indicators">
-            <button type="button" data-bs-target="#beautyCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#beautyCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#beautyCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#beautyCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-            <button type="button" data-bs-target="#beautyCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
-            <button type="button" data-bs-target="#beautyCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
-            <button type="button" data-bs-target="#beautyCarousel" data-bs-slide-to="6" aria-label="Slide 7"></button>
-            <button type="button" data-bs-target="#beautyCarousel" data-bs-slide-to="7" aria-label="Slide 8"></button>
-            <button type="button" data-bs-target="#beautyCarousel" data-bs-slide-to="8" aria-label="Slide 9"></button>
+            <button type="button" data-slide-to="0" class="active"></button>
+            <button type="button" data-slide-to="1"></button>
+            <button type="button" data-slide-to="2"></button>
+            <button type="button" data-slide-to="3"></button>
+            <button type="button" data-slide-to="4"></button>
+            <button type="button" data-slide-to="5"></button>
+            <button type="button" data-slide-to="6"></button>
+            <button type="button" data-slide-to="7"></button>
+            <button type="button" data-slide-to="8"></button>
           </div>
 
-          <div class="carousel-inner" style="height: 280px;">
-            <div class="carousel-item active h-100 text-center">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCjDzaNn_iz9xewP4x6pDYzDnL6LgoZ9Rrs8Zx6CnF3A&s" class="d-block mx-auto h-100 p-3 object-fit-contain" alt="SKIN1004 Serum">
-              <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded p-2">
+          <div class="carousel-inner">
+            <div class="carousel-item active text-center">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCjDzaNn_iz9xewP4x6pDYzDnL6LgoZ9Rrs8Zx6CnF3A&s" alt="SKIN1004 Serum">
+              <div class="carousel-caption">
                 <h5 class="mb-0 text-white h6">SKIN1004 Serum</h5>
                 <p class="text-warning mb-0 small">8,900 ₸</p>
               </div>
             </div>
-            <div class="carousel-item h-100 text-center">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXzq3AeeF_39H3Xk8ubW2SMgU2RKsNwN2YKQV5acSkVA&s=10" class="d-block mx-auto h-100 p-3 object-fit-contain" alt="Anua Cleansing Oil">
-              <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded p-2">
+            <div class="carousel-item text-center">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXzq3AeeF_39H3Xk8ubW2SMgU2RKsNwN2YKQV5acSkVA&s=10" alt="Anua Cleansing Oil">
+              <div class="carousel-caption">
                 <h5 class="mb-0 text-white h6">Anua Heartleaf Cleansing Oil</h5>
                 <p class="text-warning mb-0 small">9,800 ₸</p>
               </div>
             </div>
-            <div class="carousel-item h-100 text-center">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkCKuWxRBB129-JLy3kir-GfvZ1GF7HTthJ1jNl-nKLQ&s=10" class="d-block mx-auto h-100 p-3 object-fit-contain" alt="Beauty of Joseon Sun Relief">
-              <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded p-2">
+            <div class="carousel-item text-center">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkCKuWxRBB129-JLy3kir-GfvZ1GF7HTthJ1jNl-nKLQ&s=10" alt="Beauty of Joseon Sun Relief">
+              <div class="carousel-caption">
                 <h5 class="mb-0 text-white h6">Beauty of Joseon Sun Relief</h5>
                 <p class="text-warning mb-0 small">6,500 ₸</p>
               </div>
             </div>
-            <div class="carousel-item h-100 text-center">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo96-gs9WtGXsNikY4iiLAcdpx4CVL70lM8N_02MLtoQ&s" class="d-block mx-auto h-100 p-3 object-fit-contain" alt="Clio Eyeshadow">
-              <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded p-2">
+            <div class="carousel-item text-center">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo96-gs9WtGXsNikY4iiLAcdpx4CVL70lM8N_02MLtoQ&s" alt="Clio Eyeshadow">
+              <div class="carousel-caption">
                 <h5 class="mb-0 text-white h6">Clio Eyeshadow Pro Palette</h5>
                 <p class="text-warning mb-0 small">15,000 ₸</p>
               </div>
             </div>
-            <div class="carousel-item h-100 text-center">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNJCdorkttP8k-FzaKo75QjYgUxnHDWMsYy5O39XihhQ&s" class="d-block mx-auto h-100 p-3 object-fit-contain" alt="Foundation">
-              <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded p-2">
+            <div class="carousel-item text-center">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNJCdorkttP8k-FzaKo75QjYgUxnHDWMsYy5O39XihhQ&s" alt="Foundation">
+              <div class="carousel-caption">
                 <h5 class="mb-0 text-white h6">Charlotte Tilbury Foundation</h5>
                 <p class="text-warning mb-0 small">32,000 ₸</p>
               </div>
             </div>
-            <div class="carousel-item h-100 text-center">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDOTcStQiqDsYPMtrxLh9tj6lzgmAJ4lO0ES7DAY95Pw&s=10" class="d-block mx-auto h-100 p-3 object-fit-contain" alt="Blush">
-              <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded p-2">
+            <div class="carousel-item text-center">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDOTcStQiqDsYPMtrxLh9tj6lzgmAJ4lO0ES7DAY95Pw&s=10" alt="Blush">
+              <div class="carousel-caption">
                 <h5 class="mb-0 text-white h6">Rare Beauty Blush</h5>
                 <p class="text-warning mb-0 small">13,500 ₸</p>
               </div>
             </div>
-            <div class="carousel-item h-100 text-center">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYw26nXaUA8jQ5zZ91IW-0nyY2VW8po73bYDqRQy5ZKQ&s=10" class="d-block mx-auto h-100 p-3 object-fit-contain" alt="Dior Lipstick">
-              <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded p-2">
+            <div class="carousel-item text-center">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYw26nXaUA8jQ5zZ91IW-0nyY2VW8po73bYDqRQy5ZKQ&s=10" alt="Dior Lipstick">
+              <div class="carousel-caption">
                 <h5 class="mb-0 text-white h6">Dior Addict Lipstick</h5>
                 <p class="text-warning mb-0 small">22,500 ₸</p>
               </div>
             </div>
-            <div class="carousel-item h-100 text-center">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_Xf_QEz109I9fgge3h-yBsKSdEvKAQ33gBqvnRaRZSA&s=10" class="d-block mx-auto h-100 p-3 object-fit-contain" alt="Lip Mask">
-              <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded p-2">
+            <div class="carousel-item text-center">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_Xf_QEz109I9fgge3h-yBsKSdEvKAQ33gBqvnRaRZSA&s=10" alt="Lip Mask">
+              <div class="carousel-caption">
                 <h5 class="mb-0 text-white h6">Laneige Lip Sleeping Mask</h5>
                 <p class="text-warning mb-0 small">7,200 ₸</p>
               </div>
             </div>
-            <div class="carousel-item h-100 text-center">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR49-49dO7CL669h74yR1tpKGlocj9HO397wdtGBxew5w&s=10" class="d-block mx-auto h-100 p-3 object-fit-contain" alt="Rom&nd Tint">
-              <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded p-2">
+            <div class="carousel-item text-center">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR49-49dO7CL669h74yR1tpKGlocj9HO397wdtGBxew5w&s=10" alt="Rom&nd Tint">
+              <div class="carousel-caption">
                 <h5 class="mb-0 text-white h6">Rom&nd Juicy Lasting Tint</h5>
                 <p class="text-warning mb-0 small">5,900 ₸</p>
               </div>
             </div>
           </div>
 
-          <button class="carousel-control-prev bg-dark bg-opacity-25" type="button" data-bs-target="#beautyCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next bg-dark bg-opacity-25" type="button" data-bs-target="#beautyCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
+          <button class="carousel-control-prev" type="button" data-slide="prev">&#10094;</button>
+          <button class="carousel-control-next" type="button" data-slide="next">&#10095;</button>
         </div>
       </section>
     </main>
   </div>
 </div>
 
+<!-- Popup Modal HTML -->
+<div id="popup-overlay" class="popup-overlay">
+  <div class="popup-content">
+    <span id="close-popup-btn" class="popup-close">&times;</span>
+    <h3 class="h6 fw-bold mb-2 text-dark">✨ Get -15% Off Your First Order!</h3>
+    <p class="small text-muted mb-2">Join our Yello Beauty club for exclusive skincare tips and promo codes delivered right to your inbox.</p>
+    <input type="email" id="popup-email" class="form-control mb-2" placeholder="Enter your email...">
+    <button class="btn btn-warning w-100 fw-bold btn-sm" onclick="alert('Thank you for subscribing!'); document.getElementById('popup-overlay').style.display='none';">Subscribe Now</button>
+  </div>
+</div>
+
 <!-- Footer -->
-<footer class="bg-dark text-white text-center py-4 mt-5">
+<footer>
   <div class="container">
     <p class="mb-1">&copy; 2026 Yello Beauty Cosmetics. All rights reserved.</p>
     <p class="mb-0 text-warning fw-semibold">Team Members: Aisulu Amanzhol, Sara Nauash (Group SE-2506)</p>
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>
