@@ -427,7 +427,7 @@ body {
 }
 
 .accordion-item-custom.active .accordion-body-custom {
-  max-height: 150px;
+  max-height: 250px;
   padding: 10px 14px;
 }
 
