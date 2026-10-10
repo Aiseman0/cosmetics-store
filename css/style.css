@@ -328,7 +328,7 @@ body {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .sidebar-link {
@@ -336,11 +336,13 @@ body {
   text-decoration: none;
   font-weight: 600;
   font-size: 0.85rem;
-  transition: color 0.2s;
+  transition: color 0.2s ease;
 }
 
-.sidebar-link:hover {
-  color: #ffc107;
+.sidebar-link:hover,
+.sidebar-link:focus,
+.sidebar-link:active {
+  color: #ffc107 !important;
 }
 
 .sidebar-buttons {
@@ -380,7 +382,7 @@ body {
   margin-bottom: 0.75rem;
 }
 
-/* --- Аккордеон (с увеличенным запасом высоты) --- */
+/* --- Аккордеон --- */
 .custom-accordion {
   display: flex;
   flex-direction: column;
@@ -427,7 +429,7 @@ body {
 }
 
 .accordion-item-custom.active .accordion-body-custom {
-  max-height: 300px; /* Увеличенный запас, чтобы текст никогда не обрезался */
+  max-height: 300px;
   padding: 10px 14px;
 }
 
@@ -500,7 +502,7 @@ body {
   overflow-x: auto;
 }
 
-/* --- Карусель (на чистом JS) --- */
+/* --- Карусель --- */
 .carousel {
   position: relative;
   background: #f8f9fa;
