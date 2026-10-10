@@ -114,7 +114,7 @@ body {
   color: #ffc107;
 }
 
-/* --- Компактные карточки и блоки --- */
+/* --- Карточки и блоки --- */
 .card, .feature-card, .content-box, .sidebar-box, .creator-card {
   background-color: #fff;
   border: 1px solid rgba(0,0,0,.125);
@@ -380,7 +380,7 @@ body {
   margin-bottom: 0.75rem;
 }
 
-/* --- Аккордеон --- */
+/* --- Аккордеон (с увеличенным запасом высоты) --- */
 .custom-accordion {
   display: flex;
   flex-direction: column;
@@ -427,7 +427,7 @@ body {
 }
 
 .accordion-item-custom.active .accordion-body-custom {
-  max-height: 250px;
+  max-height: 300px; /* Увеличенный запас, чтобы текст никогда не обрезался */
   padding: 10px 14px;
 }
 
@@ -500,7 +500,7 @@ body {
   overflow-x: auto;
 }
 
-/* --- Карусель --- */
+/* --- Карусель (на чистом JS) --- */
 .carousel {
   position: relative;
   background: #f8f9fa;
@@ -585,7 +585,7 @@ body {
 .carousel-control-prev { left: 8px; }
 .carousel-control-next { right: 8px; }
 
-/* --- Футер (прижат к низу) --- */
+/* --- Футер --- */
 footer {
   background-color: #212529;
   color: #fff;

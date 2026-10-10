@@ -46,7 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
       popupOverlay.style.display = "none";
     });
   }
-  // Закрытие по клику вне модального окна
   if (popupOverlay) {
     popupOverlay.addEventListener("click", (e) => {
       if (e.target === popupOverlay) {
@@ -59,7 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const bgColorBtn = document.getElementById("bg-color-btn");
   const colors = ["#FFFAED", "#FFF3C4", "#FFE866", "#FFF8E7", "#FFF0F5"];
 
-  // Восстанавливаем сохраненный цвет при загрузке любой страницы
   let savedColor = localStorage.getItem("yello_bg_color");
   let savedIndex = localStorage.getItem("yello_bg_index");
 
@@ -88,5 +86,47 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     updateDateTime();
     setInterval(updateDateTime, 1000);
+  }
+
+  // --- 6. Custom Pure JS Carousel ---
+  const carouselItems = document.querySelectorAll(".carousel-item");
+  const prevBtn = document.querySelector(".carousel-control-prev");
+  const nextBtn = document.querySelector(".carousel-control-next");
+  const indicators = document.querySelectorAll(".carousel-indicators button");
+
+  if (carouselItems.length > 0) {
+    let currentIndex = 0;
+
+    function showSlide(index) {
+      carouselItems.forEach((item, i) => {
+        item.classList.toggle("active", i === index);
+      });
+      if (indicators.length > 0) {
+        indicators.forEach((btn, i) => {
+          btn.classList.toggle("active", i === index);
+        });
+      }
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % carouselItems.length;
+        showSlide(currentIndex);
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
+        showSlide(currentIndex);
+      });
+    }
+
+    indicators.forEach((btn, index) => {
+      btn.addEventListener("click", () => {
+        currentIndex = index;
+        showSlide(currentIndex);
+      });
+    });
   }
 });
