@@ -13,6 +13,12 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("Please fill in all required fields!");
         return;
       }
+
+      if (username.length < 3) {
+        alert("Name must be at least 3 characters long!");
+        return;
+      }
+
       if (!emailPattern.test(email)) {
         alert("Please enter a valid email address format.");
         return;
@@ -22,12 +28,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- 2. Accordion for FAQs or Content Sections ---
+  // --- 2. Accordion for FAQs (Независимое открытие с полным раскрытием текста) ---
   const accordionHeaders = document.querySelectorAll(".accordion-header-custom");
   accordionHeaders.forEach(header => {
     header.addEventListener("click", () => {
       const item = header.parentElement;
+      const body = item.querySelector(".accordion-body-custom");
+
       item.classList.toggle("active");
+
+      if (item.classList.contains("active")) {
+        body.style.maxHeight = body.scrollHeight + 30 + "px"; // Динамический расчет с запасом
+        body.style.padding = "10px 14px";
+      } else {
+        body.style.maxHeight = "0";
+        body.style.padding = "0 14px";
+      }
     });
   });
 

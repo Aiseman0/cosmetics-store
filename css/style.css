@@ -455,7 +455,7 @@ body {
 }
 
 .accordion-item-custom.active .accordion-body-custom {
-  max-height: 300px;
+  max-height: 500px; /* Увеличенный запас для полного отображения текста */
   padding: 10px 14px;
 }
 
