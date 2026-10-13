@@ -382,6 +382,32 @@ body {
   margin-bottom: 0.75rem;
 }
 
+/* --- Кастомная группировка иконок и полей ввода --- */
+.custom-input-group {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.custom-input-icon {
+  background-color: #ffc107;
+  border: 1px solid #ced4da;
+  border-right: none;
+  padding: 0.3rem 0.75rem;
+  border-top-left-radius: .3rem;
+  border-bottom-left-radius: .3rem;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-input-group .form-control {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-bottom: 0;
+}
+
 /* --- Аккордеон --- */
 .custom-accordion {
   display: flex;
@@ -601,4 +627,10 @@ footer {
 /* --- Плавный скролл --- */
 section[id], h2[id], h3[id], div[id] {
   scroll-margin-top: 75px;
+}
+
+select.form-control {
+  appearance: auto;
+  background-color: #fff;
+  cursor: pointer;
 }
