@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-  // --- 1. Form validation  ---
+  // --- 1. Form validation ---
   var contactForm = document.getElementById("contact-form");
   if (contactForm) {
     contactForm.addEventListener("submit", function(event) {
@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function() {
     setInterval(showTime, 1000);
   }
 
-  // --- 6. Product Carousel ---
+  // --- 6. Product Carousel  ---
   var items = document.querySelectorAll(".carousel-item");
   var nextBtn = document.querySelector(".carousel-control-next");
   var prevBtn = document.querySelector(".carousel-control-prev");
