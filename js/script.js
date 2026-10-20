@@ -1,15 +1,16 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // --- 1. Form Validation ---
-  const contactForm = document.getElementById("contact-form");
+document.addEventListener("DOMContentLoaded", function() {
+
+  // --- 1. Form validation  ---
+  var contactForm = document.getElementById("contact-form");
   if (contactForm) {
     contactForm.addEventListener("submit", function(event) {
       event.preventDefault();
-      const username = document.getElementById("username").value.trim();
-      const email = document.getElementById("useremail").value.trim();
-      const message = document.getElementById("message").value.trim();
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-      if (!username || !email || !message) {
+      var username = document.getElementById("username").value.trim();
+      var email = document.getElementById("useremail").value.trim();
+      var message = document.getElementById("message").value.trim();
+
+      if (username === "" || email === "" || message === "") {
         alert("Please fill in all required fields!");
         return;
       }
@@ -19,130 +20,138 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      if (!emailPattern.test(email)) {
-        alert("Please enter a valid email address format.");
+      if (email.indexOf("@") === -1) {
+        alert("Please enter a valid email address (must include '@')!");
         return;
       }
-      alert("Thank you! Your message has been successfully validated.");
+
+      alert("Thank you! Your message has been successfully verified.");
       contactForm.reset();
     });
   }
 
-  // --- 2. Accordion for FAQs (Независимое открытие с полным раскрытием текста) ---
-  const accordionHeaders = document.querySelectorAll(".accordion-header-custom");
-  accordionHeaders.forEach(header => {
-    header.addEventListener("click", () => {
-      const item = header.parentElement;
-      const body = item.querySelector(".accordion-body-custom");
+  // --- 2. Simple FAQ Accordion ---
+  var headers = document.querySelectorAll(".accordion-header-custom");
 
-      item.classList.toggle("active");
+  for (var i = 0; i < headers.length; i++) {
+    headers[i].addEventListener("click", function() {
+      var item = this.parentElement;
+      var body = item.querySelector(".accordion-body-custom");
 
       if (item.classList.contains("active")) {
-        body.style.maxHeight = body.scrollHeight + 30 + "px"; // Динамический расчет с запасом
-        body.style.padding = "10px 14px";
+        item.classList.remove("active");
+        body.style.maxHeight = "0px";
+        body.style.padding = "0px 14px";
       } else {
-        body.style.maxHeight = "0";
-        body.style.padding = "0 14px";
+        item.classList.add("active");
+        body.style.maxHeight = "200px";
+        body.style.padding = "10px 14px";
       }
     });
-  });
+  }
 
-  // --- 3. Popup Subscription or Contact Form ---
-  const popupOverlay = document.getElementById("popup-overlay");
-  const openPopupBtn = document.getElementById("open-popup-btn");
-  const closePopupBtn = document.getElementById("close-popup-btn");
+  // --- 3. Popup modal control ---
+  var popupOverlay = document.getElementById("popup-overlay");
+  var openPopupBtn = document.getElementById("open-popup-btn");
+  var closePopupBtn = document.getElementById("close-popup-btn");
 
-  if (openPopupBtn && popupOverlay) {
-    openPopupBtn.addEventListener("click", () => {
+  if (openPopupBtn) {
+    openPopupBtn.addEventListener("click", function() {
       popupOverlay.style.display = "flex";
     });
   }
-  if (closePopupBtn && popupOverlay) {
-    closePopupBtn.addEventListener("click", () => {
+
+  if (closePopupBtn) {
+    closePopupBtn.addEventListener("click", function() {
       popupOverlay.style.display = "none";
     });
   }
-  if (popupOverlay) {
-    popupOverlay.addEventListener("click", (e) => {
-      if (e.target === popupOverlay) {
-        popupOverlay.style.display = "none";
-      }
-    });
-  }
 
-  // --- 4. Change Background Color with JavaScript & localStorage ---
-  const bgColorBtn = document.getElementById("bg-color-btn");
-  const colors = ["#FFFAED", "#FFF3C4", "#FFE866", "#FFF8E7", "#FFF0F5"];
+  // --- 4. Background color change ---
+  var bgColorBtn = document.getElementById("bg-color-btn");
+  var colors = ["#FFFAED", "#FFF3C4", "#FFE866", "#FFF8E7", "#FFF0F5"];
 
-  let savedColor = localStorage.getItem("yello_bg_color");
-  let savedIndex = localStorage.getItem("yello_bg_index");
+  var savedColor = localStorage.getItem("yello_bg_color");
+  var savedIndex = localStorage.getItem("yello_bg_index");
 
   if (savedColor) {
     document.body.style.setProperty("background-color", savedColor, "important");
   }
 
   if (bgColorBtn) {
-    let colorIndex = savedIndex ? parseInt(savedIndex) : 0;
-    bgColorBtn.addEventListener("click", () => {
-      colorIndex = (colorIndex + 1) % colors.length;
-      let chosenColor = colors[colorIndex];
+    var colorIndex = savedIndex ? parseInt(savedIndex) : 0;
+
+    bgColorBtn.addEventListener("click", function() {
+      colorIndex = colorIndex + 1;
+      if (colorIndex >= colors.length) {
+        colorIndex = 0;
+      }
+      var chosenColor = colors[colorIndex];
+
       document.body.style.setProperty("background-color", chosenColor, "important");
+
       localStorage.setItem("yello_bg_color", chosenColor);
       localStorage.setItem("yello_bg_index", colorIndex);
     });
   }
 
-  // --- 5. Display Current Date and Time ---
-  const datetimeDisplay = document.getElementById("datetime-display");
+  // --- 5. Live Clock ---
+  var datetimeDisplay = document.getElementById("datetime-display");
   if (datetimeDisplay) {
-    function updateDateTime() {
-      const now = new Date();
-      const options = { month: 'long', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-      datetimeDisplay.textContent = now.toLocaleDateString('en-US', options);
+    function showTime() {
+      var d = new Date();
+      datetimeDisplay.innerText = d.toLocaleDateString() + " " + d.toLocaleTimeString();
     }
-    updateDateTime();
-    setInterval(updateDateTime, 1000);
+    showTime();
+    setInterval(showTime, 1000);
   }
 
-  // --- 6. Custom Pure JS Carousel ---
-  const carouselItems = document.querySelectorAll(".carousel-item");
-  const prevBtn = document.querySelector(".carousel-control-prev");
-  const nextBtn = document.querySelector(".carousel-control-next");
-  const indicators = document.querySelectorAll(".carousel-indicators button");
+  // --- 6. Product Carousel ---
+  var items = document.querySelectorAll(".carousel-item");
+  var nextBtn = document.querySelector(".carousel-control-next");
+  var prevBtn = document.querySelector(".carousel-control-prev");
+  var indicators = document.querySelectorAll(".carousel-indicators button");
+  var currentIndex = 0;
 
-  if (carouselItems.length > 0) {
-    let currentIndex = 0;
+  function updateCarousel() {
+    for (var j = 0; j < items.length; j++) {
+      items[j].classList.remove("active");
+    }
+    items[currentIndex].classList.add("active");
 
-    function showSlide(index) {
-      carouselItems.forEach((item, i) => {
-        item.classList.toggle("active", i === index);
-      });
-      if (indicators.length > 0) {
-        indicators.forEach((btn, i) => {
-          btn.classList.toggle("active", i === index);
-        });
+    for (var k = 0; k < indicators.length; k++) {
+      indicators[k].classList.remove("active");
+    }
+    if (indicators[currentIndex]) {
+      indicators[currentIndex].classList.add("active");
+    }
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", function() {
+      currentIndex = currentIndex + 1;
+      if (currentIndex >= items.length) {
+        currentIndex = 0;
       }
-    }
-
-    if (nextBtn) {
-      nextBtn.addEventListener("click", () => {
-        currentIndex = (currentIndex + 1) % carouselItems.length;
-        showSlide(currentIndex);
-      });
-    }
-
-    if (prevBtn) {
-      prevBtn.addEventListener("click", () => {
-        currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
-        showSlide(currentIndex);
-      });
-    }
-
-    indicators.forEach((btn, index) => {
-      btn.addEventListener("click", () => {
-        currentIndex = index;
-        showSlide(currentIndex);
-      });
+      updateCarousel();
     });
   }
+
+  if (prevBtn) {
+    prevBtn.addEventListener("click", function() {
+      currentIndex = currentIndex - 1;
+      if (currentIndex < 0) {
+        currentIndex = items.length - 1;
+      }
+      updateCarousel();
+    });
+  }
+
+  for (let i = 0; i < indicators.length; i++) {
+    indicators[i].addEventListener("click", function() {
+      currentIndex = i;
+      updateCarousel();
+    });
+  }
+
 });
