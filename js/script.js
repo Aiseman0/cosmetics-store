@@ -1,10 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-
-  // --- 1. Form validation ---
-
   // --- 1. Form validation (Форма контактов) ---
-
   var contactForm = document.getElementById("contact-form");
   if (contactForm) {
     contactForm.addEventListener("submit", function(event) {
@@ -13,10 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
       var username = document.getElementById("username").value.trim();
       var email = document.getElementById("useremail").value.trim();
       var message = document.getElementById("message").value.trim();
-
-
       var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
 
       if (username === "" || email === "" || message === "") {
         alert("Please fill in all required fields!");
@@ -28,28 +21,18 @@ document.addEventListener("DOMContentLoaded", function() {
         return;
       }
 
-
-      if (email.indexOf("@") === -1) {
-        alert("Please enter a valid email address (must include '@')!");
-        return;
-      }
-
-      alert("Thank you! Your message has been successfully verified.");
-
       if (!emailPattern.test(email)) {
         alert("Please enter a valid email address format (e.g., example@mail.com).");
         return;
       }
 
       alert("Thank you! Your message has been successfully verified and sent.");
-
       contactForm.reset();
     });
   }
 
   // --- 2. Simple FAQ Accordion ---
   var headers = document.querySelectorAll(".accordion-header-custom");
-
   for (var i = 0; i < headers.length; i++) {
     headers[i].addEventListener("click", function() {
       var item = this.parentElement;
@@ -67,14 +50,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-
-  // --- 3. Popup modal control ---
-  var popupOverlay = document.getElementById("popup-overlay");
-  var openPopupBtn = document.getElementById("open-popup-btn");
-  var closePopupBtn = document.getElementById("close-popup-btn");
-
-  if (openPopupBtn) {
-
   // --- 3. Popup modal control + Email Validation ---
   var popupOverlay = document.getElementById("popup-overlay");
   var openPopupBtn = document.getElementById("open-popup-btn");
@@ -83,24 +58,16 @@ document.addEventListener("DOMContentLoaded", function() {
   var popupEmailInput = document.getElementById("popup-email");
 
   if (openPopupBtn && popupOverlay) {
-
     openPopupBtn.addEventListener("click", function() {
       popupOverlay.style.display = "flex";
     });
   }
 
-
-  if (closePopupBtn) {
-
   if (closePopupBtn && popupOverlay) {
-
     closePopupBtn.addEventListener("click", function() {
       popupOverlay.style.display = "none";
     });
   }
-
-  // --- 4. Background color change ---
-
 
   if (popupSubscribeBtn && popupEmailInput) {
     popupSubscribeBtn.addEventListener("click", function() {
@@ -126,10 +93,8 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   // --- 4. Background color change with localStorage ---
-
   var bgColorBtn = document.getElementById("bg-color-btn");
   var colors = ["#FFFAED", "#FFF3C4", "#FFE866", "#FFF8E7", "#FFF0F5"];
-
   var savedColor = localStorage.getItem("yello_bg_color");
   var savedIndex = localStorage.getItem("yello_bg_index");
 
@@ -139,16 +104,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
   if (bgColorBtn) {
     var colorIndex = savedIndex ? parseInt(savedIndex) : 0;
-
     bgColorBtn.addEventListener("click", function() {
       colorIndex = colorIndex + 1;
       if (colorIndex >= colors.length) {
         colorIndex = 0;
       }
       var chosenColor = colors[colorIndex];
-
       document.body.style.setProperty("background-color", chosenColor, "important");
-
       localStorage.setItem("yello_bg_color", chosenColor);
       localStorage.setItem("yello_bg_index", colorIndex);
     });
@@ -165,9 +127,7 @@ document.addEventListener("DOMContentLoaded", function() {
     setInterval(showTime, 1000);
   }
 
-
-  // --- 6. Product Carousel  ---
-
+  // --- 6. Product Carousel ---
   var items = document.querySelectorAll(".carousel-item");
   var nextBtn = document.querySelector(".carousel-control-next");
   var prevBtn = document.querySelector(".carousel-control-prev");
@@ -178,7 +138,9 @@ document.addEventListener("DOMContentLoaded", function() {
     for (var j = 0; j < items.length; j++) {
       items[j].classList.remove("active");
     }
-    items[currentIndex].classList.add("active");
+    if (items[currentIndex]) {
+      items[currentIndex].classList.add("active");
+    }
 
     for (var k = 0; k < indicators.length; k++) {
       indicators[k].classList.remove("active");
@@ -193,7 +155,6 @@ document.addEventListener("DOMContentLoaded", function() {
       currentIndex = currentIndex + 1;
       if (currentIndex >= items.length) {
         currentIndex = 0;
-
       }
       updateCarousel();
     });
@@ -216,30 +177,9 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-      }
-      updateCarousel();
-    });
-  }
-
-  if (prevBtn) {
-    prevBtn.addEventListener("click", function() {
-      currentIndex = currentIndex - 1;
-      if (currentIndex < 0) {
-        currentIndex = items.length - 1;
-      }
-      updateCarousel();
-    });
-  }
-
-  for (let i = 0; i < indicators.length; i++) {
-    indicators[i].addEventListener("click", function() {
-      currentIndex = i;
-      updateCarousel();
-    });
-  }
-
+  // ==========================================
   // ASSIGNMENT 5: ADVANCED JS & DOM FEATURES
-
+  // ==========================================
 
   // A. JavaScript Objects & Dynamic Greeting by Time of Day
   var storeInfo = {
@@ -298,16 +238,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
   cartButtons.forEach(function(button) {
     button.addEventListener("click", function() {
-      // 1. Анимация нажатия
       this.style.transform = "scale(0.92)";
       setTimeout(() => {
         this.style.transform = "scale(1)";
       }, 150);
 
-      // 2. Воспроизведение звука
       playNotificationSound();
 
-      // 3. Добавление товара в корзину (ищем карточку товара)
       var productCard = this.closest(".product-card") || this.closest(".card");
       if (productCard) {
         var titleElem = productCard.querySelector(".card-title");
@@ -318,7 +255,6 @@ document.addEventListener("DOMContentLoaded", function() {
           var priceText = priceElem.innerText.replace(" ₸", "").replace(",", "").trim();
           var price = parseInt(priceText) || 0;
 
-          // Добавляем в массив корзины
           cart.push({ title: title, price: price });
           updateCartUI();
         }
