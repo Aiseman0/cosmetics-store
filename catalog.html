@@ -35,9 +35,9 @@
 
 <div class="container my-4" style="flex: 1;">
   <div class="row">
-    <!-- Sidebar Navigation -->
+    <!-- Sidebar Navigation & Cart -->
     <aside class="col-12 col-md-3 mb-4">
-      <div class="sidebar-box">
+      <div class="sidebar-box mb-3">
         <h3 class="sidebar-title">Categories</h3>
         <ul class="sidebar-list">
           <li><a href="#all-cosmetics" class="sidebar-link">All Cosmetics (15)</a></li>
@@ -45,6 +45,17 @@
           <li><a href="#face-eye-makeup" class="sidebar-link">Face & Eye Makeup (5)</a></li>
           <li><a href="#lip-care-tints" class="sidebar-link">Lip Care & Tints (5)</a></li>
         </ul>
+      </div>
+
+      <!-- Shopping Cart Box (Assignment 5 Feature) -->
+      <div class="sidebar-box">
+        <h3 class="sidebar-title">🛒 Your Cart (<span id="cart-count">0</span>)</h3>
+        <ul id="cart-items-list" class="sidebar-list small text-muted" style="max-height: 200px; overflow-y: auto;">
+          <li>Cart is empty</li>
+        </ul>
+        <hr style="border-color: #ffc107;">
+        <div class="fw-bold text-dark mb-2">Total: <span id="cart-total">0</span> ₸</div>
+        <button id="checkout-btn" class="btn btn-warning w-100 btn-sm fw-bold">Checkout</button>
       </div>
     </aside>
 
@@ -63,8 +74,8 @@
             <div class="card-body">
               <h5 class="card-title">SKIN1004 Serum</h5>
               <p class="card-text">Deep hydration and soothing care with pure Centella Asiatica.</p>
-              <p class="fw-bold h6 text-dark mb-2">8,900 ₸</p>
-              <button class="btn btn-dark w-100 btn-sm">Add to Cart</button>
+              <p class="fw-bold h6 text-dark mb-2 product-price">8,900 ₸</p>
+              <button class="btn btn-dark w-100 btn-sm add-to-cart-btn">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -74,8 +85,8 @@
             <div class="card-body">
               <h5 class="card-title">Anua Heartleaf Cleansing Oil</h5>
               <p class="card-text">Pore-clearing deep cleansing oil enriched with natural extract.</p>
-              <p class="fw-bold h6 text-dark mb-2">9,800 ₸</p>
-              <button class="btn btn-dark w-100 btn-sm">Add to Cart</button>
+              <p class="fw-bold h6 text-dark mb-2 product-price">9,800 ₸</p>
+              <button class="btn btn-dark w-100 btn-sm add-to-cart-btn">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -85,8 +96,8 @@
             <div class="card-body">
               <h5 class="card-title">Beauty of Joseon Sun Relief</h5>
               <p class="card-text">Organic SPF 50+ sunscreen with rice bran water.</p>
-              <p class="fw-bold h6 text-dark mb-2">6,500 ₸</p>
-              <button class="btn btn-dark w-100 btn-sm">Add to Cart</button>
+              <p class="fw-bold h6 text-dark mb-2 product-price">6,500 ₸</p>
+              <button class="btn btn-dark w-100 btn-sm add-to-cart-btn">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -96,8 +107,8 @@
             <div class="card-body">
               <h5 class="card-title">COSRX AHA/BHA Toner</h5>
               <p class="card-text">Clarifying treatment toner for smooth skin texture.</p>
-              <p class="fw-bold h6 text-dark mb-2">7,500 ₸</p>
-              <button class="btn btn-dark w-100 btn-sm">Add to Cart</button>
+              <p class="fw-bold h6 text-dark mb-2 product-price">7,500 ₸</p>
+              <button class="btn btn-dark w-100 btn-sm add-to-cart-btn">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -107,8 +118,8 @@
             <div class="card-body">
               <h5 class="card-title">Some By Mi Miracle Cream</h5>
               <p class="card-text">Calming cream for problem-prone and sensitive skin.</p>
-              <p class="fw-bold h6 text-dark mb-2">8,200 ₸</p>
-              <button class="btn btn-dark w-100 btn-sm">Add to Cart</button>
+              <p class="fw-bold h6 text-dark mb-2 product-price">8,200 ₸</p>
+              <button class="btn btn-dark w-100 btn-sm add-to-cart-btn">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -123,8 +134,8 @@
             <div class="card-body">
               <h5 class="card-title">Clio Eyeshadow Pro Palette</h5>
               <p class="card-text">Richly pigmented matte and shimmer shades.</p>
-              <p class="fw-bold h6 text-dark mb-2">15,000 ₸</p>
-              <button class="btn btn-dark w-100 btn-sm">Add to Cart</button>
+              <p class="fw-bold h6 text-dark mb-2 product-price">15,000 ₸</p>
+              <button class="btn btn-dark w-100 btn-sm add-to-cart-btn">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -134,8 +145,8 @@
             <div class="card-body">
               <h5 class="card-title">Charlotte Tilbury Foundation</h5>
               <p class="card-text">Flawless skin effect with long-lasting coverage.</p>
-              <p class="fw-bold h6 text-dark mb-2">32,000 ₸</p>
-              <button class="btn btn-dark w-100 btn-sm">Add to Cart</button>
+              <p class="fw-bold h6 text-dark mb-2 product-price">32,000 ₸</p>
+              <button class="btn btn-dark w-100 btn-sm add-to-cart-btn">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -145,8 +156,8 @@
             <div class="card-body">
               <h5 class="card-title">Rare Beauty Blush</h5>
               <p class="card-text">Long-lasting liquid pigment that blends effortlessly.</p>
-              <p class="fw-bold h6 text-dark mb-2">13,500 ₸</p>
-              <button class="btn btn-dark w-100 btn-sm">Add to Cart</button>
+              <p class="fw-bold h6 text-dark mb-2 product-price">13,500 ₸</p>
+              <button class="btn btn-dark w-100 btn-sm add-to-cart-btn">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -156,8 +167,8 @@
             <div class="card-body">
               <h5 class="card-title">Maybelline Sky High Mascara</h5>
               <p class="card-text">Full volume and length from every angle.</p>
-              <p class="fw-bold h6 text-dark mb-2">6,200 ₸</p>
-              <button class="btn btn-dark w-100 btn-sm">Add to Cart</button>
+              <p class="fw-bold h6 text-dark mb-2 product-price">6,200 ₸</p>
+              <button class="btn btn-dark w-100 btn-sm add-to-cart-btn">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -167,8 +178,8 @@
             <div class="card-body">
               <h5 class="card-title">Tirtir Mask Fit Cushion</h5>
               <p class="card-text">Long-wearing glowing cushion foundation.</p>
-              <p class="fw-bold h6 text-dark mb-2">11,000 ₸</p>
-              <button class="btn btn-dark w-100 btn-sm">Add to Cart</button>
+              <p class="fw-bold h6 text-dark mb-2 product-price">11,000 ₸</p>
+              <button class="btn btn-dark w-100 btn-sm add-to-cart-btn">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -183,8 +194,8 @@
             <div class="card-body">
               <h5 class="card-title">Dior Addict Lipstick</h5>
               <p class="card-text">Luxurious shine and hydration for daily natural glow.</p>
-              <p class="fw-bold h6 text-dark mb-2">22,500 ₸</p>
-              <button class="btn btn-dark w-100 btn-sm">Add to Cart</button>
+              <p class="fw-bold h6 text-dark mb-2 product-price">22,500 ₸</p>
+              <button class="btn btn-dark w-100 btn-sm add-to-cart-btn">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -194,8 +205,8 @@
             <div class="card-body">
               <h5 class="card-title">Laneige Lip Sleeping Mask</h5>
               <p class="card-text">Intensive overnight nourishment for soft, plump lips.</p>
-              <p class="fw-bold h6 text-dark mb-2">7,200 ₸</p>
-              <button class="btn btn-dark w-100 btn-sm">Add to Cart</button>
+              <p class="fw-bold h6 text-dark mb-2 product-price">7,200 ₸</p>
+              <button class="btn btn-dark w-100 btn-sm add-to-cart-btn">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -205,8 +216,8 @@
             <div class="card-body">
               <h5 class="card-title">Rom&nd Juicy Lasting Tint</h5>
               <p class="card-text">Glossy lip tint with vibrant long-wear color.</p>
-              <p class="fw-bold h6 text-dark mb-2">5,900 ₸</p>
-              <button class="btn btn-dark w-100 btn-sm">Add to Cart</button>
+              <p class="fw-bold h6 text-dark mb-2 product-price">5,900 ₸</p>
+              <button class="btn btn-dark w-100 btn-sm add-to-cart-btn">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -216,8 +227,8 @@
             <div class="card-body">
               <h5 class="card-title">Peripera Ink Velvet Tint</h5>
               <p class="card-text">Velvety smooth lip tint with high pigmentation.</p>
-              <p class="fw-bold h6 text-dark mb-2">4,800 ₸</p>
-              <button class="btn btn-dark w-100 btn-sm">Add to Cart</button>
+              <p class="fw-bold h6 text-dark mb-2 product-price">4,800 ₸</p>
+              <button class="btn btn-dark w-100 btn-sm add-to-cart-btn">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -227,8 +238,8 @@
             <div class="card-body">
               <h5 class="card-title">Fenty Beauty Gloss Bomb</h5>
               <p class="card-text">Explosive shine lip gloss with conditioning shea butter.</p>
-              <p class="fw-bold h6 text-dark mb-2">12,000 ₸</p>
-              <button class="btn btn-dark w-100 btn-sm">Add to Cart</button>
+              <p class="fw-bold h6 text-dark mb-2 product-price">12,000 ₸</p>
+              <button class="btn btn-dark w-100 btn-sm add-to-cart-btn">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -245,6 +256,7 @@
   </div>
 </footer>
 
+<!-- Подключаем JS -->
 <script src="js/script.js"></script>
 </body>
 </html>

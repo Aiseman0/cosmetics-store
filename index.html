@@ -17,8 +17,11 @@
     <span class="ticker-item">🚚 Free shipping in Kazakhstan on orders over 15,000 ₸!</span>
   </div>
 </div>
-<!-- Live Clock (Task 5) -->
+<!-- Live Clock -->
 <div id="datetime-display" class="datetime-display"></div>
+
+<!-- Dynamic Greeting Banner -->
+<div id="time-greeting" class="text-center py-2 bg-warning text-dark fw-bold small"></div>
 
 <!-- Navigation Bar -->
 <nav class="navbar">
@@ -47,7 +50,7 @@
           <li><a href="#featured" class="sidebar-link">Featured Brand</a></li>
           <li><a href="#carousel-section" class="sidebar-link">All Products Showcase</a></li>
         </ul>
-        <!-- Task 3 & 4 Buttons -->
+        <!-- Buttons -->
         <div class="sidebar-buttons">
           <button id="bg-color-btn" class="btn btn-dark w-100 mb-2">🎨 Change BG Color</button>
           <button id="open-popup-btn" class="btn btn-warning w-100">🎁 Special Offer Popup</button>
@@ -131,6 +134,19 @@
           </div>
         </div>
       </section>
+
+      <!-- Interactive Star Rating -->
+      <div class="content-box text-center my-3">
+        <h3 class="h6 fw-bold mb-1">Rate Your Store Experience</h3>
+        <p class="small text-muted mb-2">Click on the stars to set your rating:</p>
+        <div class="rating-container" style="font-size: 1.5rem; cursor: pointer;">
+          <span class="rating-star" style="color: #ccc;">★</span>
+          <span class="rating-star" style="color: #ccc;">★</span>
+          <span class="rating-star" style="color: #ccc;">★</span>
+          <span class="rating-star" style="color: #ccc;">★</span>
+          <span class="rating-star" style="color: #ccc;">★</span>
+        </div>
+      </div>
 
       <!-- Carousel Section -->
       <section id="carousel-section" class="content-box">
@@ -229,7 +245,7 @@
     <h3 class="h6 fw-bold mb-2 text-dark">✨ Get -15% Off Your First Order!</h3>
     <p class="small text-muted mb-2">Join our Yello Beauty club for exclusive skincare tips and promo codes delivered right to your inbox.</p>
     <input type="email" id="popup-email" class="form-control mb-2" placeholder="Enter your email...">
-    <button class="btn btn-warning w-100 fw-bold btn-sm" onclick="alert('Thank you for subscribing!'); document.getElementById('popup-overlay').style.display='none';">Subscribe Now</button>
+    <button id="popup-subscribe-btn" class="btn btn-warning w-100 fw-bold btn-sm">Subscribe Now</button>
   </div>
 </div>
 
