@@ -456,8 +456,8 @@ document.addEventListener("DOMContentLoaded", function() {
       p_desc: "Вступайте в клуб Yello Beauty: советы по уходу и промокоды придут на вашу почту.",
       p_ph: "Введите ваш email...", p_btn: "Подписаться",
 
-      c_cats: "Категории", c_all: "Вся косметика (15)", c_skin: "Уход и сыворотки (5)",
-      c_face: "Макияж лица и глаз (5)", c_lip: "Уход за губами и тинты (5)",
+      c_cats: "Категории", c_all: "Вся косметика (42)", c_skin: "Уход и сыворотки (14)",
+      c_face: "Макияж лица и глаз (14)", c_lip: "Уход за губами и тинты (14)",
       cart_title: "Ваша корзина", cart_total: "Итого:", cart_checkout: "Оформить заказ",
       cat_hero: "Каталог косметики",
       h_skin: "Уход и сыворотки", h_face: "Макияж лица и глаз", h_lip: "Уход за губами и тинты",
@@ -477,6 +477,33 @@ document.addEventListener("DOMContentLoaded", function() {
       pd13: "Глянцевый тинт для губ с яркой стойкой пигментацией.",
       pd14: "Бархатный тинт для губ с высокой пигментацией.",
       pd15: "Блеск для губ с эффектом взрывного сияния и питательным маслом ши.",
+      pd16: "Лёгкая эссенция с 96% муцина улитки для восстановления и увлажнения.",
+      pd17: "Успокаивающий тонер с 77% экстракта хауттюйнии для чувствительной кожи.",
+      pd18: "Мягкий увлажняющий тонер с морской водой Токто и нежным отшелушиванием.",
+      pd19: "Сыворотка с гиалуроновой кислотой разной молекулярной массы для глубокого увлажнения.",
+      pd20: "Очищающие пэды, сужающие поры и выравнивающие текстуру кожи.",
+      pd21: "Насыщенный крем, который удерживает влагу в коже весь день.",
+      pd22: "Нежный тонер с гиалуроновой кислотой для упругой и увлажнённой кожи.",
+      pd23: "Питательная сыворотка с семенами зелёного чая для сияния и баланса кожи.",
+      pd24: "Сыворотка с ниацинамидом и цинком для жирной кожи и расширенных пор.",
+      pd25: "Стойкая тональная основа с матовым финишем и плотным покрытием.",
+      pd26: "Кремовый консилер, скрывающий круги под глазами и несовершенства.",
+      pd27: "Матовая тональная основа для естественного покрытия каждый день.",
+      pd28: "Рассыпчатая пудра для стойкого макияжа без блеска.",
+      pd29: "Тушь для объёма и подкручивания ресниц с эффектом накладных.",
+      pd30: "Палетка теней тёплых оттенков для дневного и вечернего макияжа.",
+      pd31: "Матовая бронзирующая пудра для лёгкого эффекта загара.",
+      pd32: "Тонкий карандаш для бровей со щёточкой для естественного эффекта.",
+      pd33: "Яркая палетка теней с лёгкой текстурой для повседневного макияжа.",
+      pd34: "Культовая красная помада с матовым финишем и насыщенным цветом.",
+      pd35: "Нежно-розовая помада с кремовой текстурой и сатиновым финишем.",
+      pd36: "Матовый крем для губ с лёгкой бархатистой текстурой.",
+      pd37: "Блеск для губ с эффектом объёма и гладким глянцевым покрытием.",
+      pd38: "Питательный бальзам для губ с мягким сиянием.",
+      pd39: "Полупрозрачная помада медового оттенка, подстраивающаяся под цвет губ.",
+      pd40: "Водно-гелевый тинт для губ с лёгким цветом и свежим финишем.",
+      pd41: "Бархатный тинт для губ с насыщенным и стойким цветом.",
+      pd42: "Классический бальзам для губ с пчелиным воском для ежедневного ухода.",
 
       a_nav_story: "Наша история", a_nav_creators: "Создатели", a_nav_ship: "Варианты доставки", a_nav_faq: "Частые вопросы",
       a_lang: "Выберите язык",
@@ -563,8 +590,8 @@ document.addEventListener("DOMContentLoaded", function() {
       p_desc: "Yello Beauty клубына қосылыңыз: күтім кеңестері мен промокодтар поштаңызға келеді.",
       p_ph: "Email-ыңызды енгізіңіз...", p_btn: "Жазылу",
 
-      c_cats: "Санаттар", c_all: "Барлық косметика (15)", c_skin: "Күтім және сарысулар (5)",
-      c_face: "Бет пен көз макияжы (5)", c_lip: "Ерін күтімі және тинттер (5)",
+      c_cats: "Санаттар", c_all: "Барлық косметика (42)", c_skin: "Күтім және сарысулар (14)",
+      c_face: "Бет пен көз макияжы (14)", c_lip: "Ерін күтімі және тинттер (14)",
       cart_title: "Себетіңіз", cart_total: "Барлығы:", cart_checkout: "Тапсырыс беру",
       cat_hero: "Косметика каталогы",
       h_skin: "Күтім және сарысулар", h_face: "Бет пен көз макияжы", h_lip: "Ерін күтімі және тинттер",
@@ -584,6 +611,33 @@ document.addEventListener("DOMContentLoaded", function() {
       pd13: "Жарқын әрі тұрақты түсі бар жылтыр ерін тинті.",
       pd14: "Пигменті жоғары барқыт ерін тинті.",
       pd15: "Ши майы бар, күшті жарқырау беретін ерін жылтыры.",
+      pd16: "Жараларды қалпына келтіру және ылғалдандыру үшін 96% ұлу муцині бар жеңіл эссенция.",
+      pd17: "Сезімтал теріге арналған 77% хауттюйния сығындысы бар тыныштандыратын тоник.",
+      pd18: "Токто теңіз суы бар, жұмсақ пилингі бар жұмсақ ылғалдандыратын тоник.",
+      pd19: "Терең ылғалдандыруға арналған әртүрлі молекулалық салмақты гиалурон қышқылы бар сарысу.",
+      pd20: "Тесіктерді тарылтып, тері бедерін тегістейтін тазартқыш педтер.",
+      pd21: "Ылғалды күні бойы теріде сақтайтын қою ылғалдандыратын крем.",
+      pd22: "Серпінді әрі ылғалды теріге арналған гиалурон қышқылы бар нәзік тоник.",
+      pd23: "Теріні жарқыратып, теңестіретін жасыл шай тұқымы бар қоректік сарысу.",
+      pd24: "Майлы теріге және кеңейген тесіктерге арналған ниацинамид пен мырыш сарысуы.",
+      pd25: "Мат әсері бар, жабу қабілеті жоғары тұрақты тональды негіз.",
+      pd26: "Көз астындағы көгерулер мен кемшіліктерді жасыратын кремді консилер.",
+      pd27: "Күнделікті табиғи жабу үшін матты тональды негіз.",
+      pd28: "Жылтырсыз ұзақ макияжға арналған борпылдақ пудра.",
+      pd29: "Кірпіктерге көлем беріп, бүгетін, жалған кірпік әсері бар тушь.",
+      pd30: "Күндізгі және кешкі макияжға арналған жылы реңкті көлеңке палеткасы.",
+      pd31: "Жеңіл қараған тері әсері үшін матты бронзер пудра.",
+      pd32: "Қасқа табиғи әсер беретін щеткасы бар жіңішке қас қарындашы.",
+      pd33: "Күнделікті макияжға арналған жеңіл құрылымды жарқын көлеңке палеткасы.",
+      pd34: "Мат әсері бар, түсі қанық культтік қызыл далап.",
+      pd35: "Кремді құрылымы мен сатин әсері бар нәзік қызғылт далап.",
+      pd36: "Жеңіл барқыт құрылымды матты ерін кремі.",
+      pd37: "Ерінге көлем беретін, тегіс жылтыр жабатын ерін жылтыры.",
+      pd38: "Жұмсақ жарқырауы бар қоректік ерін бальзамы.",
+      pd39: "Ерін түсіне бейімделетін бал реңкті жартылай мөлдір далап.",
+      pd40: "Жеңіл түсті әрі балғын әсерлі су-гельді ерін тинті.",
+      pd41: "Қанық әрі тұрақты түсті барқыт ерін тинті.",
+      pd42: "Күнделікті күтімге арналған ара балауызы бар классикалық ерін бальзамы.",
 
       a_nav_story: "Біздің тарихымыз", a_nav_creators: "Авторлар", a_nav_ship: "Жеткізу түрлері", a_nav_faq: "Жиі қойылатын сұрақтар",
       a_lang: "Тілді таңдаңыз",
@@ -663,6 +717,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Translate all texts
     var textElements = document.querySelectorAll("[data-i18n]");
     textElements.forEach(function(el) {
+      // Save the original English text one time
       if (!el.getAttribute("data-en")) {
         el.setAttribute("data-en", el.innerHTML);
       }
@@ -721,6 +776,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
+  // Start with the saved language
   setLanguage(currentLang);
 
 });
@@ -767,6 +823,84 @@ $(document).ready(function() {
     return messages[lang][key];
   }
 
+  // If a product photo is missing or broken we show a simple yellow picture with the name
+  function makePlaceholder(name) {
+    name = (name || "").substring(0, 30).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="120">' +
+      '<rect width="200" height="120" fill="#FFF3C4"/>' +
+      '<text x="100" y="55" font-size="34" text-anchor="middle">💄</text>' +
+      '<text x="100" y="90" font-size="11" font-family="Arial" font-weight="bold" fill="#212529" text-anchor="middle">' + name + '</text>' +
+      '</svg>';
+    return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+  }
+
+  // ----------------------------------------------------------
+  // PRODUCT PHOTOS: paste the image links here.
+  // How to get a link: right click on a photo in the internet ->
+  // "Copy image address" -> paste it between the empty quotes.
+  // Empty link = the site uses img/products/ or a yellow placeholder.
+  // ----------------------------------------------------------
+  var productPhotos = {
+    "COSRX Snail 96 Mucin Essence": "",
+    "Anua Heartleaf 77% Toner": "",
+    "Round Lab 1025 Dokdo Toner": "",
+    "Torriden DIVE-IN Serum": "",
+    "Medicube Zero Pore Pad": "",
+    "Laneige Water Bank Cream": "",
+    "Isntree Hyaluronic Acid Toner": "",
+    "Innisfree Green Tea Seed Serum": "",
+    "The Ordinary Niacinamide 10%": "",
+    "Fenty Beauty Pro Filt'r Foundation": "",
+    "NARS Radiant Creamy Concealer": "",
+    "Maybelline Fit Me Matte Foundation": "",
+    "Huda Beauty Easy Bake Powder": "",
+    "Too Faced Better Than Sex Mascara": "",
+    "Urban Decay Naked Heat Palette": "",
+    "Benefit Hoola Bronzer": "",
+    "Anastasia Brow Wiz": "",
+    "Etude Play Color Eyes": "",
+    "MAC Ruby Woo Lipstick": "",
+    "Charlotte Tilbury Pillow Talk": "",
+    "Rare Beauty Lip Souffle": "",
+    "Maybelline Lifter Gloss": "",
+    "Summer Fridays Lip Butter Balm": "",
+    "Clinique Black Honey Lipstick": "",
+    "Etude Dear Darling Water Tint": "",
+    "3CE Velvet Lip Tint": "",
+    "Burt's Bees Beeswax Lip Balm": "",
+  };
+
+  // make a name easy to compare: small letters, no spaces, no symbols
+  function simple(text) {
+    return text.toLowerCase().replace(/[^a-z0-9]/g, "");
+  }
+
+  // clean the link: remove spaces, take the real image link from a Google link,
+  // and change http to https (a site on https blocks http pictures)
+  function cleanLink(link) {
+    link = link.trim();
+    if (link.indexOf("imgurl=") > -1) {
+      link = decodeURIComponent(link.split("imgurl=")[1].split("&")[0]);
+    }
+    return link.replace("http://", "https://");
+  }
+
+  var photoLinks = {};
+  for (var photoName in productPhotos) {
+    photoLinks[simple(photoName)] = productPhotos[photoName];
+  }
+
+  $(".product-card").each(function() {
+    var key = simple($(this).find(".card-title").text());
+    if (photoLinks[key]) {
+      $(this).find("img").attr("data-src", cleanLink(photoLinks[key]));
+    }
+  });
+
+
+  // ==========================================================
+  // PART 1. jQuery SEARCH
+  // ==========================================================
 
   // ----------------------------------------------------------
   // Task 1. Real-time search and live filter (catalog page)
@@ -774,14 +908,17 @@ $(document).ready(function() {
   $("#product-search").on("keyup", function() {
     var text = $(this).val().toLowerCase().trim();
 
+    // every product card sits inside a column, we hide / show these columns
     var columns = $(".product-card").closest(".col-md-4");
 
+    // hide all, then show only the ones that contain the typed text
     columns.hide();
     columns.filter(function() {
       var cardText = $(this).find(".card-title, .card-text").text().toLowerCase();
       return cardText.indexOf(text) > -1;
     }).show();
 
+    // hide category title and its row if there is no visible product inside
     $(".category-heading").each(function() {
       var row = $(this).next(".row");
       var visibleCount = row.find(".col-md-4:visible").length;
@@ -789,8 +926,10 @@ $(document).ready(function() {
       row.toggle(visibleCount > 0);
     });
 
+    // show message if nothing was found
     $("#no-results").toggle($(".product-card:visible").length === 0);
 
+    // images of newly shown products may need loading (Task 9)
     loadVisibleImages();
   });
 
@@ -804,7 +943,7 @@ $(document).ready(function() {
   $(".product-card").each(function() {
     products.push({
       name: $(this).find(".card-title").text(),
-      picture: $(this).find("img")
+      picture: $(this).find("img")   // we read the link later, because of lazy loading
     });
   });
 
@@ -813,18 +952,20 @@ $(document).ready(function() {
     var list = $("#suggestions");
     list.empty();
 
+    // empty input -> no dropdown
     if (text === "") {
       list.hide();
       return;
     }
 
+    // add up to 5 matching products (picture + name) to the dropdown
     var count = 0;
     for (var i = 0; i < products.length; i++) {
       if (products[i].name.toLowerCase().indexOf(text) > -1 && count < 5) {
         var link = products[i].picture.attr("data-src") || products[i].picture.attr("src");
         list.append(
           '<li data-name="' + products[i].name + '">' +
-            '<img src="' + link + '" alt="">' +
+            '<img referrerpolicy="no-referrer" src="' + link + '" alt="' + products[i].name + '">' +
             '<span>' + products[i].name + '</span>' +
           '</li>'
         );
@@ -832,6 +973,12 @@ $(document).ready(function() {
       }
     }
 
+    // if a picture does not load -> use the placeholder
+    list.find("img").one("error", function() {
+      $(this).attr("src", makePlaceholder($(this).attr("alt")));
+    });
+
+    // nothing found -> show "not available" in the dropdown
     if (count === 0) {
       list.append('<li class="not-found">😔 ' + t("unavailable") + '</li>');
     }
@@ -839,7 +986,9 @@ $(document).ready(function() {
     list.show();
   });
 
+  // click on a suggestion -> put the name into the input and filter the list
   $("#suggestions").on("click", "li", function() {
+    // the "not available" line is not clickable
     if ($(this).hasClass("not-found")) {
       return;
     }
@@ -847,6 +996,7 @@ $(document).ready(function() {
     $("#suggestions").hide();
   });
 
+  // click anywhere else -> close the dropdown
   $(document).on("click", function(event) {
     if ($(event.target).closest(".search-wrap").length === 0) {
       $("#suggestions").hide();
@@ -860,8 +1010,10 @@ $(document).ready(function() {
   $("#faq-search").on("keyup", function() {
     var word = $(this).val().trim();
 
+    // all texts of the FAQ: questions and answers
     var texts = $(".accordion-header-custom span:first-child, .accordion-body-custom p");
 
+    // 1. remove old highlights
     texts.each(function() {
       var oldHtml = $(this).html();
       $(this).html(oldHtml.replace(/<mark class="highlight">(.*?)<\/mark>/g, "$1"));
@@ -871,15 +1023,19 @@ $(document).ready(function() {
       return;
     }
 
+    // 2. make the word safe for regex (for symbols like ? or +)
     var safeWord = word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
+    // 3. regex: find the word (any case), but not inside <tags>
     var regex = new RegExp("(" + safeWord + ")(?![^<]*>)", "gi");
 
+    // 4. wrap every found word into <mark>
     texts.each(function() {
       var html = $(this).html();
       $(this).html(html.replace(regex, '<mark class="highlight">$1</mark>'));
     });
 
+    // 5. open the FAQ items where the word was found
     $(".accordion-item-custom").each(function() {
       var item = $(this);
       if (item.find("mark").length > 0 && !item.hasClass("active")) {
@@ -917,6 +1073,7 @@ $(document).ready(function() {
   var countersStarted = false;
 
   function startCounters() {
+    // run only once and only if the stats section exists on this page
     if (countersStarted || $("#stats").length === 0) {
       return;
     }
@@ -924,6 +1081,7 @@ $(document).ready(function() {
     var sectionTop = $("#stats").offset().top;
     var windowBottom = $(window).scrollTop() + $(window).height();
 
+    // start when the section comes into view
     if (windowBottom > sectionTop + 50) {
       countersStarted = true;
 
@@ -932,6 +1090,7 @@ $(document).ready(function() {
         var target = parseInt(element.attr("data-target"));
         var suffix = element.attr("data-suffix") || "";
 
+        // animate a number from 0 to target
         $({ count: 0 }).animate({ count: target }, {
           duration: 2000,
           step: function(now) {
@@ -958,9 +1117,11 @@ $(document).ready(function() {
     var button = form.find("button[type=submit]");
     var oldContent = button.html();
 
+    // show spinner + text and disable the button
     button.html('<span class="spinner"></span>' + t("wait"));
     button.prop("disabled", true);
 
+    // pretend that the server is working for 2 seconds
     setTimeout(function() {
       button.html(oldContent);
       button.prop("disabled", false);
@@ -978,6 +1139,7 @@ $(document).ready(function() {
   // Task 7. Notification system (toast that fades out)
   // ----------------------------------------------------------
   function showToast(message) {
+    // create the container one time
     if ($("#toast-container").length === 0) {
       $("body").append('<div id="toast-container" class="toast-container"></div>');
     }
@@ -985,11 +1147,13 @@ $(document).ready(function() {
     var toast = $('<div class="toast-msg"></div>').text(message);
     $("#toast-container").append(toast);
 
+    // fade in, wait 2.5 seconds, fade out, remove
     toast.fadeIn(300).delay(2500).fadeOut(500, function() {
       $(this).remove();
     });
   }
 
+  // toast when a product is added to the cart
   $(".add-to-cart-btn").on("click", function() {
     var title = $(this).closest(".product-card").find(".card-title").text();
     showToast("🛒 " + title + " — " + t("added"));
@@ -1018,15 +1182,18 @@ $(document).ready(function() {
     var text = button.closest("p, .promo-strip").find(".copy-text").text();
 
     copyText(text, function() {
-
+      // icon -> checkmark
       button.find(".copy-icon").text("✔");
 
+      // tooltip "Copied to clipboard!"
       var tooltip = $('<span class="copy-tooltip"></span>').text(t("copied"));
       button.append(tooltip);
       tooltip.fadeIn(200);
 
+      // toast notification
       showToast("📋 " + t("copied"));
 
+      // after 1.5 seconds go back to the normal icon
       setTimeout(function() {
         button.find(".copy-icon").text("📋");
         tooltip.fadeOut(200, function() {
@@ -1036,6 +1203,7 @@ $(document).ready(function() {
     });
   });
 
+  // if the user selects the text and presses Ctrl+C by himself
   $(".copy-text").on("copy", function() {
     showToast("📋 " + t("copied"));
   });
@@ -1043,23 +1211,46 @@ $(document).ready(function() {
 
   // ----------------------------------------------------------
   // Task 9. Image lazy loading (catalog page)
-
+  // Images have the real link in data-src. We move it to src
+  // only when the image comes into view.
+  // ----------------------------------------------------------
   function loadVisibleImages() {
     var windowBottom = $(window).scrollTop() + $(window).height();
 
     $("img[data-src]").each(function() {
       var img = $(this);
 
+      // skip hidden images (for example filtered out by the search)
       if (!img.is(":visible")) {
         return;
       }
 
+      // load the image a little bit before it appears (100px)
       if (img.offset().top < windowBottom + 100) {
-        img.on("load error", function() {
+        var link = img.attr("data-src");
+        img.removeAttr("data-src");
+
+        // the link was pasted into src by hand -> nothing to load
+        if ((img.attr("src") || "").indexOf("data:") !== 0) {
+          img.addClass("loaded");
+          return;
+        }
+
+        // many sites block pictures when another site shows them,
+        // this line tells the browser not to send our site address
+        img.attr("referrerpolicy", "no-referrer");
+
+        img.on("load", function() {
           img.addClass("loaded");
         });
-        img.attr("src", img.attr("data-src"));
-        img.removeAttr("data-src");
+
+        // photo not found -> show the placeholder with the product name
+        img.one("error", function() {
+          console.warn("Photo did not load, check this link:", link);
+          img.attr("src", makePlaceholder(img.attr("alt")));
+        });
+
+        img.attr("src", link);
       }
     });
   }
