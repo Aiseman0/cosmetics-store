@@ -6,15 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yello Beauty — About Us</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
 </head>
 <body>
 
 <!-- Ticker Banner -->
 <div class="ticker-wrap">
   <div class="ticker">
-    <span class="ticker-item">✨ Glow like the Sun, shine like the Moon!</span>
-    <span class="ticker-item">🚚 Free shipping on orders over 15,000 ₸!</span>
-    <span class="ticker-item">💛 Welcome to Yello Beauty Store!</span>
+    <span class="ticker-item" data-i18n="t_glow">✨ Glow like the Sun, shine like the Moon!</span>
+    <span class="ticker-item" data-i18n="t_ship2">🚚 Free shipping on orders over 15,000 ₸!</span>
+    <span class="ticker-item" data-i18n="t_welcome">💛 Welcome to Yello Beauty Store!</span>
   </div>
 </div>
 
@@ -24,11 +25,18 @@
     <a class="navbar-brand" href="index.html">Yello <span class="text-warning">Beauty</span></a>
     <div class="navbar-collapse" id="aboutNavbar">
       <ul class="navbar-nav">
-        <li><a class="nav-link" href="index.html">Home</a></li>
-        <li><a class="nav-link" href="catalog.html">Catalog</a></li>
-        <li><a class="nav-link active text-warning" href="about.html">About Us</a></li>
-        <li><a class="nav-link" href="contact.html">Contact</a></li>
+        <li><a class="nav-link" href="index.html" data-i18n="nav_home">Home</a></li>
+        <li><a class="nav-link" href="catalog.html" data-i18n="nav_catalog">Catalog</a></li>
+        <li><a class="nav-link active text-warning" href="about.html" data-i18n="nav_about">About Us</a></li>
+        <li><a class="nav-link" href="contact.html" data-i18n="nav_contact">Contact</a></li>
       </ul>
+    </div>
+    <!-- Theme and Language buttons -->
+    <div class="nav-tools">
+      <button type="button" id="theme-btn" class="nav-tool-btn" title="Light / Dark">🌙</button>
+      <button type="button" class="nav-tool-btn site-lang-btn" data-lang="en">EN</button>
+      <button type="button" class="nav-tool-btn site-lang-btn" data-lang="ru">RU</button>
+      <button type="button" class="nav-tool-btn site-lang-btn" data-lang="kz">KZ</button>
     </div>
   </div>
 </nav>
@@ -38,62 +46,55 @@
     <!-- Sidebar Navigation -->
     <aside class="col-12 col-md-3 mb-4">
       <div class="sidebar-box">
-        <h3 class="sidebar-title">Quick Navigation</h3>
+        <h3 class="sidebar-title" data-i18n="sb_quick">Quick Navigation</h3>
         <ul class="sidebar-list">
-          <li><a href="#story" class="sidebar-link">Our Story</a></li>
-          <li><a href="#creators" class="sidebar-link">Creators</a></li>
-          <li><a href="#shipping" class="sidebar-link">Shipping Options</a></li>
-          <li><a href="#faq-section" class="sidebar-link">FAQ Accordion</a></li>
+          <li><a href="#story" class="sidebar-link" data-i18n="a_nav_story">Our Story</a></li>
+          <li><a href="#creators" class="sidebar-link" data-i18n="a_nav_creators">Creators</a></li>
+          <li><a href="#shipping" class="sidebar-link" data-i18n="a_nav_ship">Shipping Options</a></li>
+          <li><a href="#faq-section" class="sidebar-link" data-i18n="a_nav_faq">FAQ Accordion</a></li>
         </ul>
-      </div>
-
-      <!-- Language / Welcome Selector (Switch Statement) -->
-      <div class="sidebar-box mt-3">
-        <h3 class="sidebar-title">Select Language</h3>
-        <div class="btn-group w-100" role="group">
-          <button type="button" class="btn btn-outline-dark btn-sm lang-btn" data-lang="en">EN</button>
-          <button type="button" class="btn btn-outline-dark btn-sm lang-btn" data-lang="ru">RU</button>
-          <button type="button" class="btn btn-outline-dark btn-sm lang-btn" data-lang="kz">KZ</button>
-        </div>
-        <p id="welcome-message" class="small text-muted mt-2 mb-0 text-center">Welcome to Yello Beauty!</p>
       </div>
     </aside>
 
     <!-- Main Content -->
     <main class="col-12 col-md-9">
       <section class="hero-banner text-center" id="about-top">
-        <h1 class="hero-title mb-1">About Our Brand</h1>
-        <p class="hero-lead">Glow like the Sun, shine like the Moon</p>
+        <h1 class="hero-title mb-1" data-i18n="a_hero">About Our Brand</h1>
+        <p class="hero-lead" data-i18n="a_hero_lead">Glow like the Sun, shine like the Moon</p>
       </section>
 
       <!-- Brand Story -->
       <section id="story" class="content-box">
-        <h2 class="box-title border-bottom-warning">The Story of Yello Beauty</h2>
-        <p class="mb-0 small text-muted">
+        <h2 class="box-title border-bottom-warning" data-i18n="a_story_title">The Story of Yello Beauty</h2>
+        <p class="mb-0 small text-muted" data-i18n="a_story">
           The name <strong>Yello Beauty</strong> combines the warmth of sunlight (<em>Yellow</em>) and the aesthetics of its two creators — Sara and Aisulu.
           The name Aisulu translates to "moon beauty," and our brand was born at the intersection of two harmonies: the day glow of the sun and the night charm of the moon.
           We create skincare that helps your skin glow at any time of day!
         </p>
+
+        <!-- Read More: hidden text -->
+        <p id="more-about" class="small text-muted mt-3 mb-0" style="display: none;" data-i18n="rm_about_text">Our team believes that skincare should be simple, honest, and enjoyable. Every product in our catalog is picked by Sara and Aisulu personally, so you can trust what you put on your skin.</p>
+        <button type="button" class="btn btn-warning btn-sm mt-3 read-more-btn" data-target="more-about">Read More</button>
       </section>
 
       <!-- Creators -->
       <section id="creators" class="mb-3">
-        <h2 class="section-title border-bottom-warning">Our Creators</h2>
+        <h2 class="section-title border-bottom-warning" data-i18n="a_creators">Our Creators</h2>
         <div class="row g-4">
           <div class="col-12 col-md-6">
             <div class="creator-card text-center">
               <img src="img/sara.jpeg" alt="Sara Nauash" class="creator-avatar">
               <h3 class="h6 fw-bold mb-1">Sara Nauash</h3>
-              <p class="text-warning fw-bold small mb-1">Co-Founder & Developer</p>
-              <p class="small text-muted mb-0">Sara designed the brand structure, feedback systems, and delivery network to make beauty ordering seamless.</p>
+              <p class="text-warning fw-bold small mb-1" data-i18n="a_sara_role">Co-Founder & Developer</p>
+              <p class="small text-muted mb-0" data-i18n="a_sara_d">Sara designed the brand structure, feedback systems, and delivery network to make beauty ordering seamless.</p>
             </div>
           </div>
           <div class="col-12 col-md-6">
             <div class="creator-card text-center">
               <img src="img/aisulu.jpeg" alt="Aisulu Amanzhol" class="creator-avatar">
               <h3 class="h6 fw-bold mb-1">Aisulu Amanzhol</h3>
-              <p class="text-warning fw-bold small mb-1">Co-Founder & Designer</p>
-              <p class="small text-muted mb-0">Aisulu curated the yellow-pearl aesthetic, layout structure, and catalog experience for every visitor.</p>
+              <p class="text-warning fw-bold small mb-1" data-i18n="a_ais_role">Co-Founder & Designer</p>
+              <p class="small text-muted mb-0" data-i18n="a_ais_d">Aisulu curated the yellow-pearl aesthetic, layout structure, and catalog experience for every visitor.</p>
             </div>
           </div>
         </div>
@@ -101,34 +102,34 @@
 
       <!-- Shipping & Delivery Options -->
       <section id="shipping" class="content-box">
-        <h2 class="box-title border-bottom-warning">Shipping & Delivery Options</h2>
+        <h2 class="box-title border-bottom-warning" data-i18n="a_ship_title">Shipping & Delivery Options</h2>
         <div class="table-responsive">
           <table class="table table-bordered table-striped">
             <thead>
             <tr>
-              <th scope="col">Delivery Method</th>
-              <th scope="col">Estimated Time</th>
-              <th scope="col">Coverage Area</th>
-              <th scope="col">Price (₸)</th>
+              <th scope="col" data-i18n="th1">Delivery Method</th>
+              <th scope="col" data-i18n="th2">Estimated Time</th>
+              <th scope="col" data-i18n="th3">Coverage Area</th>
+              <th scope="col" data-i18n="th4">Price (₸)</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-              <td>Standard Courier</td>
-              <td>2-3 Business Days</td>
-              <td>Astana & Almaty</td>
+              <td data-i18n="r1c1">Standard Courier</td>
+              <td data-i18n="r1c2">2-3 Business Days</td>
+              <td data-i18n="r1c3">Astana & Almaty</td>
               <td class="fw-bold">1,200 ₸</td>
             </tr>
             <tr>
-              <td>Express Shipping</td>
-              <td>Same Day Delivery</td>
-              <td>Astana City</td>
+              <td data-i18n="r2c1">Express Shipping</td>
+              <td data-i18n="r2c2">Same Day Delivery</td>
+              <td data-i18n="r2c3">Astana City</td>
               <td class="fw-bold">2,500 ₸</td>
             </tr>
             <tr>
-              <td>Regional Kazpost</td>
-              <td>4-7 Business Days</td>
-              <td>All Regions of Kazakhstan</td>
+              <td data-i18n="r3c1">Regional Kazpost</td>
+              <td data-i18n="r3c2">4-7 Business Days</td>
+              <td data-i18n="r3c3">All Regions of Kazakhstan</td>
               <td class="fw-bold">1,500 ₸</td>
             </tr>
             </tbody>
@@ -138,36 +139,41 @@
 
       <!-- Accordion FAQ Section -->
       <section id="faq-section" class="content-box">
-        <h2 class="box-title border-bottom-warning mb-3">Frequently Asked Questions</h2>
+        <h2 class="box-title border-bottom-warning mb-3" data-i18n="faq_title">Frequently Asked Questions</h2>
+
+        <!-- FAQ search with highlighting (Assignment 6) -->
+        <div class="search-wrap mb-3">
+          <input type="text" id="faq-search" class="form-control" placeholder="🔍 Search in FAQ..." data-i18n-ph="faq_ph" autocomplete="off">
+        </div>
 
         <div class="custom-accordion">
           <div class="accordion-item-custom">
             <div class="accordion-header-custom">
-              <span>Are all products 100% original?</span>
+              <span data-i18n="q1">Are all products 100% original?</span>
               <span class="accordion-icon">+</span>
             </div>
             <div class="accordion-body-custom">
-              <p class="text-muted mb-0 small">Yes! We source cosmetics directly from official brand distributors in South Korea, USA, and Europe with full safety compliance.</p>
+              <p class="text-muted mb-0 small" data-i18n="a1">Yes! We source cosmetics directly from official brand distributors in South Korea, USA, and Europe with full safety compliance.</p>
             </div>
           </div>
 
           <div class="accordion-item-custom">
             <div class="accordion-header-custom">
-              <span>How can I track my shipment?</span>
+              <span data-i18n="q2">How can I track my shipment?</span>
               <span class="accordion-icon">+</span>
             </div>
             <div class="accordion-body-custom">
-              <p class="text-muted mb-0 small">Once your order is dispatched, you will receive a tracking number via SMS or email to follow your package in real-time.</p>
+              <p class="text-muted mb-0 small" data-i18n="a2">Once your order is dispatched, you will receive a tracking number via SMS or email to follow your package in real-time.</p>
             </div>
           </div>
 
           <div class="accordion-item-custom">
             <div class="accordion-header-custom">
-              <span>What skin type are these cosmetics suitable for?</span>
+              <span data-i18n="q3">What skin type are these cosmetics suitable for?</span>
               <span class="accordion-icon">+</span>
             </div>
             <div class="accordion-body-custom">
-              <p class="text-muted mb-0 small">Our store offers dedicated product lines for dry, sensitive, oily, combination, and normal skin types. Check catalog filters or consult our contact form!</p>
+              <p class="text-muted mb-0 small" data-i18n="a3">Our store offers dedicated product lines for dry, sensitive, oily, combination, and normal skin types. Check catalog filters or consult our contact form!</p>
             </div>
           </div>
         </div>
@@ -179,8 +185,8 @@
 <!-- Footer -->
 <footer>
   <div class="container">
-    <p class="mb-1">&copy; 2026 Yello Beauty Cosmetics. All rights reserved.</p>
-    <p class="mb-0 text-warning fw-semibold">Team Members: Aisulu Amanzhol, Sara Nauash (Group SE-2506)</p>
+    <p class="mb-1" data-i18n="foot_rights">&copy; 2026 Yello Beauty Cosmetics. All rights reserved.</p>
+    <p class="mb-0 text-warning fw-semibold" data-i18n="foot_team">Team Members: Aisulu Amanzhol, Sara Nauash (Group SE-2506)</p>
   </div>
 </footer>
 
