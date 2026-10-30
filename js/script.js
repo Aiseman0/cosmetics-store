@@ -127,6 +127,104 @@ document.addEventListener("DOMContentLoaded", function() {
     setInterval(showTime, 1000);
   }
 
+
+
+
+
+var cart = [];
+  var cartCountElem = document.getElementById("cart-count");
+  var cartItemsList = document.getElementById("cart-items-list");
+  var cartTotalElem = document.getElementById("cart-total");
+  var checkoutBtn = document.getElementById("checkout-btn");
+
+  var cartButtons = document.querySelectorAll(".product-card .btn, .add-to-cart-btn");
+
+  cartButtons.forEach(function(button) {
+    button.addEventListener("click", function() {
+      this.style.transform = "scale(0.92)";
+      setTimeout(() => {
+        this.style.transform = "scale(1)";
+      }, 150);
+
+      playNotificationSound();
+
+      var productCard = this.closest(".product-card") || this.closest(".card");
+      if (productCard) {
+        var titleElem = productCard.querySelector(".card-title");
+        var priceElem = productCard.querySelector(".product-price") || productCard.querySelector(".card-body p.fw-bold");
+
+        if (titleElem && priceElem) {
+          var title = titleElem.innerText;
+          var priceText = priceElem.innerText.replace(" ₸", "").replace(",", "").trim();
+          var price = parseInt(priceText) || 0;
+
+          cart.push({ title: title, price: price });
+          updateCartUI();
+        }
+      }
+    });
+  });
+
+  function updateCartUI() {
+    if (!cartCountElem || !cartItemsList || !cartTotalElem) return;
+
+    cartCountElem.innerText = cart.length;
+
+    if (cart.length === 0) {
+      cartItemsList.innerHTML = "<li>Cart is empty</li>";
+      cartTotalElem.innerText = "0";
+      return;
+    }
+
+    var html = "";
+    var total = 0;
+
+    cart.forEach(function(item, index) {
+      total += item.price;
+      html += `<li class="d-flex justify-content-between align-items-center mb-1">
+                 <span>${item.title}</span>
+                 <span class="fw-bold">${item.price.toLocaleString()} ₸</span>
+               </li>`;
+    });
+
+    cartItemsList.innerHTML = html;
+    cartTotalElem.innerText = total.toLocaleString();
+  }
+
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener("click", function() {
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+      alert("Thank you for your order! Total amount: " + cartTotalElem.innerText + " ₸");
+      cart = [];
+      updateCartUI();
+    });
+  }
+
+  // D. Play Sounds (Web Audio API)
+  function playNotificationSound() {
+    try {
+      var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      var oscillator = audioCtx.createOscillator();
+      var gainNode = audioCtx.createGain();
+
+      oscillator.type = "sine";
+      oscillator.frequency.setValueAtTime(587.33, audioCtx.currentTime);
+      gainNode.gain.setValueAtTime(0.08, audioCtx.currentTime);
+
+      oscillator.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+
+      oscillator.start();
+      oscillator.stop(audioCtx.currentTime + 0.1);
+    } catch (e) {
+      console.log("Audio context blocked or unsupported");
+    }
+  }
+
+
   // --- 6. Product Carousel ---
   var items = document.querySelectorAll(".carousel-item");
   var nextBtn = document.querySelector(".carousel-control-next");
@@ -717,7 +815,6 @@ document.addEventListener("DOMContentLoaded", function() {
     // Translate all texts
     var textElements = document.querySelectorAll("[data-i18n]");
     textElements.forEach(function(el) {
-      // Save the original English text one time
       if (!el.getAttribute("data-en")) {
         el.setAttribute("data-en", el.innerHTML);
       }
@@ -743,7 +840,6 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     });
 
-    // Highlight the active language button
     siteLangButtons.forEach(function(btn) {
       if (btn.getAttribute("data-lang") === lang) {
         btn.classList.add("active-tool");
@@ -776,7 +872,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
-  // Start with the saved language
   setLanguage(currentLang);
 
 });
@@ -792,7 +887,7 @@ $(document).ready(function() {
   // ----------------------------------------------------------
   console.log("jQuery is ready!");
 
-  // Short messages in 3 languages (the site language is saved in localStorage)
+
   var messages = {
     en: {
       added: "added to cart",
@@ -817,13 +912,11 @@ $(document).ready(function() {
     }
   };
 
-  // Get a message in the current language
   function t(key) {
     var lang = localStorage.getItem("yello_lang") || "en";
     return messages[lang][key];
   }
 
-  // If a product photo is missing or broken we show a simple yellow picture with the name
   function makePlaceholder(name) {
     name = (name || "").substring(0, 30).replace(/&/g, "&amp;").replace(/</g, "&lt;");
     var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="120">' +
@@ -835,11 +928,8 @@ $(document).ready(function() {
   }
 
   // ----------------------------------------------------------
-  // PRODUCT PHOTOS: paste the image links here.
-  // How to get a link: right click on a photo in the internet ->
-  // "Copy image address" -> paste it between the empty quotes.
-  // Empty link = the site uses img/products/ or a yellow placeholder.
-  // ----------------------------------------------------------
+  // PRODUCT PHOTOS
+
   var productPhotos = {
     "COSRX Snail 96 Mucin Essence": "",
     "Anua Heartleaf 77% Toner": "",
@@ -870,13 +960,10 @@ $(document).ready(function() {
     "Burt's Bees Beeswax Lip Balm": "",
   };
 
-  // make a name easy to compare: small letters, no spaces, no symbols
   function simple(text) {
     return text.toLowerCase().replace(/[^a-z0-9]/g, "");
   }
 
-  // clean the link: remove spaces, take the real image link from a Google link,
-  // and change http to https (a site on https blocks http pictures)
   function cleanLink(link) {
     link = link.trim();
     if (link.indexOf("imgurl=") > -1) {
@@ -908,17 +995,14 @@ $(document).ready(function() {
   $("#product-search").on("keyup", function() {
     var text = $(this).val().toLowerCase().trim();
 
-    // every product card sits inside a column, we hide / show these columns
     var columns = $(".product-card").closest(".col-md-4");
 
-    // hide all, then show only the ones that contain the typed text
     columns.hide();
     columns.filter(function() {
       var cardText = $(this).find(".card-title, .card-text").text().toLowerCase();
       return cardText.indexOf(text) > -1;
     }).show();
 
-    // hide category title and its row if there is no visible product inside
     $(".category-heading").each(function() {
       var row = $(this).next(".row");
       var visibleCount = row.find(".col-md-4:visible").length;
@@ -926,10 +1010,8 @@ $(document).ready(function() {
       row.toggle(visibleCount > 0);
     });
 
-    // show message if nothing was found
     $("#no-results").toggle($(".product-card:visible").length === 0);
 
-    // images of newly shown products may need loading (Task 9)
     loadVisibleImages();
   });
 
@@ -938,12 +1020,11 @@ $(document).ready(function() {
   // Task 2. Autocomplete search suggestions (catalog page)
   // ----------------------------------------------------------
 
-  // collect all products (name + picture) in one array
   var products = [];
   $(".product-card").each(function() {
     products.push({
       name: $(this).find(".card-title").text(),
-      picture: $(this).find("img")   // we read the link later, because of lazy loading
+      picture: $(this).find("img")
     });
   });
 
@@ -952,13 +1033,11 @@ $(document).ready(function() {
     var list = $("#suggestions");
     list.empty();
 
-    // empty input -> no dropdown
     if (text === "") {
       list.hide();
       return;
     }
 
-    // add up to 5 matching products (picture + name) to the dropdown
     var count = 0;
     for (var i = 0; i < products.length; i++) {
       if (products[i].name.toLowerCase().indexOf(text) > -1 && count < 5) {
@@ -973,12 +1052,10 @@ $(document).ready(function() {
       }
     }
 
-    // if a picture does not load -> use the placeholder
     list.find("img").one("error", function() {
       $(this).attr("src", makePlaceholder($(this).attr("alt")));
     });
 
-    // nothing found -> show "not available" in the dropdown
     if (count === 0) {
       list.append('<li class="not-found">😔 ' + t("unavailable") + '</li>');
     }
@@ -986,9 +1063,8 @@ $(document).ready(function() {
     list.show();
   });
 
-  // click on a suggestion -> put the name into the input and filter the list
   $("#suggestions").on("click", "li", function() {
-    // the "not available" line is not clickable
+
     if ($(this).hasClass("not-found")) {
       return;
     }
@@ -996,7 +1072,6 @@ $(document).ready(function() {
     $("#suggestions").hide();
   });
 
-  // click anywhere else -> close the dropdown
   $(document).on("click", function(event) {
     if ($(event.target).closest(".search-wrap").length === 0) {
       $("#suggestions").hide();
@@ -1010,10 +1085,8 @@ $(document).ready(function() {
   $("#faq-search").on("keyup", function() {
     var word = $(this).val().trim();
 
-    // all texts of the FAQ: questions and answers
     var texts = $(".accordion-header-custom span:first-child, .accordion-body-custom p");
 
-    // 1. remove old highlights
     texts.each(function() {
       var oldHtml = $(this).html();
       $(this).html(oldHtml.replace(/<mark class="highlight">(.*?)<\/mark>/g, "$1"));
@@ -1023,19 +1096,15 @@ $(document).ready(function() {
       return;
     }
 
-    // 2. make the word safe for regex (for symbols like ? or +)
     var safeWord = word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-    // 3. regex: find the word (any case), but not inside <tags>
     var regex = new RegExp("(" + safeWord + ")(?![^<]*>)", "gi");
 
-    // 4. wrap every found word into <mark>
     texts.each(function() {
       var html = $(this).html();
       $(this).html(html.replace(regex, '<mark class="highlight">$1</mark>'));
     });
 
-    // 5. open the FAQ items where the word was found
     $(".accordion-item-custom").each(function() {
       var item = $(this);
       if (item.find("mark").length > 0 && !item.hasClass("active")) {
@@ -1073,7 +1142,6 @@ $(document).ready(function() {
   var countersStarted = false;
 
   function startCounters() {
-    // run only once and only if the stats section exists on this page
     if (countersStarted || $("#stats").length === 0) {
       return;
     }
@@ -1081,7 +1149,6 @@ $(document).ready(function() {
     var sectionTop = $("#stats").offset().top;
     var windowBottom = $(window).scrollTop() + $(window).height();
 
-    // start when the section comes into view
     if (windowBottom > sectionTop + 50) {
       countersStarted = true;
 
@@ -1090,7 +1157,6 @@ $(document).ready(function() {
         var target = parseInt(element.attr("data-target"));
         var suffix = element.attr("data-suffix") || "";
 
-        // animate a number from 0 to target
         $({ count: 0 }).animate({ count: target }, {
           duration: 2000,
           step: function(now) {
@@ -1117,11 +1183,9 @@ $(document).ready(function() {
     var button = form.find("button[type=submit]");
     var oldContent = button.html();
 
-    // show spinner + text and disable the button
     button.html('<span class="spinner"></span>' + t("wait"));
     button.prop("disabled", true);
 
-    // pretend that the server is working for 2 seconds
     setTimeout(function() {
       button.html(oldContent);
       button.prop("disabled", false);
@@ -1139,7 +1203,7 @@ $(document).ready(function() {
   // Task 7. Notification system (toast that fades out)
   // ----------------------------------------------------------
   function showToast(message) {
-    // create the container one time
+
     if ($("#toast-container").length === 0) {
       $("body").append('<div id="toast-container" class="toast-container"></div>');
     }
@@ -1147,13 +1211,11 @@ $(document).ready(function() {
     var toast = $('<div class="toast-msg"></div>').text(message);
     $("#toast-container").append(toast);
 
-    // fade in, wait 2.5 seconds, fade out, remove
     toast.fadeIn(300).delay(2500).fadeOut(500, function() {
       $(this).remove();
     });
   }
 
-  // toast when a product is added to the cart
   $(".add-to-cart-btn").on("click", function() {
     var title = $(this).closest(".product-card").find(".card-title").text();
     showToast("🛒 " + title + " — " + t("added"));
@@ -1164,7 +1226,6 @@ $(document).ready(function() {
   // Task 8. "Copy to clipboard" button
   // ----------------------------------------------------------
 
-  // copy text: modern way, and old way if the modern one is not available
   function copyText(text, done) {
     if (navigator.clipboard && window.isSecureContext) {
       navigator.clipboard.writeText(text).then(done);
@@ -1182,18 +1243,15 @@ $(document).ready(function() {
     var text = button.closest("p, .promo-strip").find(".copy-text").text();
 
     copyText(text, function() {
-      // icon -> checkmark
+
       button.find(".copy-icon").text("✔");
 
-      // tooltip "Copied to clipboard!"
       var tooltip = $('<span class="copy-tooltip"></span>').text(t("copied"));
       button.append(tooltip);
       tooltip.fadeIn(200);
 
-      // toast notification
       showToast("📋 " + t("copied"));
 
-      // after 1.5 seconds go back to the normal icon
       setTimeout(function() {
         button.find(".copy-icon").text("📋");
         tooltip.fadeOut(200, function() {
@@ -1203,7 +1261,6 @@ $(document).ready(function() {
     });
   });
 
-  // if the user selects the text and presses Ctrl+C by himself
   $(".copy-text").on("copy", function() {
     showToast("📋 " + t("copied"));
   });
@@ -1220,12 +1277,10 @@ $(document).ready(function() {
     $("img[data-src]").each(function() {
       var img = $(this);
 
-      // skip hidden images (for example filtered out by the search)
       if (!img.is(":visible")) {
         return;
       }
 
-      // load the image a little bit before it appears (100px)
       if (img.offset().top < windowBottom + 100) {
         var link = img.attr("data-src");
         img.removeAttr("data-src");
@@ -1236,15 +1291,12 @@ $(document).ready(function() {
           return;
         }
 
-        // many sites block pictures when another site shows them,
-        // this line tells the browser not to send our site address
         img.attr("referrerpolicy", "no-referrer");
 
         img.on("load", function() {
           img.addClass("loaded");
         });
 
-        // photo not found -> show the placeholder with the product name
         img.one("error", function() {
           console.warn("Photo did not load, check this link:", link);
           img.attr("src", makePlaceholder(img.attr("alt")));
