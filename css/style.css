@@ -903,8 +903,8 @@ mark.highlight {
 
 /* --- Task 5: stats counters --- */
 .stat-card {
-  background-color: #212529;
-  color: #fff;
+  background-color: #fff;
+  color: #212529;
   border: 2px solid #ffc107;
   border-radius: .3rem;
   padding: 1rem 0.5rem;
@@ -916,7 +916,7 @@ mark.highlight {
 .counter-number {
   font-size: 2rem;
   font-weight: 700;
-  color: #ffc107;
+  color: #e0a100;
   line-height: 1.2;
 }
 
@@ -960,8 +960,8 @@ mark.highlight {
 
 .toast-msg {
   display: none;
-  background-color: #212529;
-  color: #fff;
+  background-color: #fff;
+  color: #212529;
   border-left: 5px solid #ffc107;
   border-radius: .3rem;
   padding: 10px 16px;
@@ -1075,4 +1075,22 @@ mark.highlight {
 
 .suggestions-list li.not-found:hover {
   background-color: transparent;
+}
+
+
+/* --- Sidebar: small gap between sidebar and main content --- */
+@media (min-width: 768px) {
+  aside .sidebar-box {
+    margin-right: 45px;
+  }
+}
+
+/* --- Stat cards in dark mode: dark card --- */
+.dark-mode .stat-card {
+  background-color: #212529;
+  color: #fff;
+}
+
+.dark-mode .counter-number {
+  color: #ffc107;
 }
