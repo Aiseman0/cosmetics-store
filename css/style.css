@@ -889,10 +889,10 @@ mark.highlight {
 .scroll-progress-bar {
   width: 0%;
   height: 100%;
-  background: linear-gradient(90deg, #ffc107, #ff9800, #ff5f8d, #c77dff, #ffc107);
+  background: linear-gradient(90deg, #ff5f8d, #c77dff, #5b8def, #2dd4bf, #ff5f8d);
   background-size: 200% 100%;
   border-radius: 0 6px 6px 0;
-  box-shadow: 0 0 10px rgba(255, 193, 7, 0.9);
+  box-shadow: 0 0 10px rgba(199, 125, 255, 0.9);
   animation: progress-shine 3s linear infinite;
 }
 
@@ -1081,7 +1081,7 @@ mark.highlight {
 /* --- Sidebar: small gap between sidebar and main content --- */
 @media (min-width: 768px) {
   aside .sidebar-box {
-    margin-right: 45px;
+    margin-right: 24px;
   }
 }
 
