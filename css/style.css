@@ -1094,3 +1094,143 @@ mark.highlight {
 .dark-mode .counter-number {
   color: #ffc107;
 }
+
+
+/* ==========================================
+   Final project additions
+   ========================================== */
+img { max-width: 100%; height: auto; }
+.table-responsive { overflow-x: auto; }
+
+/* --- Mobile menu --- */
+.nav-toggler {
+  display: none;
+  background: transparent;
+  color: #fff;
+  border: 1px solid #ffc107;
+  border-radius: .3rem;
+  padding: 0.2rem 0.6rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+@media (max-width: 767px) {
+  .navbar-brand { order: 1; }
+  .nav-tools { order: 2; margin-left: auto; }
+  .nav-toggler { display: block; order: 3; }
+  .navbar-container > .navbar-nav,
+  .navbar-container > .navbar-collapse { order: 4; width: 100%; display: none; }
+  .navbar-container.nav-open > .navbar-nav { display: flex; }
+  .navbar-container.nav-open > .navbar-collapse { display: block; }
+  .navbar-nav { flex-direction: column; align-items: flex-start; gap: .6rem; padding: .5rem 0; }
+  .navbar-collapse .navbar-nav { display: flex; }
+}
+/* --- Tablet: 2 product columns --- */
+@media (min-width: 768px) and (max-width: 991px) {
+  .col-md-4 { flex: 0 0 50%; max-width: 50%; }
+}
+@media (max-width: 480px) {
+  .toast-container { left: 12px; right: 12px; }
+}
+
+/* --- Auth + profile --- */
+.auth-wrap { max-width: 520px; margin: 0 auto; }
+.field-error { color: #b02a37; font-size: .82rem; font-weight: 600; margin-top: 4px; }
+.is-invalid { border-color: #dc3545 !important; }
+.dark-mode .field-error { color: #ff8a8a; }
+.profile-avatar {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: #ffc107; color: #212529;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem; font-weight: 700; margin: 0 auto 1rem;
+}
+.profile-row {
+  display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  padding: .6rem 0; border-bottom: 1px solid rgba(128,128,128,.3);
+}
+.profile-label { font-weight: 700; }
+.profile-value { text-align: right; word-break: break-word; }
+.profile-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 1.2rem; }
+.profile-actions .btn { text-decoration: none; }
+.rating-note { min-height: 1.2em; }
+
+/* --- Catalog filters --- */
+.filter-row {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px; margin-top: 12px; align-items: end;
+}
+.filter-row label { display: block; margin-bottom: 2px; }
+
+/* --- Makeup API cards --- */
+.api-controls { max-width: 280px; }
+.api-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 14px; }
+.api-card {
+  display: flex; flex-direction: column;
+  background: #fff; color: #212529;
+  border: 1px solid #dee2e6; border-radius: .5rem; overflow: hidden;
+}
+.api-img { height: 150px; background: #FFF3C4; display: flex; align-items: center; justify-content: center; }
+.api-img img { width: 100%; height: 100%; object-fit: contain; }
+.api-noimg { font-size: 2.5rem; }
+.api-body { padding: 10px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.api-brand { font-size: .7rem; font-weight: 700; color: #6c757d; margin: 0; }
+.api-name { font-size: .9rem; margin: 0; line-height: 1.25; flex: 1; }
+.api-price { font-weight: 700; margin: 0; }
+.api-rating { color: #b8860b; font-size: .85rem; margin: 0; }
+.api-body .btn { text-decoration: none; text-align: center; margin-top: 6px; }
+.dark-mode .api-card { background: #212529; color: #fff; border-color: #495057; }
+.dark-mode .api-brand { color: #adb5bd; }
+.dark-mode .api-rating { color: #ffc107; }
+.dark-mode .profile-row { border-bottom-color: rgba(255,255,255,.2); }
+
+
+/* ==========================================
+   Final fixes: missing utility classes, contrast, mobile
+   ========================================== */
+.bg-warning { background-color: #ffc107; }
+.py-2 { padding-top: 0.35rem !important; padding-bottom: 0.35rem !important; }
+.my-3 { margin-top: 0.75rem !important; margin-bottom: 0.75rem !important; }
+.my-4 { margin-top: 1rem !important; margin-bottom: 1rem !important; }
+.mt-1 { margin-top: 0.15rem !important; }
+.mt-3 { margin-top: 0.75rem !important; }
+.align-items-center { align-items: center; }
+.text-decoration-none { text-decoration: none; }
+.fs-1 { font-size: 2rem; line-height: 1.2; }
+.fs-2 { font-size: 1.6rem; line-height: 1.2; }
+.h5 { font-size: 1.05rem; }
+.h6 { font-size: 0.95rem; }
+@media (min-width: 768px) { .mb-md-0 { margin-bottom: 0 !important; } }
+
+/* dark text on the yellow greeting banner in both themes */
+.bg-warning, .dark-mode .bg-warning, .dark-mode .bg-warning.text-dark { color: #212529 !important; }
+
+/* yellow text is unreadable on white cards: darker gold in light mode */
+.content-box .text-warning, .creator-card .text-warning, .sidebar-box .text-warning { color: #8a6100 !important; }
+.dark-mode .content-box .text-warning, .dark-mode .creator-card .text-warning, .dark-mode .sidebar-box .text-warning { color: #ffc107 !important; }
+
+/* cart lines */
+.cart-line { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 0.15rem; }
+
+/* images / placeholders */
+.card-img-top.loaded, .carousel-item img { background: transparent; }
+
+/* mobile: sidebars are not sticky, nothing overflows */
+@media (max-width: 767px) {
+  .sidebar-box { position: static; }
+  .hero-title { font-size: 1.15rem; }
+  .filter-row { grid-template-columns: 1fr 1fr; }
+  .carousel-caption { right: 4%; left: 4%; }
+  body { overflow-x: hidden; }
+}
+@media (max-width: 400px) {
+  .filter-row { grid-template-columns: 1fr; }
+  .nav-tools { flex-wrap: wrap; }
+}
+
+/* carousel caption is dark: keep the price bright yellow */
+.carousel-caption .text-warning, .dark-mode .carousel-caption .text-warning { color: #ffc107 !important; }
+
+/* popular picks + API cards */
+.api-subtitle { grid-column: 1 / -1; font-size: 1rem; font-weight: 700; margin: 0.5rem 0 0; padding-bottom: 0.2rem; border-bottom: 2px solid #ffc107; }
+.api-badge { align-self: flex-start; font-size: 0.7rem; font-weight: 700; background: #FFF3C4; color: #212529; border-radius: 999px; padding: 1px 8px; }
+.dark-mode .api-badge { background: #3d3414; color: #f1f1f1; }
+.api-img img { padding: 6px; }

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Developed by Aisulu Amanzhol & Sara Nauash (Group SE-2506) -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yello Beauty — Sign Up</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+</head>
+<body>
+
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="ticker-item" data-i18n="t_glow">✨ Glow like the Sun, shine like the Moon!</span>
+    <span class="ticker-item" data-i18n="t_welcome">💛 Welcome to Yello Beauty Store!</span>
+  </div>
+</div>
+
+<header class="navbar">
+  <div class="container navbar-container">
+    <a class="navbar-brand" href="index.html">Yello <span class="text-warning">Beauty</span></a>
+    <ul class="navbar-nav">
+      <li><a class="nav-link" href="index.html" data-i18n="nav_home">Home</a></li>
+      <li><a class="nav-link" href="catalog.html" data-i18n="nav_catalog">Catalog</a></li>
+      <li><a class="nav-link" href="about.html" data-i18n="nav_about">About Us</a></li>
+      <li><a class="nav-link" href="contact.html" data-i18n="nav_contact">Contact</a></li>
+    </ul>
+    <div class="nav-tools">
+      <button type="button" id="theme-btn" class="nav-tool-btn" title="Light / Dark">🌙</button>
+      <button type="button" class="nav-tool-btn site-lang-btn" data-lang="en">EN</button>
+      <button type="button" class="nav-tool-btn site-lang-btn" data-lang="ru">RU</button>
+      <button type="button" class="nav-tool-btn site-lang-btn" data-lang="kz">KZ</button>
+    </div>
+  </div>
+</header>
+
+<main class="container py-4" style="flex: 1;">
+  <div class="auth-wrap">
+    <section class="hero-banner text-center mb-4">
+      <h1 class="hero-title" data-t="s_title">Create Account</h1>
+      <p class="hero-lead" data-t="s_lead">Join Yello Beauty and save your favourites</p>
+    </section>
+    <section class="content-box">
+      <form id="signup-form" novalidate>
+        <div class="mb-3">
+          <label for="name" class="fw-bold mb-1" style="display: block;" data-t="f_name">Full Name</label>
+          <div class="custom-input-group">
+            <span class="custom-input-icon">👤</span>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Aisulu Amanzhol" autocomplete="name">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="fw-bold mb-1" style="display: block;" data-t="f_email">Email Address</label>
+          <div class="custom-input-group">
+            <span class="custom-input-icon">@</span>
+            <input type="text" inputmode="email" class="form-control" id="email" name="email" placeholder="example@mail.com" autocomplete="email">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="phone" class="fw-bold mb-1" style="display: block;" data-t="f_phone2">Phone Number</label>
+          <div class="custom-input-group">
+            <span class="custom-input-icon">📞</span>
+            <input type="text" inputmode="tel" class="form-control" id="phone" name="phone" placeholder="+7 777 123 45 67" autocomplete="tel">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="fw-bold mb-1" style="display: block;" data-t="f_pass">Password</label>
+          <div class="custom-input-group">
+            <span class="custom-input-icon">🔒</span>
+            <input type="password" class="form-control" id="password" name="password" placeholder="" autocomplete="new-password">
+          </div>
+        </div>
+        <p class="small text-muted mb-3" data-t="s_hint">At least 8 characters with an uppercase letter, a lowercase letter and a digit.</p>
+        <div class="mb-3">
+          <label for="password2" class="fw-bold mb-1" style="display: block;" data-t="f_pass2">Confirm Password</label>
+          <div class="custom-input-group">
+            <span class="custom-input-icon">🔒</span>
+            <input type="password" class="form-control" id="password2" name="password2" placeholder="" autocomplete="new-password">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-warning w-100 fw-bold py-2" data-t="s_btn">Sign Up</button>
+      </form>
+      <p class="text-center small mt-3 mb-0"><span data-t="s_have">Already have an account?</span> <a href="login.html" class="fw-bold" data-t="n_login">Log In</a></p>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p class="mb-1" data-i18n="foot_rights">&copy; 2026 Yello Beauty Cosmetics. All rights reserved.</p>
+    <p class="mb-0 text-warning fw-semibold" data-i18n="foot_team">Team Members: Aisulu Amanzhol, Sara Nauash (Group SE-2506)</p>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>

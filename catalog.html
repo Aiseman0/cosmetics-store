@@ -86,6 +86,38 @@
           <input type="text" id="product-search" class="form-control" placeholder="🔍 Search products..." data-i18n-ph="srch_ph" autocomplete="off">
           <ul id="suggestions" class="suggestions-list"></ul>
         </div>
+        <div class="filter-row">
+          <div>
+            <label for="cat-filter" class="small fw-bold" data-t="f_cat">Category</label>
+            <select id="cat-filter" class="form-control">
+              <option value="all" data-t="f_allcat">All categories</option>
+              <option value="skincare-serums" data-i18n="h_skin">Skincare & Serums</option>
+              <option value="face-eye-makeup" data-i18n="h_face">Face & Eye Makeup</option>
+              <option value="lip-care-tints" data-i18n="h_lip">Lip Care & Tints</option>
+            </select>
+          </div>
+          <div>
+            <label for="price-filter" class="small fw-bold" data-t="f_price">Price</label>
+            <select id="price-filter" class="form-control">
+              <option value="all" data-t="pr_all">Any price</option>
+              <option value="1" data-t="pr_1">Under 7,000 ₸</option>
+              <option value="2" data-t="pr_2">7,000 – 12,000 ₸</option>
+              <option value="3" data-t="pr_3">Over 12,000 ₸</option>
+            </select>
+          </div>
+          <div>
+            <label for="sort-filter" class="small fw-bold" data-t="f_sort">Sort by</label>
+            <select id="sort-filter" class="form-control">
+              <option value="default" data-t="so_def">Default order</option>
+              <option value="asc" data-t="so_asc">Price: low to high</option>
+              <option value="desc" data-t="so_desc">Price: high to low</option>
+            </select>
+          </div>
+          <div class="filter-reset">
+            <button type="button" id="reset-filters" class="btn btn-dark btn-sm" data-t="f_reset">Reset filters</button>
+          </div>
+        </div>
+        <p class="small text-muted mb-0 mt-2" data-t="f_saved">Your search and filters are saved automatically.</p>
         <p id="no-results" class="small text-muted mb-0 mt-3" style="display: none;" data-i18n="srch_none">Not available</p>
       </div>
 
@@ -565,6 +597,26 @@
           </div>
         </div>
       </div>
+
+      <!-- External API: Makeup API -->
+      <section id="api-section" class="content-box">
+        <h2 class="section-title border-bottom-warning" data-t="api_title">More Makeup from Around the World</h2>
+        <p class="small text-muted" data-t="api_desc">Live products from the Makeup API (prices in USD).</p>
+        <div class="api-controls">
+          <label for="api-type" class="small fw-bold" data-t="api_type">Product type</label>
+          <select id="api-type" class="form-control">
+            <option value="lipstick" data-t="ty_lipstick">Lipstick</option>
+            <option value="foundation" data-t="ty_foundation">Foundation</option>
+            <option value="mascara" data-t="ty_mascara">Mascara</option>
+            <option value="eyeliner" data-t="ty_eyeliner">Eyeliner</option>
+            <option value="blush" data-t="ty_blush">Blush</option>
+            <option value="eyeshadow" data-t="ty_eyeshadow">Eyeshadow</option>
+          </select>
+        </div>
+        <p id="api-status" class="small text-muted mt-2 mb-2"></p>
+        <div id="api-grid" class="api-grid"></div>
+        <button type="button" id="api-retry" class="btn btn-warning btn-sm mt-3" style="display:none;" data-t="api_retry">Try again</button>
+      </section>
     </main>
   </div>
 </div>

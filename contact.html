@@ -10,7 +10,6 @@
 </head>
 <body>
 
-<!-- Ticker Banner -->
 <div class="ticker-wrap">
   <div class="ticker">
     <span class="ticker-item" data-i18n="t_glow">✨ Glow like the Sun, shine like the Moon!</span>
@@ -18,7 +17,6 @@
   </div>
 </div>
 
-<!-- Navigation Bar -->
 <header class="navbar">
   <div class="container navbar-container">
     <a class="navbar-brand" href="index.html">Yello <span class="text-warning">Beauty</span></a>
@@ -28,7 +26,6 @@
       <li><a class="nav-link" href="about.html" data-i18n="nav_about">About Us</a></li>
       <li><a class="nav-link active" href="contact.html" data-i18n="nav_contact">Contact</a></li>
     </ul>
-    <!-- Theme and Language buttons -->
     <div class="nav-tools">
       <button type="button" id="theme-btn" class="nav-tool-btn" title="Light / Dark">🌙</button>
       <button type="button" class="nav-tool-btn site-lang-btn" data-lang="en">EN</button>
@@ -38,11 +35,8 @@
   </div>
 </header>
 
-<!-- Main Container -->
 <main class="container py-4" style="flex: 1;">
   <div class="row">
-
-    <!-- Sidebar Navigation -->
     <aside class="col-12 col-md-3 mb-4">
       <div class="sidebar-box">
         <h3 class="sidebar-title" data-i18n="sb_quick">Quick Navigation</h3>
@@ -53,16 +47,12 @@
       </div>
     </aside>
 
-    <!-- Main Content Section -->
     <section class="col-12 col-md-9">
-
-      <!-- Hero Banner -->
       <div class="hero-banner mb-4">
         <h1 class="hero-title" data-i18n="ct_hero">Contact Us</h1>
         <p class="hero-lead" data-i18n="ct_lead">We are here to answer your questions and help you pick the best skincare</p>
       </div>
 
-      <!-- Store Location -->
       <div id="location" class="content-box mb-4">
         <h2 class="section-title border-bottom-warning" data-i18n="ct_loc_title">Store Location & Details</h2>
         <div class="row">
@@ -77,7 +67,6 @@
         </div>
       </div>
 
-      <!-- Send Message Form -->
       <section id="message-form" class="content-box">
         <h2 class="section-title border-bottom-warning text-center" data-i18n="ct_form_title">Send Us a Message</h2>
         <form id="contact-form" novalidate>
@@ -85,7 +74,7 @@
             <label for="username" class="fw-bold mb-1" style="display: block;" data-i18n="ct_name">Your Full Name:</label>
             <div class="custom-input-group">
               <span class="custom-input-icon">👤</span>
-              <input type="text" class="form-control" id="username" name="username" placeholder="Enter your full name" data-i18n-ph="ct_name_ph" required>
+              <input type="text" class="form-control" id="username" name="username" placeholder="Enter your full name" data-i18n-ph="ct_name_ph">
             </div>
           </div>
 
@@ -93,7 +82,15 @@
             <label for="useremail" class="fw-bold mb-1" style="display: block;" data-i18n="ct_mail">Email Address:</label>
             <div class="custom-input-group">
               <span class="custom-input-icon">@</span>
-              <input type="email" class="form-control" id="useremail" name="useremail" placeholder="example@mail.com" required>
+              <input type="text" inputmode="email" class="form-control" id="useremail" name="useremail" placeholder="example@mail.com">
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="userphone" class="fw-bold mb-1" style="display: block;" data-t="f_phone">Phone Number:</label>
+            <div class="custom-input-group">
+              <span class="custom-input-icon">📞</span>
+              <input type="text" inputmode="tel" class="form-control" id="userphone" name="userphone" placeholder="+7 777 123 45 67">
             </div>
           </div>
 
@@ -113,13 +110,12 @@
 
           <div class="mb-3">
             <label for="message" class="fw-bold mb-1" style="display: block;" data-i18n="ct_msg_label">Message / Product Request:</label>
-            <textarea class="form-control" id="message" name="message" rows="4" placeholder="Write your message here..." data-i18n-ph="ct_msg_ph" required></textarea>
+            <textarea class="form-control" id="message" name="message" rows="4" placeholder="Write your message here..." data-i18n-ph="ct_msg_ph"></textarea>
           </div>
 
           <button type="submit" class="btn btn-warning w-100 fw-bold py-2" data-i18n="ct_submit">Submit Message</button>
         </form>
 
-        <!-- Quick Instant Channels -->
         <div style="border-top: 1px solid #dee2e6; margin-top: 1.5rem; padding-top: 1rem; text-align: center;">
           <p class="small text-muted mb-2" data-i18n="ct_instant">Need immediate assistance? Connect directly via instant channels:</p>
           <div class="btn-group">
@@ -127,12 +123,10 @@
           </div>
         </div>
       </section>
-
     </section>
   </div>
 </main>
 
-<!-- Footer -->
 <footer>
   <div class="container">
     <p class="mb-1" data-i18n="foot_rights">&copy; 2026 Yello Beauty Cosmetics. All rights reserved.</p>
@@ -141,5 +135,6 @@
 </footer>
 
 <script src="js/script.js"></script>
+<script src="js/auth.js"></script>
 </body>
 </html>
