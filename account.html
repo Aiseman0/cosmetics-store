@@ -4,11 +4,12 @@
   <!-- Developed by Aisulu Amanzhol & Sara Nauash (Group SE-2506) -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yello Beauty — Log In</title>
+  <title>Yello Beauty — My Profile</title>
   <link rel="stylesheet" href="css/style.css">
   <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
 </head>
 <body>
+<script>try{if(localStorage.getItem("yello_theme")==="dark")document.body.classList.add("dark-mode");}catch(e){}</script>
 
 <div class="ticker-wrap">
   <div class="ticker">
@@ -38,28 +39,23 @@
 <main class="container py-4" style="flex: 1;">
   <div class="auth-wrap">
     <section class="hero-banner text-center mb-4">
-      <h1 class="hero-title" data-t="l_title">Log In</h1>
-      <p class="hero-lead" data-t="l_lead">Welcome back to Yello Beauty</p>
+      <h1 class="hero-title" data-t="p_title">My Profile</h1>
+      <p class="hero-lead" data-t="p_lead">Your account details</p>
     </section>
-    <section class="content-box">
-      <form id="login-form" novalidate>
-        <div class="mb-3">
-          <label for="email" class="fw-bold mb-1" style="display: block;" data-t="f_email">Email Address</label>
-          <div class="custom-input-group">
-            <span class="custom-input-icon">@</span>
-            <input type="email" class="form-control" id="email" name="email" placeholder="example@mail.com" autocomplete="email">
-          </div>
-        </div>
-        <div class="mb-3">
-          <label for="password" class="fw-bold mb-1" style="display: block;" data-t="f_pass">Password</label>
-          <div class="custom-input-group">
-            <span class="custom-input-icon">🔒</span>
-            <input type="password" class="form-control" id="password" name="password" placeholder="" autocomplete="current-password">
-          </div>
-        </div>
-        <button type="submit" class="btn btn-warning w-100 fw-bold py-2" data-t="l_btn">Log In</button>
-      </form>
-      <p class="text-center small mt-3 mb-0"><span data-t="l_no">Don't have an account?</span> <a href="signup.html" class="fw-bold" data-t="l_link">Sign Up</a></p>
+    <!-- Filled from localStorage by initProfile() in js/auth.js; guests are redirected to login.html -->
+    <section class="content-box" id="profile-box">
+      <div class="profile-avatar" id="pf-avatar">?</div>
+      <div class="profile-row"><span class="profile-label" data-t="p_name">Name</span><span class="profile-value" id="pf-name"></span></div>
+      <div class="profile-row"><span class="profile-label" data-t="p_email">Email</span><span class="profile-value" id="pf-email"></span></div>
+      <div class="profile-row"><span class="profile-label" data-t="p_phone">Phone</span><span class="profile-value" id="pf-phone"></span></div>
+      <div class="profile-row"><span class="profile-label" data-t="p_since">Member since</span><span class="profile-value" id="pf-since"></span></div>
+      <div class="profile-row"><span class="profile-label" data-t="p_rating">Your store rating</span><span class="profile-value" id="pf-rating"></span></div>
+      <div class="profile-row"><span class="profile-label" data-t="p_filters">Last catalog search</span><span class="profile-value" id="pf-filters"></span></div>
+      <div class="profile-row"><span class="profile-label" data-t="p_cart">Items in cart</span><span class="profile-value" id="pf-cart"></span></div>
+      <div class="profile-actions">
+        <a href="catalog.html" class="btn btn-warning" data-t="p_shop">Go to Catalog</a>
+        <button type="button" id="logout-btn" class="btn btn-dark" style="width:auto;" data-t="p_logout">Log Out</button>
+      </div>
     </section>
   </div>
 </main>
@@ -72,5 +68,6 @@
 </footer>
 
 <script src="js/script.js"></script>
+<script src="js/auth.js"></script>
 </body>
 </html>

@@ -9,6 +9,7 @@
   <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
 </head>
 <body>
+<script>try{if(localStorage.getItem("yello_theme")==="dark")document.body.classList.add("dark-mode");}catch(e){}</script>
 
 <div class="ticker-wrap">
   <div class="ticker">
@@ -47,7 +48,7 @@
           <label for="email" class="fw-bold mb-1" style="display: block;" data-t="f_email">Email Address</label>
           <div class="custom-input-group">
             <span class="custom-input-icon">@</span>
-            <input type="email" class="form-control" id="email" name="email" placeholder="example@mail.com" autocomplete="email">
+            <input type="text" inputmode="email" class="form-control" id="email" name="email" placeholder="example@mail.com" autocomplete="email">
           </div>
         </div>
         <div class="mb-3">
@@ -72,5 +73,6 @@
 </footer>
 
 <script src="js/script.js"></script>
+<script src="js/auth.js"></script>
 </body>
 </html>

@@ -9,6 +9,7 @@
   <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
 </head>
 <body>
+<script>try{if(localStorage.getItem("yello_theme")==="dark")document.body.classList.add("dark-mode");}catch(e){}</script>
 
 <!-- Ticker Banner -->
 <div class="ticker-wrap">
@@ -57,6 +58,7 @@
           <li><a href="#highlights" class="sidebar-link" data-i18n="s_highlights">Store Highlights</a></li>
           <li><a href="#featured" class="sidebar-link" data-i18n="s_featured">Featured Brand</a></li>
           <li><a href="#carousel-section" class="sidebar-link" data-i18n="s_showcase">All Products Showcase</a></li>
+          <li><a href="#skin-weather" class="sidebar-link" data-t="w_nav">Skin Weather</a></li>
         </ul>
         <!-- Buttons -->
         <div class="sidebar-buttons">
@@ -190,6 +192,16 @@
         </div>
       </div>
 
+      <!-- External API: Open-Meteo (weather -> skincare advice) -->
+      <section id="skin-weather" class="content-box">
+        <h2 class="section-title border-bottom-warning" data-t="w_title">Skin Weather in Astana</h2>
+        <p class="small text-muted" data-t="w_desc">Live weather from the Open-Meteo API and what it means for your skincare today.</p>
+        <p id="weather-status" class="small text-muted mb-2" aria-live="polite"></p>
+        <div id="weather-grid" class="weather-grid"></div>
+        <p id="weather-tip" class="weather-tip" style="display:none;"></p>
+        <button type="button" id="weather-retry" class="btn btn-warning btn-sm mt-3" style="display:none;" data-t="api_retry">Try again</button>
+      </section>
+
       <!-- Carousel Section -->
       <section id="carousel-section" class="content-box">
         <h2 class="section-title text-center mb-2" data-i18n="car_title">Full Product Showcase</h2>
@@ -272,8 +284,8 @@
             </div>
           </div>
 
-          <button class="carousel-control-prev" type="button" data-slide="prev">&#10094;</button>
-          <button class="carousel-control-next" type="button" data-slide="next">&#10095;</button>
+          <button class="carousel-control-prev" type="button" data-slide="prev" aria-label="Previous slide">&#10094;</button>
+          <button class="carousel-control-next" type="button" data-slide="next" aria-label="Next slide">&#10095;</button>
         </div>
       </section>
     </main>
@@ -286,8 +298,12 @@
     <span id="close-popup-btn" class="popup-close">&times;</span>
     <h3 class="h6 fw-bold mb-2 text-dark" data-i18n="p_title">✨ Get -15% Off Your First Order!</h3>
     <p class="small text-muted mb-2" data-i18n="p_desc">Join our Yello Beauty club for exclusive skincare tips and promo codes delivered right to your inbox.</p>
-    <input type="email" id="popup-email" class="form-control mb-2" placeholder="Enter your email..." data-i18n-ph="p_ph">
-    <button id="popup-subscribe-btn" class="btn btn-warning w-100 fw-bold btn-sm" data-i18n="p_btn">Subscribe Now</button>
+    <form id="subscribe-form" novalidate>
+      <div class="mb-3">
+        <input type="text" inputmode="email" id="popup-email" name="popupemail" class="form-control" placeholder="Enter your email..." data-i18n-ph="p_ph" autocomplete="email">
+      </div>
+      <button type="submit" id="popup-subscribe-btn" class="btn btn-warning w-100 fw-bold btn-sm" data-i18n="p_btn">Subscribe Now</button>
+    </form>
   </div>
 </div>
 
@@ -300,5 +316,7 @@
 </footer>
 
 <script src="js/script.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/weather.js"></script>
 </body>
 </html>

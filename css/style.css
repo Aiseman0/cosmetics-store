@@ -1234,3 +1234,82 @@ img { max-width: 100%; height: auto; }
 .api-badge { align-self: flex-start; font-size: 0.7rem; font-weight: 700; background: #FFF3C4; color: #212529; border-radius: 999px; padding: 1px 8px; }
 .dark-mode .api-badge { background: #3d3414; color: #f1f1f1; }
 .api-img img { padding: 6px; }
+
+
+/* ==========================================
+   Final project: dark background, UI effects, weather block
+   ========================================== */
+
+/* dark background comes from the class itself (no flash while JS loads) */
+body.dark-mode { background-color: #121212; }
+
+/* team photos are portraits: keep faces inside the circle */
+.creator-avatar { width: 96px; height: 96px; object-position: center 20%; transition: transform .3s ease, box-shadow .3s ease; }
+.creator-avatar:hover { transform: scale(1.1) rotate(3deg); box-shadow: 0 4px 12px rgba(255, 193, 7, .5); }
+
+/* --- Animated buttons and cards (hover, press, lift) --- */
+.btn {
+  transition: background-color .15s ease-in-out, transform .15s ease, box-shadow .15s ease;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0, 0, 0, .18); }
+.btn:active { transform: translateY(0) scale(.97); box-shadow: none; }
+.btn:focus-visible, .nav-tool-btn:focus-visible, .form-control:focus-visible { outline: 3px solid #ffc107; outline-offset: 2px; }
+.form-control:focus { border-color: #ffc107; box-shadow: 0 0 0 3px rgba(255, 193, 7, .35); outline: none; }
+
+.product-card, .feature-card, .stat-card, .api-card, .custom-card, .weather-card {
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.product-card:hover, .feature-card:hover, .stat-card:hover, .api-card:hover, .custom-card:hover, .weather-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, .15);
+}
+
+/* nav links: underline slides in */
+.nav-link { position: relative; }
+.nav-link::after {
+  content: ""; position: absolute; left: 0; bottom: -4px; height: 2px; width: 100%;
+  background: #ffc107; transform: scaleX(0); transform-origin: left; transition: transform .25s ease;
+}
+.nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
+
+/* theme + language buttons: the icon spins on hover */
+#theme-btn { transition: transform .4s ease, background-color .15s ease; }
+#theme-btn:hover { transform: rotate(360deg); }
+.copy-btn .copy-icon { display: inline-block; transition: transform .25s ease; }
+.copy-btn:hover .copy-icon { transform: scale(1.25) rotate(-8deg); }
+
+/* sections fade in when the page opens */
+@keyframes fade-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+.hero-banner, .content-box, .auth-wrap { animation: fade-up .5s ease both; }
+
+/* invalid fields shake once */
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+.is-invalid { animation: shake .3s ease; }
+
+/* people who prefer less motion get no animations */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* --- Skin Weather (Open-Meteo API) --- */
+.weather-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; }
+.weather-card {
+  background: #FFF3C4; color: #212529; border: 1px solid #ffc107;
+  border-radius: .5rem; padding: .8rem; text-align: center;
+}
+.weather-icon { font-size: 1.6rem; line-height: 1.2; }
+.weather-value { font-size: 1.4rem; font-weight: 700; }
+.weather-label { font-size: .78rem; color: #495057; }
+.weather-tip {
+  margin-top: 12px; padding: .7rem .9rem; font-weight: 600;
+  border-left: 4px solid #ffc107; background: rgba(255, 193, 7, .15); border-radius: .3rem;
+}
+.dark-mode .weather-card { background: #2a2410; color: #f1f1f1; border-color: #8a6100; }
+.dark-mode .weather-label { color: #ced4da; }
+.dark-mode .weather-tip { background: rgba(255, 193, 7, .12); }
+
+/* Open Beauty Facts cards: real photos on a white background */
+.api-img { background: #fff; }
+.api-img img { padding: 8px; object-fit: contain; }
+.dark-mode .api-img { background: #f5f5f5; }  /* product photos stay readable in dark mode */
+.api-credit a { color: inherit; font-weight: 700; }

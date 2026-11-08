@@ -1,3 +1,7 @@
+/* Yello Beauty - script.js
+   Shared UI logic for every page: accordion, popup, carousel, cart, theme (light/dark),
+   language (EN/RU/KZ), keyboard navigation and the jQuery UX effects.
+   Loaded first; js/auth.js (forms, login, profile) and js/catalog.js (filters, API) come after it. */
 document.addEventListener("DOMContentLoaded", function() {
 
   // helper: text from the shared EN/RU/KZ dictionary (auth.js)
@@ -5,42 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
     return window.yelloT ? window.yelloT(key) : fallback;
   }
 
-  // --- 1. Form validation (Форма контактов) ---
-  var contactForm = document.getElementById("contact-form");
-  if (contactForm) {
-    contactForm.addEventListener("submit", function(event) {
-      event.preventDefault();
-
-      var username = document.getElementById("username").value.trim();
-      var email = document.getElementById("useremail").value.trim();
-      var message = document.getElementById("message").value.trim();
-      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-      if (username === "" || email === "" || message === "") {
-        yelloMsg(L("m_fill", "Please fill in all required fields!"));
-        return;
-      }
-
-      if (username.length < 3) {
-        yelloMsg(L("m_name3", "Name must be at least 3 characters long!"));
-        return;
-      }
-
-      if (!emailPattern.test(email)) {
-        yelloMsg(L("m_email", "Please enter a valid email address."));
-        return;
-      }
-
-      var phoneEl = document.getElementById("userphone");
-      if (phoneEl && !/^(\+7|8)\d{10}$/.test(phoneEl.value.replace(/[\s()\-]/g, ""))) {
-        yelloMsg(L("e_phone", "Invalid phone number"));
-        return;
-      }
-
-      // Assignment 6: jQuery code (bottom of file) shows spinner, toast and resets the form
-      $("#contact-form").trigger("formOk");
-    });
-  }
+  // --- 1. Forms: validation lives in js/auth.js (inline error messages) ---
 
   // --- 2. Simple FAQ Accordion ---
   var headers = document.querySelectorAll(".accordion-header-custom");
@@ -61,70 +30,25 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-  // --- 3. Popup modal control + Email Validation ---
+  // --- 3. Popup modal (open / close; the form itself is validated in auth.js) ---
   var popupOverlay = document.getElementById("popup-overlay");
   var openPopupBtn = document.getElementById("open-popup-btn");
   var closePopupBtn = document.getElementById("close-popup-btn");
-  var popupSubscribeBtn = document.getElementById("popup-subscribe-btn");
-  var popupEmailInput = document.getElementById("popup-email");
+
+  function closePopup() {
+    if (!popupOverlay) return;
+    popupOverlay.style.display = "none";
+    popupOverlay.querySelectorAll(".field-error").forEach(function(n) { n.remove(); });
+    popupOverlay.querySelectorAll(".is-invalid").forEach(function(n) { n.classList.remove("is-invalid"); });
+  }
 
   if (openPopupBtn && popupOverlay) {
-    openPopupBtn.addEventListener("click", function() {
-      popupOverlay.style.display = "flex";
-    });
+    openPopupBtn.addEventListener("click", function() { popupOverlay.style.display = "flex"; });
   }
-
-  if (closePopupBtn && popupOverlay) {
-    closePopupBtn.addEventListener("click", function() {
-      popupOverlay.style.display = "none";
-    });
-  }
-
-  if (popupSubscribeBtn && popupEmailInput) {
-    popupSubscribeBtn.addEventListener("click", function() {
-      var emailVal = popupEmailInput.value.trim();
-      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-      if (emailVal === "") {
-        yelloMsg(L("m_sub_empty", "Please enter your email address!"));
-        return;
-      }
-
-      if (!emailPattern.test(emailVal)) {
-        yelloMsg(L("m_email", "Please enter a valid email address."));
-        return;
-      }
-
-      yelloMsg(L("m_thanks", "Thank you for subscribing!"));
-      popupEmailInput.value = "";
-      if (popupOverlay) {
-        popupOverlay.style.display = "none";
-      }
-    });
-  }
-
-  // --- 4. Background color change with localStorage ---
-  var bgColorBtn = document.getElementById("bg-color-btn");
-  var colors = ["#FFFAED", "#FFF3C4", "#FFE866", "#FFF8E7", "#FFF0F5"];
-  var savedColor = localStorage.getItem("yello_bg_color");
-  var savedIndex = localStorage.getItem("yello_bg_index");
-
-  if (savedColor) {
-    document.body.style.setProperty("background-color", savedColor, "important");
-  }
-
-  if (bgColorBtn) {
-    var colorIndex = savedIndex ? parseInt(savedIndex) : 0;
-    bgColorBtn.addEventListener("click", function() {
-      colorIndex = colorIndex + 1;
-      if (colorIndex >= colors.length) {
-        colorIndex = 0;
-      }
-      var chosenColor = colors[colorIndex];
-      document.body.style.setProperty("background-color", chosenColor, "important");
-      localStorage.setItem("yello_bg_color", chosenColor);
-      localStorage.setItem("yello_bg_index", colorIndex);
-    });
+  if (closePopupBtn) closePopupBtn.addEventListener("click", closePopup);
+  if (popupOverlay) {
+    popupOverlay.addEventListener("click", function(e) { if (e.target === popupOverlay) closePopup(); });
+    document.addEventListener("keydown", function(e) { if (e.key === "Escape") closePopup(); });
   }
 
   // --- 5. Live Clock ---
@@ -215,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function() {
     greetingElem.innerText = storeInfo.getGreeting();
   }
 
-  // B. Switch Statement for Welcome Message Selector (About Us page)
+  // B. Switch statement: welcome message by language
   var langButtons = document.querySelectorAll(".lang-btn");
   var welcomeMsg = document.getElementById("welcome-message");
 
@@ -378,23 +302,10 @@ document.addEventListener("DOMContentLoaded", function() {
   var currentTheme = localStorage.getItem("yello_theme") || "light";
 
   function applyTheme(theme) {
-    if (theme === "dark") {
-      document.body.classList.add("dark-mode");
-      document.body.style.setProperty("background-color", "#121212", "important");
-      if (themeBtn) {
-        themeBtn.innerText = "☀️";
-      }
-    } else {
-      document.body.classList.remove("dark-mode");
-      var oldColor = localStorage.getItem("yello_bg_color");
-      if (oldColor) {
-        document.body.style.setProperty("background-color", oldColor, "important");
-      } else {
-        document.body.style.removeProperty("background-color");
-      }
-      if (themeBtn) {
-        themeBtn.innerText = "🌙";
-      }
+    document.body.classList.toggle("dark-mode", theme === "dark");
+    if (themeBtn) {
+      themeBtn.textContent = theme === "dark" ? "☀️" : "🌙";
+      themeBtn.setAttribute("aria-pressed", String(theme === "dark"));
     }
   }
 
@@ -407,15 +318,6 @@ document.addEventListener("DOMContentLoaded", function() {
       }
       localStorage.setItem("yello_theme", currentTheme);
       applyTheme(currentTheme);
-    });
-  }
-
-  // If user clicks "Change BG Color" in dark mode, keep the dark background
-  if (bgColorBtn) {
-    bgColorBtn.addEventListener("click", function() {
-      if (currentTheme === "dark") {
-        document.body.style.setProperty("background-color", "#121212", "important");
-      }
     });
   }
 
@@ -847,63 +749,15 @@ $(document).ready(function() {
     $(img).addClass("loaded");
   }, true);
 
-  // ----------------------------------------------------------
-  // PRODUCT PHOTOS
-
-  var productPhotos = {
-    "COSRX Snail 96 Mucin Essence": "",
-    "Anua Heartleaf 77% Toner": "",
-    "Round Lab 1025 Dokdo Toner": "",
-    "Torriden DIVE-IN Serum": "",
-    "Medicube Zero Pore Pad": "",
-    "Laneige Water Bank Cream": "",
-    "Isntree Hyaluronic Acid Toner": "",
-    "Innisfree Green Tea Seed Serum": "",
-    "The Ordinary Niacinamide 10%": "",
-    "Fenty Beauty Pro Filt'r Foundation": "",
-    "NARS Radiant Creamy Concealer": "",
-    "Maybelline Fit Me Matte Foundation": "",
-    "Huda Beauty Easy Bake Powder": "",
-    "Too Faced Better Than Sex Mascara": "",
-    "Urban Decay Naked Heat Palette": "",
-    "Benefit Hoola Bronzer": "",
-    "Anastasia Brow Wiz": "",
-    "Etude Play Color Eyes": "",
-    "MAC Ruby Woo Lipstick": "",
-    "Charlotte Tilbury Pillow Talk": "",
-    "Rare Beauty Lip Souffle": "",
-    "Maybelline Lifter Gloss": "",
-    "Summer Fridays Lip Butter Balm": "",
-    "Clinique Black Honey Lipstick": "",
-    "Etude Dear Darling Water Tint": "",
-    "3CE Velvet Lip Tint": "",
-    "Burt's Bees Beeswax Lip Balm": "",
-  };
-
-  function simple(text) {
-    return text.toLowerCase().replace(/[^a-z0-9]/g, "");
-  }
-
-  function cleanLink(link) {
-    link = link.trim();
-    if (link.indexOf("imgurl=") > -1) {
-      link = decodeURIComponent(link.split("imgurl=")[1].split("&")[0]);
-    }
-    return link.replace("http://", "https://");
-  }
-
-  var photoLinks = {};
-  for (var photoName in productPhotos) {
-    photoLinks[simple(photoName)] = productPhotos[photoName];
-  }
-
-  $(".product-card").each(function() {
-    var key = simple($(this).find(".card-title").text());
-    if (photoLinks[key]) {
-      $(this).find("img").attr("data-src", cleanLink(photoLinks[key]));
+  // Images that already failed before the handler above was attached (e.g. no internet)
+  document.querySelectorAll("img").forEach(function(img) {
+    if (img.complete && img.naturalWidth === 0 && !img.getAttribute("data-fallback") &&
+        !$(img).closest(".api-img, .suggestions-list").length) {
+      img.setAttribute("data-fallback", "1");
+      img.src = makePlaceholder(img.alt);
+      $(img).addClass("loaded");
     }
   });
-
 
   // ==========================================================
   // PART 1. jQuery SEARCH
@@ -1205,614 +1059,4 @@ $(document).ready(function() {
   $(window).on("scroll resize", loadVisibleImages);
   loadVisibleImages();
 
-});
-
-
-/* ===== auth.js ===== */
-/* Yello Beauty — auth.js
-   Sign Up / Log In / Profile (localStorage), form validation, saved rating,
-   mobile menu, toast helper and EN/RU/KZ texts for the new features.
-   Loaded after js/script.js on every page. */
-(function () {
-  "use strict";
-
-  // ---------- storage helpers ----------
-  function load(key, fallback) {
-    try { var v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }
-    catch (e) { return fallback; }
-  }
-  function save(key, value) { localStorage.setItem(key, JSON.stringify(value)); }
-
-  // ---------- texts: key -> [EN, RU, KZ] ----------
-  var D = {
-    n_login: ["Log In", "Войти", "Кіру"],
-    n_menu: ["Menu", "Меню", "Мәзір"],
-    f_name: ["Full Name", "Полное имя", "Толық аты-жөні"],
-    f_email: ["Email Address", "Электронная почта", "Электрондық пошта"],
-    f_phone: ["Phone Number:", "Номер телефона:", "Телефон нөмірі:"],
-    f_phone2: ["Phone Number", "Номер телефона", "Телефон нөмірі"],
-    f_pass: ["Password", "Пароль", "Құпиясөз"],
-    f_pass2: ["Confirm Password", "Подтвердите пароль", "Құпиясөзді растаңыз"],
-    l_title: ["Log In", "Вход", "Кіру"],
-    l_lead: ["Welcome back to Yello Beauty", "С возвращением в Yello Beauty", "Yello Beauty-ге қайта қош келдіңіз"],
-    l_btn: ["Log In", "Войти", "Кіру"],
-    l_no: ["Don't have an account?", "Нет аккаунта?", "Аккаунтыңыз жоқ па?"],
-    l_link: ["Sign Up", "Регистрация", "Тіркелу"],
-    s_title: ["Create Account", "Создать аккаунт", "Аккаунт жасау"],
-    s_lead: ["Join Yello Beauty and save your favourites", "Присоединяйтесь к Yello Beauty и сохраняйте любимое", "Yello Beauty-ге қосылыңыз"],
-    s_btn: ["Sign Up", "Зарегистрироваться", "Тіркелу"],
-    s_have: ["Already have an account?", "Уже есть аккаунт?", "Аккаунтыңыз бар ма?"],
-    s_hint: ["At least 8 characters with an uppercase letter, a lowercase letter and a digit.", "Минимум 8 символов: заглавная, строчная буква и цифра.", "Кемінде 8 таңба: бас әріп, кіші әріп және сан."],
-    e_req: ["This field is required.", "Это поле обязательно.", "Бұл өріс міндетті."],
-    e_name: ["Name must have at least 2 letters (letters, spaces and - only).", "Имя: минимум 2 буквы (только буквы, пробелы и -).", "Аты: кемінде 2 әріп (тек әріп, бос орын және -)."],
-    e_email: ["Enter a valid email, e.g. example@mail.com.", "Введите корректный email, например example@mail.com.", "Дұрыс email енгізіңіз, мысалы example@mail.com."],
-    e_phone: ["Invalid phone. Use +7 777 123 45 67.", "Неверный телефон. Формат: +7 777 123 45 67.", "Телефон қате. Пішім: +7 777 123 45 67."],
-    e_plen: ["Password must be at least 8 characters.", "Пароль должен быть не короче 8 символов.", "Құпиясөз кемінде 8 таңба болуы керек."],
-    e_pcx: ["Password needs an uppercase letter, a lowercase letter and a digit.", "Пароль должен содержать заглавную, строчную букву и цифру.", "Құпиясөзде бас әріп, кіші әріп және сан болуы керек."],
-    e_match: ["Passwords do not match.", "Пароли не совпадают.", "Құпиясөздер сәйкес келмейді."],
-    e_exists: ["An account with this email already exists.", "Аккаунт с таким email уже существует.", "Бұл email-мен аккаунт бар."],
-    e_bad: ["Wrong email or password.", "Неверный email или пароль.", "Email немесе құпиясөз қате."],
-    ok_signup: ["Account created! Opening your profile...", "Аккаунт создан! Открываем профиль...", "Аккаунт жасалды! Профиль ашылуда..."],
-    ok_login: ["Welcome back,", "С возвращением,", "Қош келдіңіз,"],
-    ok_logout: ["You have been logged out.", "Вы вышли из аккаунта.", "Сіз аккаунттан шықтыңыз."],
-    p_title: ["My Profile", "Мой профиль", "Менің профилім"],
-    p_lead: ["Your account details", "Данные вашего аккаунта", "Аккаунт деректері"],
-    p_name: ["Name", "Имя", "Аты-жөні"],
-    p_email: ["Email", "Email", "Email"],
-    p_phone: ["Phone", "Телефон", "Телефон"],
-    p_since: ["Member since", "Дата регистрации", "Тіркелген күні"],
-    p_rating: ["Your store rating", "Ваша оценка магазина", "Дүкенге қойған бағаңыз"],
-    p_filters: ["Last catalog search", "Последний поиск в каталоге", "Каталогтағы соңғы іздеу"],
-    p_cart: ["Items in cart", "Товаров в корзине", "Себеттегі тауарлар"],
-    p_logout: ["Log Out", "Выйти", "Шығу"],
-    p_shop: ["Go to Catalog", "Перейти в каталог", "Каталогқа өту"],
-    p_none: ["not set", "не задано", "көрсетілмеген"],
-    r_saved: ["Your rating is saved:", "Ваша оценка сохранена:", "Бағаңыз сақталды:"],
-    f_cat: ["Category", "Категория", "Санат"],
-    f_allcat: ["All categories", "Все категории", "Барлық санаттар"],
-    f_price: ["Price", "Цена", "Бағасы"],
-    pr_all: ["Any price", "Любая цена", "Кез келген баға"],
-    pr_1: ["Under 7,000 ₸", "До 7 000 ₸", "7 000 ₸-ге дейін"],
-    pr_2: ["7,000 – 12,000 ₸", "7 000 – 12 000 ₸", "7 000 – 12 000 ₸"],
-    pr_3: ["Over 12,000 ₸", "Свыше 12 000 ₸", "12 000 ₸-ден жоғары"],
-    f_sort: ["Sort by", "Сортировка", "Сұрыптау"],
-    so_def: ["Default order", "По умолчанию", "Әдепкі"],
-    so_asc: ["Price: low to high", "Цена: по возрастанию", "Баға: өсу бойынша"],
-    so_desc: ["Price: high to low", "Цена: по убыванию", "Баға: кему бойынша"],
-    f_reset: ["Reset filters", "Сбросить фильтры", "Сүзгілерді тазарту"],
-    f_saved: ["Your search and filters are saved automatically.", "Поиск и фильтры сохраняются автоматически.", "Іздеу мен сүзгілер автоматты түрде сақталады."],
-    api_title: ["More Makeup from Around the World", "Больше косметики со всего мира", "Әлемнің түкпір-түкпірінен косметика"],
-    api_desc: ["Live products from the Makeup API (prices in USD).", "Актуальные товары из Makeup API (цены в USD).", "Makeup API-дегі өзекті тауарлар (бағасы USD)."],
-    api_type: ["Product type", "Тип товара", "Тауар түрі"],
-    ty_lipstick: ["Lipstick", "Помада", "Далап"],
-    ty_foundation: ["Foundation", "Тональная основа", "Тональды негіз"],
-    ty_mascara: ["Mascara", "Тушь", "Тушь"],
-    ty_eyeliner: ["Eyeliner", "Подводка", "Көз сызғышы"],
-    ty_blush: ["Blush", "Румяна", "Бетқызыл"],
-    ty_eyeshadow: ["Eyeshadow", "Тени", "Көлеңке"],
-    api_load: ["Loading products...", "Загрузка товаров...", "Тауарлар жүктелуде..."],
-    api_err: ["Could not load products. Check your connection and try again.", "Не удалось загрузить товары. Проверьте соединение и повторите.", "Тауарларды жүктеу мүмкін болмады. Байланысты тексеріп, қайталаңыз."],
-    api_retry: ["Try again", "Повторить", "Қайталау"],
-    api_view: ["View product", "Открыть товар", "Тауарды ашу"],
-    api_empty: ["No products found for this type.", "Товары этого типа не найдены.", "Бұл түрдегі тауар табылмады."],
-    api_count: ["products", "товаров", "тауар"],
-    m_fill: ["Please fill in all required fields!", "Пожалуйста, заполните все обязательные поля!", "Барлық міндетті өрістерді толтырыңыз!"],
-    m_name3: ["Name must be at least 3 characters long!", "Имя должно содержать минимум 3 символа!", "Аты кемінде 3 таңбадан тұруы керек!"],
-    m_email: ["Please enter a valid email address (e.g., example@mail.com).", "Введите корректный email (например, example@mail.com).", "Дұрыс email енгізіңіз (мысалы, example@mail.com)."],
-    m_sub_empty: ["Please enter your email address!", "Пожалуйста, введите ваш email!", "Email-ыңызды енгізіңіз!"],
-    m_thanks: ["Thank you for subscribing!", "Спасибо за подписку!", "Жазылғаныңыз үшін рахмет!"],
-    m_cart_empty: ["Your cart is empty!", "Ваша корзина пуста!", "Себетіңіз бос!"],
-    m_cart_li: ["Cart is empty", "Корзина пуста", "Себет бос"],
-    m_order: ["Thank you for your order! Total amount:", "Спасибо за заказ! Общая сумма:", "Тапсырысыңыз үшін рахмет! Жалпы сомасы:"],
-    greet_m: ["Good Morning! ☀️ Discover fresh morning skincare.", "Доброе утро! ☀️ Откройте для себя утренний уход.", "Қайырлы таң! ☀️ Таңғы күтімді ашыңыз."],
-    greet_a: ["Good Afternoon! ✨ Glow with our bestsellers.", "Добрый день! ✨ Сияйте с нашими бестселлерами.", "Қайырлы күн! ✨ Бестселлерлерімен жарқырай беріңіз."],
-    greet_e: ["Good Evening! 🌙 Pamper your skin with night care.", "Добрый вечер! 🌙 Побалуйте кожу ночным уходом.", "Қайырлы кеш! 🌙 Теріңізді түнгі күтіммен еркелетіңіз."],
-    api_popular: ["Popular picks", "Популярные продукты", "Танымал өнімдер"],
-    api_live: ["More from Makeup API", "Ещё из Makeup API", "Makeup API-дегі басқа тауарлар"],
-    api_pop_note: ["Popular picks: prices are approximate, USD.", "Популярные продукты: цены примерные, в USD.", "Танымал өнімдер: бағалары шамамен, USD."],
-    pf_menu: ["Menu", "Меню", "Мәзір"]
-  };
-  function langIndex() { var l = localStorage.getItem("yello_lang") || "en"; return l === "ru" ? 1 : l === "kz" ? 2 : 0; }
-  function tr(key) { return D[key] ? D[key][langIndex()] : key; }
-  window.yelloT = tr;
-
-  function applyTexts() {
-    document.querySelectorAll("[data-t]").forEach(function (el) { el.textContent = tr(el.getAttribute("data-t")); });
-    document.querySelectorAll("[data-t-ph]").forEach(function (el) { el.placeholder = tr(el.getAttribute("data-t-ph")); });
-    var tg = document.querySelector(".nav-toggler");
-    if (tg) tg.setAttribute("aria-label", tr("n_menu"));
-  }
-
-  // ---------- toast (replaces alert) ----------
-  window.yelloMsg = function (message) {
-    if (!window.jQuery) { window.alert(message); return; }
-    var $ = window.jQuery;
-    if ($("#toast-container").length === 0) $("body").append('<div id="toast-container" class="toast-container"></div>');
-    var toast = $('<div class="toast-msg"></div>').text(message);
-    $("#toast-container").append(toast);
-    toast.fadeIn(300).delay(3000).fadeOut(500, function () { $(this).remove(); });
-  };
-
-  // ---------- users ----------
-  function users() { return load("yello_users", []); }
-  function currentUser() {
-    var email = localStorage.getItem("yello_current");
-    if (!email) return null;
-    return users().filter(function (u) { return u.email === email; })[0] || null;
-  }
-  function hash(text) {
-    if (window.crypto && crypto.subtle && window.TextEncoder) {
-      return crypto.subtle.digest("SHA-256", new TextEncoder().encode(text)).then(function (buf) {
-        return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ("0" + b.toString(16)).slice(-2); }).join("");
-      });
-    }
-    var h = 5381; for (var i = 0; i < text.length; i++) h = ((h << 5) + h + text.charCodeAt(i)) | 0;
-    return Promise.resolve("x" + h);
-  }
-
-  // ---------- validation ----------
-  var RE = {
-    email: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/,
-    phone: /^(\+7|8)\d{10}$/,
-    name: /^[A-Za-zА-Яа-яЁёӘәҒғҚқҢңӨөҰұҮүІіҺһ][A-Za-zА-Яа-яЁёӘәҒғҚқҢңӨөҰұҮүІіҺһ\s-]+$/
-  };
-  function cleanPhone(v) { return v.replace(/[\s()\-]/g, ""); }
-
-  function clearErrors(form) {
-    form.querySelectorAll(".field-error").forEach(function (n) { n.remove(); });
-    form.querySelectorAll(".is-invalid").forEach(function (n) { n.classList.remove("is-invalid"); });
-  }
-  function fail(input, key) {
-    input.classList.add("is-invalid");
-    var box = input.closest(".mb-3") || input.parentNode;
-    var msg = document.createElement("div");
-    msg.className = "field-error";
-    msg.setAttribute("data-t", key);
-    msg.textContent = tr(key);
-    box.appendChild(msg);
-    return false;
-  }
-  function checkPassword(input) {
-    var v = input.value;
-    if (!v) return fail(input, "e_req");
-    if (v.length < 8) return fail(input, "e_plen");
-    if (!/[a-zа-яёәғқңөұүі]/.test(v) || !/[A-ZА-ЯЁӘҒҚҢӨҰҮІ]/.test(v) || !/\d/.test(v)) return fail(input, "e_pcx");
-    return true;
-  }
-
-  // ---------- page logic ----------
-  function initSignup(form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      clearErrors(form);
-      var f = form.elements, ok = true;
-      var name = f.name.value.trim(), email = f.email.value.trim().toLowerCase(), phone = cleanPhone(f.phone.value);
-      if (!name) ok = fail(f.name, "e_req"); else if (!RE.name.test(name)) ok = fail(f.name, "e_name");
-      if (!email) ok = fail(f.email, "e_req"); else if (!RE.email.test(email)) ok = fail(f.email, "e_email");
-      if (!phone) ok = fail(f.phone, "e_req"); else if (!RE.phone.test(phone)) ok = fail(f.phone, "e_phone");
-      if (!checkPassword(f.password)) ok = false;
-      if (!f.password2.value) ok = fail(f.password2, "e_req");
-      else if (f.password2.value !== f.password.value) ok = fail(f.password2, "e_match");
-      if (!ok) return;
-      var list = users();
-      if (list.some(function (u) { return u.email === email; })) return fail(f.email, "e_exists");
-      hash(email + ":" + f.password.value).then(function (h) {
-        list.push({ name: name, email: email, phone: phone.replace(/^8/, "+7"), pass: h, created: new Date().toISOString() });
-        save("yello_users", list);
-        localStorage.setItem("yello_current", email); // log in right after sign up
-        window.yelloMsg("✅ " + tr("ok_signup"));
-        setTimeout(function () { location.href = "account.html"; }, 1000);
-      });
-    });
-  }
-
-  function initLogin(form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      clearErrors(form);
-      var f = form.elements, ok = true, email = f.email.value.trim().toLowerCase();
-      if (!email) ok = fail(f.email, "e_req"); else if (!RE.email.test(email)) ok = fail(f.email, "e_email");
-      if (!f.password.value) ok = fail(f.password, "e_req");
-      if (!ok) return;
-      hash(email + ":" + f.password.value).then(function (h) {
-        var user = users().filter(function (u) { return u.email === email && u.pass === h; })[0];
-        if (!user) return fail(f.password, "e_bad");
-        localStorage.setItem("yello_current", user.email);
-        window.yelloMsg("👋 " + tr("ok_login") + " " + user.name.split(" ")[0] + "!");
-        setTimeout(function () { location.href = "account.html"; }, 900);
-      });
-    });
-  }
-
-  function ratingKey() { var u = currentUser(); return u ? u.email : "guest"; }
-
-  function initProfile() {
-    var user = currentUser();
-    if (!user) { location.replace("login.html"); return; }
-    function val(id, text) { document.getElementById(id).textContent = text; }
-    function render() {
-      user = currentUser() || user;
-      val("pf-name", user.name);
-      val("pf-email", user.email);
-      val("pf-phone", user.phone || tr("p_none"));
-      val("pf-since", new Date(user.created).toLocaleDateString());
-      var r = load("yello_ratings", {})[user.email];
-      val("pf-rating", r ? "★".repeat(r) + "☆".repeat(5 - r) + "  (" + r + "/5)" : tr("p_none"));
-      var fl = load("yello_filters", null), parts = [];
-      if (fl) {
-        if (fl.q) parts.push("“" + fl.q + "”");
-        if (fl.cat && fl.cat !== "all") parts.push(fl.cat.replace(/-/g, " "));
-        if (fl.price && fl.price !== "all") parts.push(tr("pr_" + fl.price));
-      }
-      val("pf-filters", parts.length ? parts.join(" · ") : tr("p_none"));
-      val("pf-cart", String(load("yello_cart", []).length));
-      document.getElementById("pf-avatar").textContent = user.name.charAt(0).toUpperCase();
-    }
-    render();
-    document.getElementById("logout-btn").addEventListener("click", function () {
-      localStorage.removeItem("yello_current");
-      window.yelloMsg("👋 " + tr("ok_logout"));
-      setTimeout(function () { location.href = "index.html"; }, 900);
-    });
-    document.querySelectorAll(".site-lang-btn").forEach(function (b) { b.addEventListener("click", render); });
-  }
-
-  // ---------- navbar: login/profile link + mobile menu ----------
-  function initNav() {
-    var tools = document.querySelector(".nav-tools");
-    if (tools) {
-      var user = currentUser(), a = document.createElement("a");
-      a.className = "nav-tool-btn auth-link";
-      a.style.textDecoration = "none";
-      if (user) { a.href = "account.html"; a.textContent = "👤 " + user.name.split(" ")[0]; }
-      else { a.href = "login.html"; a.setAttribute("data-t", "n_login"); a.textContent = tr("n_login"); }
-      tools.insertBefore(a, tools.firstChild);
-    }
-    var box = document.querySelector(".navbar-container");
-    if (box) {
-      var btn = document.createElement("button");
-      btn.type = "button"; btn.className = "nav-toggler"; btn.textContent = "☰";
-      btn.setAttribute("aria-label", tr("n_menu")); btn.setAttribute("aria-expanded", "false");
-      btn.addEventListener("click", function () {
-        var open = box.classList.toggle("nav-open");
-        btn.setAttribute("aria-expanded", String(open));
-        btn.textContent = open ? "✕" : "☰";
-      });
-      var brand = box.querySelector(".navbar-brand");
-      brand.parentNode.insertBefore(btn, brand.nextSibling);
-    }
-  }
-
-  // ---------- rating saved in localStorage ----------
-  function initRating() {
-    var stars = document.querySelectorAll(".rating-star");
-    if (!stars.length) return;
-    var note = document.createElement("p");
-    note.className = "rating-note small text-muted mb-0 mt-1";
-    stars[0].parentNode.parentNode.appendChild(note);
-    function paint(v) {
-      stars.forEach(function (s, i) { s.style.color = i < v ? "#ffc107" : "#ccc"; });
-      note.textContent = v ? tr("r_saved") + " " + v + "/5" : "";
-    }
-    var ratings = load("yello_ratings", {});
-    paint(ratings[ratingKey()] || 0);
-    stars.forEach(function (s, i) {
-      s.addEventListener("click", function () {
-        ratings = load("yello_ratings", {});
-        ratings[ratingKey()] = i + 1;
-        save("yello_ratings", ratings);
-        paint(i + 1);
-      });
-    });
-    document.querySelectorAll(".site-lang-btn").forEach(function (b) {
-      b.addEventListener("click", function () { paint(load("yello_ratings", {})[ratingKey()] || 0); });
-    });
-  }
-
-  // ---------- contact form: prefill for logged-in users ----------
-  function initContact() {
-    var user = currentUser();
-    if (!user || !document.getElementById("contact-form")) return;
-    [["username", user.name], ["useremail", user.email], ["userphone", user.phone]].forEach(function (p) {
-      var el = document.getElementById(p[0]); if (el && !el.value && p[1]) el.value = p[1];
-    });
-  }
-
-  // If account.html is a wrong (stale) file, build the profile page right here
-  function ensureAccountPage() {
-    if (!/account\.html$/i.test(location.pathname) || document.getElementById("profile-box")) return;
-    var main = document.querySelector("main");
-    if (!main) return;
-    document.title = "Yello Beauty — My Profile";
-    main.innerHTML =
-      '<div class="auth-wrap">' +
-      '<section class="hero-banner text-center mb-4"><h1 class="hero-title" data-t="p_title">My Profile</h1>' +
-      '<p class="hero-lead" data-t="p_lead">Your account details</p></section>' +
-      '<section class="content-box" id="profile-box"><div class="profile-avatar" id="pf-avatar">?</div>' +
-      '<div class="profile-row"><span class="profile-label" data-t="p_name">Name</span><span class="profile-value" id="pf-name"></span></div>' +
-      '<div class="profile-row"><span class="profile-label" data-t="p_email">Email</span><span class="profile-value" id="pf-email"></span></div>' +
-      '<div class="profile-row"><span class="profile-label" data-t="p_phone">Phone</span><span class="profile-value" id="pf-phone"></span></div>' +
-      '<div class="profile-row"><span class="profile-label" data-t="p_since">Member since</span><span class="profile-value" id="pf-since"></span></div>' +
-      '<div class="profile-row"><span class="profile-label" data-t="p_rating">Your store rating</span><span class="profile-value" id="pf-rating"></span></div>' +
-      '<div class="profile-row"><span class="profile-label" data-t="p_filters">Last catalog search</span><span class="profile-value" id="pf-filters"></span></div>' +
-      '<div class="profile-row"><span class="profile-label" data-t="p_cart">Items in cart</span><span class="profile-value" id="pf-cart"></span></div>' +
-      '<div class="profile-actions"><a href="catalog.html" class="btn btn-warning" data-t="p_shop">Go to Catalog</a>' +
-      '<button type="button" id="logout-btn" class="btn btn-dark" style="width:auto;" data-t="p_logout">Log Out</button></div>' +
-      '</section></div>';
-  }
-
-  document.addEventListener("DOMContentLoaded", function () {
-    initNav();
-    ensureAccountPage();
-    var su = document.getElementById("signup-form"), li = document.getElementById("login-form");
-    if (su || li) {
-      if (currentUser()) { location.replace("account.html"); return; }
-      if (su) initSignup(su);
-      if (li) initLogin(li);
-    }
-    if (document.getElementById("profile-box")) initProfile();
-    initRating();
-    initContact();
-    applyTexts();
-    document.querySelectorAll(".site-lang-btn").forEach(function (b) {
-      b.addEventListener("click", function () {
-        applyTexts();
-        document.querySelectorAll(".field-error").forEach(function (n) { n.textContent = tr(n.getAttribute("data-t")); });
-      });
-    });
-  });
-})();
-
-
-/* ===== catalog.js ===== */
-/* Yello Beauty — catalog.js
-   1) Search + category + price filter + sorting, saved in localStorage
-   2) External API: Makeup API (https://makeup-api.herokuapp.com) */
-$(function () {
-  var $q = $("#product-search");
-  if ($q.length === 0) return;
-
-  var tr = window.yelloT || function (k) { return k; };
-
-  // ================= 1. FILTERS =================
-  var KEY = "yello_filters";
-  var $cat = $("#cat-filter"), $price = $("#price-filter"), $sort = $("#sort-filter");
-  var ranges = { all: [0, 1e9], "1": [0, 6999], "2": [7000, 12000], "3": [12001, 1e9] };
-
-  $(".product-card").closest(".col-md-4").each(function (i) { $(this).attr("data-idx", i); });
-
-  function priceOf($col) { return parseInt($col.find(".product-price").text().replace(/[^\d]/g, ""), 10) || 0; }
-
-  function applyFilters() {
-    var text = $q.val().toLowerCase().trim();
-    var cat = $cat.val(), priceKey = $price.val(), sort = $sort.val();
-    var range = ranges[priceKey] || ranges.all;
-
-    $(".category-heading").each(function () {
-      var $h = $(this), $row = $h.next(".row");
-      var cols = $row.children(".col-md-4").get();
-
-      cols.sort(function (a, b) {
-        if (sort === "asc") return priceOf($(a)) - priceOf($(b));
-        if (sort === "desc") return priceOf($(b)) - priceOf($(a));
-        return $(a).attr("data-idx") - $(b).attr("data-idx");
-      });
-      $.each(cols, function (_, c) { $row.append(c); });
-
-      var catOk = cat === "all" || cat === this.id, visible = 0;
-      $row.children(".col-md-4").each(function () {
-        var $c = $(this), p = priceOf($c);
-        var content = $c.find(".card-title, .card-text").text().toLowerCase();
-        var show = catOk && content.indexOf(text) > -1 && p >= range[0] && p <= range[1];
-        $c.toggle(show);
-        if (show) visible++;
-      });
-      $h.toggle(visible > 0);
-      $row.toggle(visible > 0);
-    });
-
-    $("#no-results").toggle($(".product-card:visible").length === 0);
-    localStorage.setItem(KEY, JSON.stringify({ q: $q.val(), cat: cat, price: priceKey, sort: sort }));
-    $(window).trigger("scroll"); // lets lazy images load
-  }
-
-    $q.on("keyup input", applyFilters);
-  $cat.add($price).add($sort).on("change", applyFilters);
-
-  $("#reset-filters").on("click", function () {
-    $q.val(""); $cat.val("all"); $price.val("all"); $sort.val("default");
-    $("#suggestions").hide();
-    applyFilters();
-  });
-
-  try {
-    var saved = JSON.parse(localStorage.getItem(KEY) || "null");
-    if (saved) {
-      $q.val(saved.q || ""); $cat.val(saved.cat || "all");
-      $price.val(saved.price || "all"); $sort.val(saved.sort || "default");
-    }
-  } catch (e) { /* ignore broken data */ }
-  applyFilters();
-
-  // ================= 2. POPULAR PICKS + MAKEUP API =================
-  var API = "https://makeup-api.herokuapp.com/api/v1/products.json?product_type=";
-  var TYPE_KEY = "yello_api_type";
-  var $type = $("#api-type"), $grid = $("#api-grid"), $status = $("#api-status"), $retry = $("#api-retry");
-  var lastList = null, apiState = "loading";
-
-  // popular products for every product type (prices are approximate, USD)
-  var POPULAR = {
-    lipstick: [
-      { brand: "Rare Beauty", by: "Selena Gomez", name: "Kind Words Matte Lipstick", price: 20, color: "#b5445a" },
-      { brand: "Rhode", by: "Hailey Bieber", name: "Peptide Lip Treatment", price: 16, color: "#c97b84" },
-      { brand: "Fenty Beauty", by: "Rihanna", name: "Gloss Bomb Universal Lip Luminizer", price: 22, color: "#e0899a" },
-      { brand: "Kylie Cosmetics", by: "Kylie Jenner", name: "Matte Liquid Lipstick", price: 20, color: "#a3364b" }
-    ],
-    foundation: [
-      { brand: "Rare Beauty", by: "Selena Gomez", name: "Liquid Touch Weightless Foundation", price: 30, color: "#e3b48f" },
-      { brand: "Fenty Beauty", by: "Rihanna", name: "Pro Filt'r Soft Matte Foundation", price: 40, color: "#d9a07a" },
-      { brand: "Haus Labs", by: "Lady Gaga", name: "Triclone Skin Tech Foundation", price: 49, color: "#e8c4a0" },
-      { brand: "Maybelline", by: "Bestseller", name: "Fit Me Matte + Poreless Foundation", price: 9, color: "#dcae8a" }
-    ],
-    mascara: [
-      { brand: "Rare Beauty", by: "Selena Gomez", name: "Perfect Strokes Volumizing Mascara", price: 20, color: "#7a3b8f" },
-      { brand: "Fenty Beauty", by: "Rihanna", name: "Full Frontal Volume, Lift & Curl Mascara", price: 26, color: "#d1357a" },
-      { brand: "Too Faced", by: "Bestseller", name: "Better Than Sex Mascara", price: 29, color: "#e0507a" },
-      { brand: "Maybelline", by: "Bestseller", name: "Lash Sensational Sky High", price: 13, color: "#2f6fd1" }
-    ],
-    eyeliner: [
-      { brand: "Kylie Cosmetics", by: "Kylie Jenner", name: "Kyliner Gel Pencil", price: 18, color: "#6b3fa0" },
-      { brand: "Fenty Beauty", by: "Rihanna", name: "Flypencil Longwear Pencil Eyeliner", price: 22, color: "#222222" },
-      { brand: "Stila", by: "Bestseller", name: "Stay All Day Liquid Eye Liner", price: 24, color: "#3a2a22" },
-      { brand: "Maybelline", by: "Bestseller", name: "Tattoo Studio Gel Pencil", price: 10, color: "#1f4fa3" }
-    ],
-    blush: [
-      { brand: "Rare Beauty", by: "Selena Gomez", name: "Soft Pinch Liquid Blush", price: 23, color: "#e86f8f" },
-      { brand: "Rhode", by: "Hailey Bieber", name: "Pocket Blush", price: 22, color: "#d98a86" },
-      { brand: "Fenty Beauty", by: "Rihanna", name: "Cheeks Out Freestyle Cream Blush", price: 25, color: "#e9788b" },
-      { brand: "Dior", by: "Bestseller", name: "Rosy Glow Blush", price: 38, color: "#f08aa5" }
-    ],
-    eyeshadow: [
-      { brand: "Fenty Beauty", by: "Rihanna", name: "Snap Shadows Mix & Match Palette", price: 25, color: "#c98a5a" },
-      { brand: "Huda Beauty", by: "Huda Kattan", name: "Obsessions Eyeshadow Palette", price: 29, color: "#b36b55" },
-      { brand: "Kylie Cosmetics", by: "Kylie Jenner", name: "Bronze Eyeshadow Palette", price: 30, color: "#a8683f" },
-      { brand: "Urban Decay", by: "Bestseller", name: "Naked Heat Palette", price: 54, color: "#d0703c" }
-    ]
-  };
-
-  // "&trade;" -> "™" etc.
-  function decodeHtml(str) {
-    var t = document.createElement("textarea");
-    t.innerHTML = String(str || "");
-    return t.value;
-  }
-
-  // Product picture drawn in SVG: always visible, no internet needed
-  function drawProduct(type, color) {
-    color = /^#[0-9a-f]{3,8}$/i.test(color || "") ? color : "#c0475f";
-    var b = "";
-    if (type === "lipstick") {
-      b = '<rect x="72" y="104" width="56" height="10" rx="2" fill="#d4af37"/>' +
-          '<rect x="75" y="112" width="50" height="62" rx="5" fill="#2b2b2b"/>' +
-          '<path d="M82 106 V58 L118 40 V106 Z" fill="' + color + '"/>';
-    } else if (type === "foundation") {
-      b = '<rect x="94" y="40" width="12" height="22" rx="2" fill="#d4af37"/>' +
-          '<rect x="86" y="60" width="28" height="30" rx="3" fill="#2b2b2b"/>' +
-          '<rect x="68" y="88" width="64" height="88" rx="10" fill="' + color + '"/>' +
-          '<rect x="78" y="118" width="44" height="30" rx="3" fill="#ffffff" opacity="0.85"/>';
-    } else if (type === "mascara") {
-      b = '<rect x="82" y="34" width="36" height="40" rx="7" fill="' + color + '"/>' +
-          '<rect x="88" y="72" width="24" height="104" rx="6" fill="#2b2b2b"/>' +
-          '<rect x="88" y="120" width="24" height="14" fill="' + color + '"/>';
-    } else if (type === "eyeliner") {
-      b = '<g transform="rotate(-35 100 100)">' +
-          '<rect x="91" y="26" width="18" height="122" rx="3" fill="' + color + '"/>' +
-          '<rect x="91" y="40" width="18" height="12" fill="#d4af37"/>' +
-          '<polygon points="91,148 109,148 100,176" fill="#f1d3b0"/>' +
-          '<polygon points="96,165 104,165 100,176" fill="#222222"/></g>';
-    } else if (type === "blush") {
-      b = '<circle cx="100" cy="104" r="66" fill="#2b2b2b"/>' +
-          '<circle cx="100" cy="104" r="52" fill="' + color + '"/>' +
-          '<circle cx="100" cy="104" r="30" fill="#ffffff" opacity="0.25"/>';
-    } else if (type === "eyeshadow") {
-      var cols = [color, "#e8c9a0", "#8a5a44", "#f4e1c7", "#5b3a4a", color], i, x, y;
-      b = '<rect x="36" y="58" width="128" height="92" rx="9" fill="#2b2b2b"/>';
-      for (i = 0; i < 6; i++) {
-        x = 66 + (i % 3) * 34; y = 90 + Math.floor(i / 3) * 34;
-        b += '<circle cx="' + x + '" cy="' + y + '" r="14" fill="' + cols[i] + '"/>';
-      }
-    } else {
-      b = '<rect x="70" y="70" width="60" height="100" rx="10" fill="' + color + '"/>' +
-          '<rect x="88" y="44" width="24" height="28" rx="3" fill="#2b2b2b"/>';
-    }
-    var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">' +
-      '<rect width="200" height="200" fill="#FFF3C4"/>' + b + '</svg>';
-    return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
-  }
-
-  // one product card (real photo if it loads, otherwise the drawn picture)
-  function makeCard(o) {
-    var fallback = drawProduct(o.type, o.color);
-    var $card = $('<article class="api-card"></article>');
-    var $imgBox = $('<div class="api-img"></div>');
-    var $img = $('<img referrerpolicy="no-referrer">').attr("alt", o.name)
-      .one("error", function () { $(this).attr("src", fallback); });
-    $img.attr("src", o.img || fallback);
-    $imgBox.append($img);
-
-    var $body = $('<div class="api-body"></div>');
-    if (o.by) $body.append($('<span class="api-badge"></span>').text("⭐ " + o.by));
-    $body.append($('<p class="api-brand"></p>').text(String(o.brand || "").toUpperCase()));
-    $body.append($('<h3 class="api-name"></h3>').text(o.name));
-    $body.append($('<p class="api-price"></p>').text(o.priceText));
-    if (o.rating) $body.append($('<p class="api-rating"></p>').text("★ " + o.rating));
-    if (o.link && /^https?:\/\//.test(o.link)) {
-      $body.append($('<a class="btn btn-warning btn-sm w-100" target="_blank" rel="noopener noreferrer"></a>')
-        .attr("href", o.link).text(tr("api_view")));
-    }
-    return $card.append($imgBox, $body);
-  }
-
-  function setStatus() {
-    if (apiState === "loading") $status.text(tr("api_load"));
-    else if (apiState === "error") $status.text(tr("api_err"));
-    else if (apiState === "empty") $status.text(tr("api_empty"));
-    else $status.text(lastList.length + " " + tr("api_count") + " · " + tr("api_pop_note"));
-  }
-
-  function render() {
-    var type = $type.val();
-    $grid.empty();
-
-    $grid.append($('<h3 class="api-subtitle"></h3>').text("⭐ " + tr("api_popular")));
-    (POPULAR[type] || []).forEach(function (p) {
-      $grid.append(makeCard({
-        type: type, color: p.color, brand: p.brand, by: p.by, name: p.name,
-        priceText: "~$" + p.price.toFixed(2),
-        link: "https://www.google.com/search?q=" + encodeURIComponent(p.brand + " " + p.name)
-      }));
-    });
-
-    if (lastList && lastList.length) {
-      $grid.append($('<h3 class="api-subtitle"></h3>').text("🌍 " + tr("api_live")));
-      lastList.forEach(function (p) {
-        var price = parseFloat(p.price);
-        var hex = p.product_colors && p.product_colors[0] && p.product_colors[0].hex_value;
-        $grid.append(makeCard({
-          type: type, color: hex, brand: decodeHtml(p.brand), name: decodeHtml(p.name),
-          img: p.image_link ? String(p.image_link).replace(/^http:/, "https:") : "",
-          priceText: "$" + (isNaN(price) ? "—" : price.toFixed(2)),
-          rating: p.rating, link: p.product_link
-        }));
-      });
-    }
-  }
-
-  function loadApi() {
-    var type = $type.val();
-    localStorage.setItem(TYPE_KEY, type);
-    $retry.hide();
-    lastList = null; apiState = "loading";
-    render(); setStatus();            // popular picks show immediately
-
-    fetch(API + encodeURIComponent(type))
-      .then(function (res) { if (!res.ok) throw new Error("HTTP " + res.status); return res.json(); })
-      .then(function (list) {
-        lastList = list.filter(function (p) { return parseFloat(p.price) > 0; }).slice(0, 8);
-        apiState = lastList.length ? "ok" : "empty";
-        render(); setStatus();
-      })
-      .catch(function () {
-        lastList = null; apiState = "error";
-        render(); setStatus();
-        $retry.show();
-      });
-  }
-
-  var savedType = localStorage.getItem(TYPE_KEY);
-  if (savedType && $type.find('option[value="' + savedType + '"]').length) $type.val(savedType);
-  $type.on("change", loadApi);
-  $retry.on("click", loadApi);
-  $(".site-lang-btn").on("click", function () { setTimeout(function () { render(); setStatus(); }, 0); });
-  loadApi();
 });
