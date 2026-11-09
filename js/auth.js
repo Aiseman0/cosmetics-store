@@ -41,9 +41,9 @@
     e_pcx: ["Password needs an uppercase letter, a lowercase letter and a digit.", "Пароль должен содержать заглавную, строчную букву и цифру.", "Құпиясөзде бас әріп, кіші әріп және сан болуы керек."],
     e_match: ["Passwords do not match.", "Пароли не совпадают.", "Құпиясөздер сәйкес келмейді."],
     e_exists: ["An account with this email already exists.", "Аккаунт с таким email уже существует.", "Бұл email-мен аккаунт бар."],
-    e_noacc: ["No account with this email yet. Please sign up first.", "Аккаунта с таким email ещё нет. Сначала зарегистрируйтесь.", "Бұл email-мен аккаунт әлі жоқ. Алдымен тіркеліңіз."],
     e_bad: ["Wrong email or password.", "Неверный email или пароль.", "Email немесе құпиясөз қате."],
     ok_signup: ["Account created! Opening your profile...", "Аккаунт создан! Открываем профиль...", "Аккаунт жасалды! Профиль ашылуда..."],
+    e_storage: ["Your browser blocks saving data, so the account can't be created. Open the site via http(s) (not as a local file) or allow site data.", "Браузер не даёт сохранить данные, поэтому аккаунт не создаётся. Откройте сайт по http(s), а не как локальный файл, или разрешите данные сайта.", "Браузер деректі сақтауға рұқсат бермейді, сондықтан аккаунт жасалмайды. Сайтты http(s) арқылы ашыңыз немесе сайт деректеріне рұқсат беріңіз."],
     ok_login: ["Welcome back,", "С возвращением,", "Қош келдіңіз,"],
     ok_logout: ["You have been logged out.", "Вы вышли из аккаунта.", "Сіз аккаунттан шықтыңыз."],
     p_title: ["My Profile", "Мой профиль", "Менің профилім"],
@@ -188,18 +188,6 @@
     setTimeout(function () { if (t.parentNode) t.parentNode.removeChild(t); }, 3100);
   };
 
-  // ---------- redirect guard (prevents endless login <-> profile loops) ----------
-  function go(url) {
-    try {
-      var now = Date.now(), log = JSON.parse(sessionStorage.getItem("yello_redirects") || "[]")
-        .filter(function (t) { return now - t < 5000; });
-      if (log.length >= 3) { sessionStorage.removeItem("yello_redirects"); localStorage.removeItem("yello_current"); return false; }
-      log.push(now); sessionStorage.setItem("yello_redirects", JSON.stringify(log));
-    } catch (e) { /* ignore */ }
-    location.replace(url);
-    return true;
-  }
-
   // ---------- users ----------
   function users() { return load("yello_users", []); }
   function currentUser() {
@@ -267,11 +255,16 @@
       if (list.some(function (u) { return u.email === email; })) return fail(f.email, "e_exists");
       hash(email + ":" + f.password.value).then(function (h) {
         list.push({ name: name, email: email, phone: phone.replace(/^8/, "+7"), pass: h, created: new Date().toISOString() });
-        save("yello_users", list);
-        localStorage.setItem("yello_current", email); // log in right after sign up
+        var saved = false;
+        try {
+          save("yello_users", list);
+          localStorage.setItem("yello_current", email); // log in right after sign up
+          saved = currentUser() !== null; // make sure the browser really kept it
+        } catch (err) { saved = false; }
+        if (!saved) { window.yelloMsg("⚠️ " + tr("e_storage")); return; }
         window.yelloMsg("✅ " + tr("ok_signup"));
         setTimeout(function () { location.href = "account.html"; }, 1000);
-      });
+      }).catch(function () { window.yelloMsg("⚠️ " + tr("e_storage")); });
     });
   }
 
@@ -284,9 +277,7 @@
       if (!f.password.value) ok = fail(f.password, "e_req");
       if (!ok) return;
       hash(email + ":" + f.password.value).then(function (h) {
-        var known = users().filter(function (u) { return u.email === email; })[0];
-        if (!known) return fail(f.email, "e_noacc");
-        var user = known.pass === h ? known : null;
+        var user = users().filter(function (u) { return u.email === email && u.pass === h; })[0];
         if (!user) return fail(f.password, "e_bad");
         localStorage.setItem("yello_current", user.email);
         window.yelloMsg("👋 " + tr("ok_login") + " " + user.name.split(" ")[0] + "!");
@@ -299,7 +290,7 @@
 
   function initProfile() {
     var user = currentUser();
-    if (!user) { go("login.html"); return; }
+    if (!user) { location.replace("login.html"); return; }
     function val(id, text) { document.getElementById(id).textContent = text; }
     function render() {
       user = currentUser() || user;
@@ -308,7 +299,6 @@
       val("pf-phone", user.phone || tr("p_none"));
       val("pf-since", new Date(user.created).toLocaleDateString());
       var r = load("yello_ratings", {})[user.email];
-      r = Math.max(0, Math.min(5, parseInt(r, 10) || 0));
       val("pf-rating", r ? "★".repeat(r) + "☆".repeat(5 - r) + "  (" + r + "/5)" : tr("p_none"));
       var fl = load("yello_filters", null), parts = [];
       if (fl) {
@@ -317,8 +307,7 @@
         if (fl.price && fl.price !== "all") parts.push(tr("pr_" + fl.price));
       }
       val("pf-filters", parts.length ? parts.join(" · ") : tr("p_none"));
-      var cartList = load("yello_cart", []);
-      val("pf-cart", String(Array.isArray(cartList) ? cartList.reduce(function (n, i) { return n + (i && i.title ? (parseInt(i.qty, 10) || 1) : 0); }, 0) : 0));
+      val("pf-cart", String(load("yello_cart", []).reduce(function (n, i) { return n + (parseInt(i.qty, 10) || 1); }, 0)));
       document.getElementById("pf-avatar").textContent = user.name.charAt(0).toUpperCase();
     }
     render();
@@ -448,7 +437,7 @@
     initNav();
     var su = document.getElementById("signup-form"), li = document.getElementById("login-form");
     if (su || li) {
-      if (currentUser()) { go("account.html"); return; }
+      if (currentUser()) { location.replace("account.html"); return; }
       if (su) initSignup(su);
       if (li) initLogin(li);
     }
