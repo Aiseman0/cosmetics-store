@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Yello Beauty - script.js
    Shared UI logic for every page: accordion, popup, carousel, cart, theme (light/dark),
    language (EN/RU/KZ), keyboard navigation and the jQuery UX effects.
@@ -369,14 +370,44 @@
 })();
 
 
+=======
+>>>>>>> 066cdb454d3231a4405b1806ef1c9df9354cca99
 document.addEventListener("DOMContentLoaded", function() {
 
-  // helper: text from the shared EN/RU/KZ dictionary (auth.js)
-  function L(key, fallback) {
-    return window.yelloT ? window.yelloT(key) : fallback;
-  }
+  // --- 1. Form validation (Форма контактов) ---
+  var contactForm = document.getElementById("contact-form");
+  if (contactForm) {
+    contactForm.addEventListener("submit", function(event) {
+      event.preventDefault();
 
-  // --- 1. Forms: validation lives in js/auth.js (inline error messages) ---
+      var username = document.getElementById("username").value.trim();
+      var email = document.getElementById("useremail").value.trim();
+      var message = document.getElementById("message").value.trim();
+      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (username === "" || email === "" || message === "") {
+        if (window.yelloMsg) window.yelloMsg("Please fill in all required fields!");
+        else alert("Please fill in all required fields!");
+        return;
+      }
+
+      if (username.length < 3) {
+        if (window.yelloMsg) window.yelloMsg("Name must be at least 3 characters long!");
+        else alert("Name must be at least 3 characters long!");
+        return;
+      }
+
+      if (!emailPattern.test(email)) {
+        if (window.yelloMsg) window.yelloMsg("Please enter a valid email address format (e.g., example@mail.com).");
+        else alert("Please enter a valid email address format (e.g., example@mail.com).");
+        return;
+      }
+
+      if (window.yelloMsg) window.yelloMsg("Thank you! Your message has been successfully verified and sent.");
+      else alert("Thank you! Your message has been successfully verified and sent.");
+      contactForm.reset();
+    });
+  }
 
   // --- 2. Simple FAQ Accordion ---
   var headers = document.querySelectorAll(".accordion-header-custom");
@@ -397,25 +428,74 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-  // --- 3. Popup modal (open / close; the form itself is validated in auth.js) ---
+  // --- 3. Popup modal control + Email Validation ---
   var popupOverlay = document.getElementById("popup-overlay");
   var openPopupBtn = document.getElementById("open-popup-btn");
   var closePopupBtn = document.getElementById("close-popup-btn");
-
-  function closePopup() {
-    if (!popupOverlay) return;
-    popupOverlay.style.display = "none";
-    popupOverlay.querySelectorAll(".field-error").forEach(function(n) { n.remove(); });
-    popupOverlay.querySelectorAll(".is-invalid").forEach(function(n) { n.classList.remove("is-invalid"); });
-  }
+  var popupSubscribeBtn = document.getElementById("popup-subscribe-btn");
+  var popupEmailInput = document.getElementById("popup-email");
 
   if (openPopupBtn && popupOverlay) {
-    openPopupBtn.addEventListener("click", function() { popupOverlay.style.display = "flex"; });
+    openPopupBtn.addEventListener("click", function() {
+      popupOverlay.style.display = "flex";
+    });
   }
-  if (closePopupBtn) closePopupBtn.addEventListener("click", closePopup);
-  if (popupOverlay) {
-    popupOverlay.addEventListener("click", function(e) { if (e.target === popupOverlay) closePopup(); });
-    document.addEventListener("keydown", function(e) { if (e.key === "Escape") closePopup(); });
+
+  if (closePopupBtn && popupOverlay) {
+    closePopupBtn.addEventListener("click", function() {
+      popupOverlay.style.display = "none";
+    });
+  }
+
+  if (popupSubscribeBtn && popupEmailInput) {
+    popupSubscribeBtn.addEventListener("click", function() {
+      var emailVal = popupEmailInput.value.trim();
+      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (emailVal === "") {
+        if (window.yelloMsg) window.yelloMsg("Please enter your email address!");
+        else alert("Please enter your email address!");
+        return;
+      }
+
+      if (!emailPattern.test(emailVal)) {
+        if (window.yelloMsg) window.yelloMsg("Please enter a valid email address format (e.g., example@mail.com).");
+        else alert("Please enter a valid email address format (e.g., example@mail.com).");
+        return;
+      }
+
+      if (window.yelloMsg) window.yelloMsg("Thank you for subscribing!");
+      else alert("Thank you for subscribing!");
+      popupEmailInput.value = "";
+      if (popupOverlay) {
+        popupOverlay.style.display = "none";
+      }
+    });
+  }
+
+  // --- 4. Background color change with localStorage ---
+  var bgColorBtn = document.getElementById("bg-color-btn");
+  var colors = ["#FFFAED", "#FFF3C4", "#FFE866", "#FFF8E7", "#FFF0F5"];
+  var savedColor = localStorage.getItem("yello_bg_color");
+  var savedIndex = localStorage.getItem("yello_bg_index");
+
+  if (savedColor && !document.body.classList.contains("dark-mode")) {
+    document.body.style.setProperty("background-color", savedColor, "important");
+  }
+
+  if (bgColorBtn) {
+    var colorIndex = savedIndex ? parseInt(savedIndex) : 0;
+    bgColorBtn.addEventListener("click", function() {
+      if (document.body.classList.contains("dark-mode")) return; // Не меняем цвет в темном режиме
+      colorIndex = colorIndex + 1;
+      if (colorIndex >= colors.length) {
+        colorIndex = 0;
+      }
+      var chosenColor = colors[colorIndex];
+      document.body.style.setProperty("background-color", chosenColor, "important");
+      localStorage.setItem("yello_bg_color", chosenColor);
+      localStorage.setItem("yello_bg_index", colorIndex);
+    });
   }
 
   // --- 5. Live Clock ---
@@ -423,16 +503,11 @@ document.addEventListener("DOMContentLoaded", function() {
   if (datetimeDisplay) {
     function showTime() {
       var d = new Date();
-      var loc = { en: "en-GB", ru: "ru-RU", kz: "kk-KZ" }[localStorage.getItem("yello_lang") || "en"];
-      datetimeDisplay.innerText = d.toLocaleDateString(loc) + " " + d.toLocaleTimeString(loc);
+      datetimeDisplay.innerText = d.toLocaleDateString() + " " + d.toLocaleTimeString();
     }
     showTime();
     setInterval(showTime, 1000);
   }
-
-
-
-
 
   // --- 6. Product Carousel ---
   var items = document.querySelectorAll(".carousel-item");
@@ -495,9 +570,9 @@ document.addEventListener("DOMContentLoaded", function() {
     group: "SE-2506",
     getGreeting: function() {
       var hour = new Date().getHours();
-      if (hour < 12) return L("greet_m", "Good Morning!");
-      if (hour < 18) return L("greet_a", "Good Afternoon!");
-      return L("greet_e", "Good Evening!");
+      if (hour < 12) return "Good Morning! ☀️ Discover fresh morning skincare.";
+      if (hour < 18) return "Good Afternoon! ✨ Glow with our bestsellers.";
+      return "Good Evening! 🌙 Pamper your skin with night care.";
     }
   };
 
@@ -506,7 +581,7 @@ document.addEventListener("DOMContentLoaded", function() {
     greetingElem.innerText = storeInfo.getGreeting();
   }
 
-  // B. Switch statement: welcome message by language
+  // B. Switch Statement for Welcome Message Selector (About Us page)
   var langButtons = document.querySelectorAll(".lang-btn");
   var welcomeMsg = document.getElementById("welcome-message");
 
@@ -534,15 +609,110 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
+<<<<<<< HEAD
   // C/D. Cart, checkout and order history now live in js/cart.js
+=======
+  // C. Interactive Shopping Cart & Add-to-Cart Logic with Sound & Animation
+  var cart = [];
+  var cartCountElem = document.getElementById("cart-count");
+  var cartItemsList = document.getElementById("cart-items-list");
+  var cartTotalElem = document.getElementById("cart-total");
+  var checkoutBtn = document.getElementById("checkout-btn");
 
-  // E. Keyboard Event Handling (Arrow navigation + Enter to open page)
+  var cartButtons = document.querySelectorAll(".product-card .btn, .add-to-cart-btn");
+
+  cartButtons.forEach(function(button) {
+    button.addEventListener("click", function() {
+      this.style.transform = "scale(0.92)";
+      setTimeout(() => {
+        this.style.transform = "scale(1)";
+      }, 150);
+
+      playNotificationSound();
+
+      var productCard = this.closest(".product-card") || this.closest(".card");
+      if (productCard) {
+        var titleElem = productCard.querySelector(".card-title");
+        var priceElem = productCard.querySelector(".product-price") || productCard.querySelector(".card-body p.fw-bold");
+
+        if (titleElem && priceElem) {
+          var title = titleElem.innerText;
+          var priceText = priceElem.innerText.replace(" ₸", "").replace(",", "").trim();
+          var price = parseInt(priceText) || 0;
+
+          cart.push({ title: title, price: price });
+          updateCartUI();
+        }
+      }
+    });
+  });
+
+  function updateCartUI() {
+    if (!cartCountElem || !cartItemsList || !cartTotalElem) return;
+
+    cartCountElem.innerText = cart.length;
+
+    if (cart.length === 0) {
+      cartItemsList.innerHTML = "<li>Cart is empty</li>";
+      cartTotalElem.innerText = "0";
+      return;
+    }
+
+    var html = "";
+    var total = 0;
+
+    cart.forEach(function(item, index) {
+      total += item.price;
+      html += `<li class="d-flex justify-content-between align-items-center mb-1">
+                 <span>${item.title}</span>
+                 <span class="fw-bold">${item.price.toLocaleString()} ₸</span>
+               </li>`;
+    });
+
+    cartItemsList.innerHTML = html;
+    cartTotalElem.innerText = total.toLocaleString();
+  }
+
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener("click", function() {
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+      alert("Thank you for your order! Total amount: " + cartTotalElem.innerText + " ₸");
+      cart = [];
+      updateCartUI();
+    });
+  }
+
+  // D. Play Sounds (Web Audio API)
+  function playNotificationSound() {
+    try {
+      var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      var oscillator = audioCtx.createOscillator();
+      var gainNode = audioCtx.createGain();
+
+      oscillator.type = "sine";
+      oscillator.frequency.setValueAtTime(587.33, audioCtx.currentTime);
+      gainNode.gain.setValueAtTime(0.08, audioCtx.currentTime);
+
+      oscillator.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+
+      oscillator.start();
+      oscillator.stop(audioCtx.currentTime + 0.1);
+    } catch (e) {
+      console.log("Audio context blocked or unsupported");
+    }
+  }
+>>>>>>> 066cdb454d3231a4405b1806ef1c9df9354cca99
+
+  // E. Keyboard Event Handling
   var navLinks = document.querySelectorAll(".navbar-nav .nav-link");
   var currentFocusIndex = 0;
 
   document.addEventListener("keydown", function(event) {
-    var tag = document.activeElement.tagName;
-    if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || navLinks.length === 0) {
+    if (document.activeElement.tagName === "INPUT" || document.activeElement.tagName === "TEXTAREA") {
       return;
     }
 
@@ -565,6 +735,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 
+<<<<<<< HEAD
   // F. Star rating is handled (and saved) in auth.js
 
   // ==========================================
@@ -1183,58 +1354,25 @@ $(document).ready(function() {
           },
           complete: function() {
             element.text(target.toLocaleString() + suffix);
+=======
+  // F. Interactive Star Rating
+  var ratingStars = document.querySelectorAll(".rating-star");
+  if (ratingStars.length > 0) {
+    ratingStars.forEach(function(star, index) {
+      star.addEventListener("click", function() {
+        ratingStars.forEach((s, i) => {
+          if (i <= index) {
+            s.style.color = "#ffc107";
+          } else {
+            s.style.color = "#ccc";
+>>>>>>> 066cdb454d3231a4405b1806ef1c9df9354cca99
           }
         });
       });
-    }
-  }
-
-  $(window).on("scroll", startCounters);
-  startCounters();
-
-
-  // ----------------------------------------------------------
-  // Task 6. Loading spinner on submit (contact form)
-  // The old code validates the form and then triggers "formOk"
-  // ----------------------------------------------------------
-  $("#contact-form").on("formOk", function() {
-    var form = $(this);
-    var button = form.find("button[type=submit]");
-    var oldContent = button.html();
-
-    button.html('<span class="spinner"></span>' + t("wait"));
-    button.prop("disabled", true);
-
-    setTimeout(function() {
-      button.html(oldContent);
-      button.prop("disabled", false);
-      form[0].reset();
-      showToast("✅ " + t("sent"));
-    }, 2000);
-  });
-
-
-  // ==========================================================
-  // PART 3. IMPROVE WEB APP FUNCTIONALITY
-  // ==========================================================
-
-  // ----------------------------------------------------------
-  // Task 7. Notification system (toast that fades out)
-  // ----------------------------------------------------------
-  function showToast(message) {
-
-    if ($("#toast-container").length === 0) {
-      $("body").append('<div id="toast-container" class="toast-container"></div>');
-    }
-
-    var toast = $('<div class="toast-msg"></div>').text(message);
-    $("#toast-container").append(toast);
-
-    toast.fadeIn(300).delay(2500).fadeOut(500, function() {
-      $(this).remove();
     });
   }
 
+<<<<<<< HEAD
   // (add-to-cart toast is shown by js/cart.js)
 
 
@@ -1251,80 +1389,77 @@ $(document).ready(function() {
       document.execCommand("copy");
       temp.remove();
       done();
+=======
+  // ==========================================
+  // 7. ЛОГИКА ТЕМНОЙ ТЕМЫ И КНОПОК
+  // ==========================================
+  var themeBtn = document.getElementById("theme-btn");
+  if (themeBtn) {
+    if (localStorage.getItem("yello_theme") === "dark") {
+      document.body.classList.add("dark-mode");
+      themeBtn.innerText = "☀️";
+>>>>>>> 066cdb454d3231a4405b1806ef1c9df9354cca99
     }
-  }
 
-  $(".copy-btn").on("click", function() {
-    var button = $(this);
-    var text = button.closest("p, .promo-strip").find(".copy-text").text();
+    themeBtn.addEventListener("click", function() {
+      document.body.classList.toggle("dark-mode");
+      var isDark = document.body.classList.contains("dark-mode");
 
-    copyText(text, function() {
-
-      button.find(".copy-icon").text("✔");
-
-      var tooltip = $('<span class="copy-tooltip"></span>').text(t("copied"));
-      button.append(tooltip);
-      tooltip.fadeIn(200);
-
-      showToast("📋 " + t("copied"));
-
-      setTimeout(function() {
-        button.find(".copy-icon").text("📋");
-        tooltip.fadeOut(200, function() {
-          tooltip.remove();
-        });
-      }, 1500);
-    });
-  });
-
-  $(".copy-text").on("copy", function() {
-    showToast("📋 " + t("copied"));
-  });
-
-
-  // ----------------------------------------------------------
-  // Task 9. Image lazy loading (catalog page)
-  // Images have the real link in data-src. We move it to src
-  // only when the image comes into view.
-  // ----------------------------------------------------------
-  function loadVisibleImages() {
-    var windowBottom = $(window).scrollTop() + $(window).height();
-
-    $("img[data-src]").each(function() {
-      var img = $(this);
-
-      if (!img.is(":visible")) {
-        return;
-      }
-
-      if (img.offset().top < windowBottom + 100) {
-        var link = img.attr("data-src");
-        img.removeAttr("data-src");
-
-        // the link was pasted into src by hand -> nothing to load
-        if ((img.attr("src") || "").indexOf("data:") !== 0) {
-          img.addClass("loaded");
-          img.one("error", function() { img.attr("src", makePlaceholder(img.attr("alt"))); });
-          return;
-        }
-
-        img.attr("referrerpolicy", "no-referrer");
-
-        img.on("load", function() {
-          img.addClass("loaded");
-        });
-
-        img.one("error", function() {
-          console.warn("Photo did not load, check this link:", link);
-          img.attr("src", makePlaceholder(img.attr("alt")));
-        });
-
-        img.attr("src", link);
+      if (isDark) {
+        localStorage.setItem("yello_theme", "dark");
+        themeBtn.innerText = "☀️";
+      } else {
+        localStorage.setItem("yello_theme", "light");
+        themeBtn.innerText = "🌙";
       }
     });
   }
 
-  $(window).on("scroll resize", loadVisibleImages);
-  loadVisibleImages();
+  // --- 8. Кнопки выбора языка ---
+  var siteLangButtons = document.querySelectorAll(".site-lang-btn");
+  var savedLang = localStorage.getItem("yello_lang") || "en";
+
+  siteLangButtons.forEach(function(btn) {
+    if (btn.getAttribute("data-lang") === savedLang) {
+      btn.classList.add("active-lang");
+    }
+
+    btn.addEventListener("click", function() {
+      siteLangButtons.forEach(b => b.classList.remove("active-lang"));
+      this.classList.add("active-lang");
+
+      var selectedLang = this.getAttribute("data-lang");
+      localStorage.setItem("yello_lang", selectedLang);
+
+      if (window.yelloMsg) {
+        window.yelloMsg("Language changed to: " + selectedLang.toUpperCase());
+      }
+    });
+  });
+
+  // --- 9. Розово-фиолетово-синяя линия прогресса скролла ---
+  var scrollLine = document.getElementById("scroll-progress-line");
+  if (!scrollLine) {
+    scrollLine = document.createElement("div");
+    scrollLine.id = "scroll-progress-line";
+    scrollLine.style.position = "fixed";
+    scrollLine.style.top = "0";
+    scrollLine.style.left = "0";
+    scrollLine.style.height = "4px";
+    scrollLine.style.width = "0%";
+    scrollLine.style.background = "linear-gradient(to right, #ff758c, #ff7eb3, #764ba2, #667eea)";
+    scrollLine.style.zIndex = "99999";
+    scrollLine.style.transition = "width 0.1s ease-out";
+    document.body.prepend(scrollLine);
+  }
+
+  window.addEventListener("scroll", function() {
+    var winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    if (height > 0) {
+      var scrolled = (winScroll / height) * 100;
+      scrollLine.style.width = scrolled + "%";
+    }
+  });
 
 });
