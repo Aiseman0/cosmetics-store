@@ -13,7 +13,7 @@
   var retryBtn = document.getElementById("weather-retry");
 
   var URL = "https://api.open-meteo.com/v1/forecast?latitude=51.18&longitude=71.45" +
-    "&current=temperature_2m,relative_humidity_2m&daily=uv_index_max&timezone=auto&forecast_days=1";
+            "&current=temperature_2m,relative_humidity_2m&daily=uv_index_max&timezone=auto&forecast_days=1";
   var CACHE_KEY = "yello_weather";
 
   var tr = function (key) { return window.yelloT ? window.yelloT(key) : key; };

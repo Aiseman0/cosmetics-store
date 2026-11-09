@@ -6,19 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yello Beauty — Home</title>
   <link rel="stylesheet" href="css/style.css">
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
 </head>
 <body>
-
-<!-- Индикатор прокрутки (Розово-фиолетово-синяя линия сверху) -->
-<div id="scroll-progress-line" style="position: fixed; top: 0; left: 0; height: 4px; width: 0%; background: linear-gradient(to right, #ff758c, #ff7eb3, #764ba2, #667eea); z-index: 99999; transition: width 0.1s ease-out;"></div>
+<script>try{if(localStorage.getItem("yello_theme")==="dark")document.body.classList.add("dark-mode");}catch(e){}</script>
 
 <!-- Ticker Banner -->
 <div class="ticker-wrap">
   <div class="ticker">
-    <span class="ticker-item">✨ Get -15% off with promo code YELLO15!</span>
-    <span class="ticker-item">💄 100% Original Cosmetics!</span>
-    <span class="ticker-item">🚚 Free shipping in Kazakhstan on orders over 15,000 ₸!</span>
+    <span class="ticker-item" data-i18n="t_promo">✨ Get -15% off with promo code YELLO15!</span>
+    <span class="ticker-item" data-i18n="t_orig">💄 100% Original Cosmetics!</span>
+    <span class="ticker-item" data-i18n="t_ship">🚚 Free shipping in Kazakhstan on orders over 15,000 ₸!</span>
   </div>
 </div>
 <!-- Live Clock -->
@@ -33,12 +31,13 @@
     <a class="navbar-brand" href="index.html">Yello <span class="text-warning">Beauty</span></a>
     <div class="navbar-collapse" id="mainNavbar">
       <ul class="navbar-nav">
-        <li><a class="nav-link active text-warning" href="index.html">Home</a></li>
-        <li><a class="nav-link" href="catalog.html">Catalog</a></li>
-        <li><a class="nav-link" href="about.html">About Us</a></li>
-        <li><a class="nav-link" href="contact.html">Contact</a></li>
+        <li><a class="nav-link active text-warning" href="index.html" data-i18n="nav_home">Home</a></li>
+        <li><a class="nav-link" href="catalog.html" data-i18n="nav_catalog">Catalog</a></li>
+        <li><a class="nav-link" href="about.html" data-i18n="nav_about">About Us</a></li>
+        <li><a class="nav-link" href="contact.html" data-i18n="nav_contact">Contact</a></li>
       </ul>
     </div>
+    <!-- Theme and Language buttons -->
     <div class="nav-tools">
       <a href="cart.html" class="nav-tool-btn text-decoration-none" title="Cart">🛒 <span id="cart-count">0</span></a>
       <button type="button" id="theme-btn" class="nav-tool-btn" title="Light / Dark">🌙</button>
@@ -54,18 +53,17 @@
     <!-- Sidebar Navigation -->
     <aside class="col-12 col-md-3 mb-4">
       <div class="sidebar-box">
-        <h3 class="sidebar-title">Quick Navigation</h3>
+        <h3 class="sidebar-title" data-i18n="sb_quick">Quick Navigation</h3>
         <ul class="sidebar-list">
-          <li><a href="#features" class="sidebar-link">Why Choose Us</a></li>
-          <li><a href="#weather-section" class="sidebar-link" data-t="w_nav">Skin Weather</a></li>
-          <li><a href="#highlights" class="sidebar-link">Store Highlights</a></li>
-          <li><a href="#featured" class="sidebar-link">Featured Brand</a></li>
-          <li><a href="#carousel-section" class="sidebar-link">All Products Showcase</a></li>
+          <li><a href="#features" class="sidebar-link" data-i18n="s_why">Why Choose Us</a></li>
+          <li><a href="#highlights" class="sidebar-link" data-i18n="s_highlights">Store Highlights</a></li>
+          <li><a href="#featured" class="sidebar-link" data-i18n="s_featured">Featured Brand</a></li>
+          <li><a href="#carousel-section" class="sidebar-link" data-i18n="s_showcase">All Products Showcase</a></li>
+          <li><a href="#skin-weather" class="sidebar-link" data-t="w_nav">Skin Weather</a></li>
         </ul>
         <!-- Buttons -->
         <div class="sidebar-buttons">
-          <button id="bg-color-btn" class="btn btn-dark w-100 mb-2">🎨 Change BG Color</button>
-          <button id="open-popup-btn" class="btn btn-warning w-100">🎁 Special Offer Popup</button>
+          <button id="open-popup-btn" class="btn btn-warning w-100" data-i18n="btn_popup">🎁 Special Offer Popup</button>
         </div>
       </div>
     </aside>
@@ -73,70 +71,95 @@
     <!-- Main Content -->
     <main class="col-12 col-md-9">
       <section class="hero-banner" id="home-top">
-        <h1 class="hero-title">Sun-Kissed Glow for Your Beauty</h1>
-        <p class="hero-lead">100% original cosmetics from the world's best brands</p>
+        <h1 class="hero-title" data-i18n="h_title">Sun-Kissed Glow for Your Beauty</h1>
+        <p class="hero-lead" data-i18n="h_lead">100% original cosmetics from the world's best brands</p>
       </section>
 
       <!-- Features Section -->
       <section id="features" class="mb-3">
-        <h2 class="section-title">Why Choose Yello Beauty</h2>
+        <h2 class="section-title" data-i18n="i_why">Why Choose Yello Beauty</h2>
         <div class="row g-4">
           <div class="col-12 col-md-4">
             <div class="feature-card">
               <div class="fs-1 mb-2">🌟</div>
-              <h3 class="h5 fw-bold mb-1">100% Authentic</h3>
-              <p class="small text-muted mb-0">Quality guarantee on all products</p>
+              <h3 class="h5 fw-bold mb-1" data-i18n="f1_t">100% Authentic</h3>
+              <p class="small text-muted mb-0" data-i18n="f1_d">Quality guarantee on all products</p>
             </div>
           </div>
           <div class="col-12 col-md-4">
             <div class="feature-card">
               <div class="fs-1 mb-2">💛</div>
-              <h3 class="h5 fw-bold mb-1">Trending Selection</h3>
-              <p class="small text-muted mb-0">Top brands and bestsellers only</p>
+              <h3 class="h5 fw-bold mb-1" data-i18n="f2_t">Trending Selection</h3>
+              <p class="small text-muted mb-0" data-i18n="f2_d">Top brands and bestsellers only</p>
             </div>
           </div>
           <div class="col-12 col-md-4">
             <div class="feature-card">
               <div class="fs-1 mb-2">📦</div>
-              <h3 class="h5 fw-bold mb-1">Fast Shipping</h3>
-              <p class="small text-muted mb-0">Same-day dispatch nationwide</p>
+              <h3 class="h5 fw-bold mb-1" data-i18n="f3_t">Fast Shipping</h3>
+              <p class="small text-muted mb-0" data-i18n="f3_d">Same-day dispatch nationwide</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Skin Weather API Section -->
-      <section id="weather-section" class="content-box mb-3">
-        <h2 class="box-title border-bottom-warning" data-t="w_title">Skin Weather in Astana</h2>
-        <p class="small text-muted mb-2" data-t="w_desc">Live weather from the Open-Meteo API and what it means for your skincare today.</p>
-        <div id="weather-status" class="small text-muted mb-2"></div>
-        <div id="weather-grid" class="row g-3 mb-2"></div>
-        <div id="weather-tip" class="small fw-semibold p-2 rounded" style="background-color: #FFF3C4; display: none;"></div>
-        <button type="button" id="weather-retry" class="btn btn-warning btn-sm mt-2" style="display: none;" data-t="api_retry">Try again</button>
+      <!-- Stats Section with animated counters (Assignment 6) -->
+      <section id="stats" class="mb-3">
+        <h2 class="section-title" data-i18n="st_title">Yello Beauty in Numbers</h2>
+        <div class="row g-4">
+          <div class="col-12 col-md-3">
+            <div class="stat-card">
+              <div class="counter-number"><span class="counter" data-target="5000" data-suffix="+">0</span></div>
+              <div class="stat-label" data-i18n="st1">Happy Customers</div>
+            </div>
+          </div>
+          <div class="col-12 col-md-3">
+            <div class="stat-card">
+              <div class="counter-number"><span class="counter" data-target="42" data-suffix="">0</span></div>
+              <div class="stat-label" data-i18n="st2">Products in Catalog</div>
+            </div>
+          </div>
+          <div class="col-12 col-md-3">
+            <div class="stat-card">
+              <div class="counter-number"><span class="counter" data-target="12000" data-suffix="+">0</span></div>
+              <div class="stat-label" data-i18n="st3">Orders Delivered</div>
+            </div>
+          </div>
+          <div class="col-12 col-md-3">
+            <div class="stat-card">
+              <div class="counter-number"><span class="counter" data-target="100" data-suffix="%">0</span></div>
+              <div class="stat-label" data-i18n="st4">Original Products</div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- Store Highlights Section -->
       <section id="highlights" class="content-box">
-        <h2 class="box-title border-bottom-warning">Our Key Guarantees</h2>
-        <p class="text-muted small mb-3">We carefully select every beauty item to ensure your skin receives gentle, effective, and safe care.</p>
+        <h2 class="box-title border-bottom-warning" data-i18n="g_title">Our Key Guarantees</h2>
+        <p class="text-muted small mb-3" data-i18n="g_desc">We carefully select every beauty item to ensure your skin receives gentle, effective, and safe care.</p>
 
         <div class="custom-card-group">
           <div class="custom-card text-center">
             <div class="fs-2 mb-1">✨</div>
-            <h3 class="h6 fw-bold mb-1">Dermatologist Tested</h3>
-            <p class="small text-muted mb-0">Formulated and tested for safety on sensitive skin.</p>
+            <h3 class="h6 fw-bold mb-1" data-i18n="g1_t">Dermatologist Tested</h3>
+            <p class="small text-muted mb-0" data-i18n="g1_d">Formulated and tested for safety on sensitive skin.</p>
           </div>
           <div class="custom-card text-center">
             <div class="fs-2 mb-1">🌿</div>
-            <h3 class="h6 fw-bold mb-1">Clean Formulas</h3>
-            <p class="small text-muted mb-0">Cruelty-free products with gentle natural ingredients.</p>
+            <h3 class="h6 fw-bold mb-1" data-i18n="g2_t">Clean Formulas</h3>
+            <p class="small text-muted mb-0" data-i18n="g2_d">Cruelty-free products with gentle natural ingredients.</p>
           </div>
           <div class="custom-card text-center">
             <div class="fs-2 mb-1">💧</div>
-            <h3 class="h6 fw-bold mb-1">Deep Hydration</h3>
-            <p class="small text-muted mb-0">Targeted hydration for a radiant and healthy skin barrier.</p>
+            <h3 class="h6 fw-bold mb-1" data-i18n="g3_t">Deep Hydration</h3>
+            <p class="small text-muted mb-0" data-i18n="g3_d">Targeted hydration for a radiant and healthy skin barrier.</p>
           </div>
         </div>
+
+        <!-- Read More: hidden text -->
+        <p id="more-home" class="small text-muted mt-3 mb-0" style="display: none;" data-i18n="rm_home_text">Every product in our catalog is checked for authenticity before it reaches the store. We work only with official distributors and regularly update our range with trending novelties from Korea, the USA, and Europe.</p>
+        <button type="button" class="btn btn-warning btn-sm mt-3 read-more-btn" data-target="more-home">Read More</button>
       </section>
 
       <!-- Featured Brand Section -->
@@ -146,12 +169,12 @@
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS16k_rE04I0RqTCfu9F0EXaQfh_0-t4hHA4qrtEXFvLQ&s=10" alt="Featured Product" class="featured-img">
           </div>
           <div class="col-12 col-md-8">
-            <h2 class="h5 fw-bold mb-1">Featured Brand of the Month: SKIN1004</h2>
-            <p class="text-muted mb-2 small">Discover Madagascar Centella Asiatica skincare line for profound soothing and hydration.</p>
+            <h2 class="h5 fw-bold mb-1" data-i18n="fb_title">Featured Brand of the Month: SKIN1004</h2>
+            <p class="text-muted mb-2 small" data-i18n="fb_desc">Discover Madagascar Centella Asiatica skincare line for profound soothing and hydration.</p>
 
             <div class="btn-group">
-              <a href="catalog.html#skincare-serums" class="btn btn-warning btn-sm fw-bold">Explore Line</a>
-              <a href="contact.html" class="btn btn-outline-dark btn-sm">Ask Advisor</a>
+              <a href="catalog.html#skincare-serums" class="btn btn-warning btn-sm fw-bold" data-i18n="fb_btn1">Explore Line</a>
+              <a href="contact.html" class="btn btn-outline-dark btn-sm" data-i18n="fb_btn2">Ask Advisor</a>
             </div>
           </div>
         </div>
@@ -159,8 +182,8 @@
 
       <!-- Interactive Star Rating -->
       <div class="content-box text-center my-3">
-        <h3 class="h6 fw-bold mb-1">Rate Your Store Experience</h3>
-        <p class="small text-muted mb-2">Click on the stars to set your rating:</p>
+        <h3 class="h6 fw-bold mb-1" data-i18n="r_title">Rate Your Store Experience</h3>
+        <p class="small text-muted mb-2" data-i18n="r_desc">Click on the stars to set your rating:</p>
         <div class="rating-container" style="font-size: 1.5rem; cursor: pointer;">
           <span class="rating-star" style="color: #ccc;">★</span>
           <span class="rating-star" style="color: #ccc;">★</span>
@@ -170,9 +193,19 @@
         </div>
       </div>
 
+      <!-- External API: Open-Meteo (weather -> skincare advice) -->
+      <section id="skin-weather" class="content-box">
+        <h2 class="section-title border-bottom-warning" data-t="w_title">Skin Weather in Astana</h2>
+        <p class="small text-muted" data-t="w_desc">Live weather from the Open-Meteo API and what it means for your skincare today.</p>
+        <p id="weather-status" class="small text-muted mb-2" aria-live="polite"></p>
+        <div id="weather-grid" class="weather-grid"></div>
+        <p id="weather-tip" class="weather-tip" style="display:none;"></p>
+        <button type="button" id="weather-retry" class="btn btn-warning btn-sm mt-3" style="display:none;" data-t="api_retry">Try again</button>
+      </section>
+
       <!-- Carousel Section -->
       <section id="carousel-section" class="content-box">
-        <h2 class="section-title text-center mb-2">Full Product Showcase</h2>
+        <h2 class="section-title text-center mb-2" data-i18n="car_title">Full Product Showcase</h2>
         <div id="beautyCarousel" class="carousel">
           <div class="carousel-indicators">
             <button type="button" data-slide-to="0" class="active"></button>
@@ -252,8 +285,8 @@
             </div>
           </div>
 
-          <button class="carousel-control-prev" type="button" data-slide="prev">&#10094;</button>
-          <button class="carousel-control-next" type="button" data-slide="next">&#10095;</button>
+          <button class="carousel-control-prev" type="button" data-slide="prev" aria-label="Previous slide">&#10094;</button>
+          <button class="carousel-control-next" type="button" data-slide="next" aria-label="Next slide">&#10095;</button>
         </div>
       </section>
     </main>
@@ -264,13 +297,13 @@
 <div id="popup-overlay" class="popup-overlay">
   <div class="popup-content">
     <span id="close-popup-btn" class="popup-close">&times;</span>
-    <h3 class="h6 fw-bold mb-2 text-dark">✨ Get -15% Off Your First Order!</h3>
-    <p class="small text-muted mb-2">Join our Yello Beauty club for exclusive skincare tips and promo codes delivered right to your inbox.</p>
+    <h3 class="h6 fw-bold mb-2 text-dark" data-i18n="p_title">✨ Get -15% Off Your First Order!</h3>
+    <p class="small text-muted mb-2" data-i18n="p_desc">Join our Yello Beauty club for exclusive skincare tips and promo codes delivered right to your inbox.</p>
     <form id="subscribe-form" novalidate>
-      <div class="mb-2">
-        <input type="email" id="popup-email" name="popupemail" class="form-control mb-0" placeholder="Enter your email...">
+      <div class="mb-3">
+        <input type="text" inputmode="email" id="popup-email" name="popupemail" class="form-control" placeholder="Enter your email..." data-i18n-ph="p_ph" autocomplete="email">
       </div>
-      <button type="submit" id="popup-subscribe-btn" class="btn btn-warning w-100 fw-bold btn-sm">Subscribe Now</button>
+      <button type="submit" id="popup-subscribe-btn" class="btn btn-warning w-100 fw-bold btn-sm" data-i18n="p_btn">Subscribe Now</button>
     </form>
   </div>
 </div>
@@ -278,19 +311,14 @@
 <!-- Footer -->
 <footer>
   <div class="container">
-    <p class="mb-1">&copy; 2026 Yello Beauty Cosmetics. All rights reserved.</p>
-    <p class="mb-0 text-warning fw-semibold">Team Members: Aisulu Amanzhol, Sara Nauash (Group SE-2506)</p>
+    <p class="mb-1" data-i18n="foot_rights">&copy; 2026 Yello Beauty Cosmetics. All rights reserved.</p>
+    <p class="mb-0 text-warning fw-semibold" data-i18n="foot_team">Team Members: Aisulu Amanzhol, Sara Nauash (Group SE-2506)</p>
   </div>
 </footer>
 
 <script src="js/script.js"></script>
-<<<<<<< HEAD
 <script src="js/auth.js"></script>
 <script src="js/cart.js"></script>
 <script src="js/weather.js"></script>
-=======
-<script src="js/Auth.js"></script>
-<script src="js/Weather.js"></script>
->>>>>>> 066cdb454d3231a4405b1806ef1c9df9354cca99
 </body>
 </html>
