@@ -209,14 +209,27 @@
     if (!found) localStorage.removeItem("yello_current"); // stale key (user no longer exists)
     return found;
   }
+
+  // Устойчивая функция хеширования с резервным вариантом для локального запуска (file://)
   function hash(text) {
-    if (window.crypto && crypto.subtle && window.TextEncoder) {
-      return crypto.subtle.digest("SHA-256", new TextEncoder().encode(text)).then(function (buf) {
-        return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ("0" + b.toString(16)).slice(-2); }).join("");
-      });
+    try {
+      if (window.crypto && crypto.subtle && window.TextEncoder && location.protocol !== "file:") {
+        return crypto.subtle.digest("SHA-256", new TextEncoder().encode(text)).then(function (buf) {
+          return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ("0" + b.toString(16)).slice(-2); }).join("");
+        }).catch(function() {
+          return fallbackHash(text);
+        });
+      }
+    } catch (e) { /* ignore */ }
+    return Promise.resolve(fallbackHash(text));
+  }
+
+  function fallbackHash(text) {
+    var h = 5381;
+    for (var i = 0; i < text.length; i++) {
+      h = ((h << 5) + h + text.charCodeAt(i)) | 0;
     }
-    var h = 5381; for (var i = 0; i < text.length; i++) h = ((h << 5) + h + text.charCodeAt(i)) | 0;
-    return Promise.resolve("x" + h);
+    return "x" + Math.abs(h).toString(16) + "_" + text.length;
   }
 
   // ---------- validation ----------
@@ -300,9 +313,10 @@
   function initProfile() {
     var user = currentUser();
     if (!user) { go("login.html"); return; }
-    function val(id, text) { document.getElementById(id).textContent = text; }
+    function val(id, text) { var el = document.getElementById(id); if (el) el.textContent = text; }
     function render() {
       user = currentUser() || user;
+      if (!user) return;
       val("pf-name", user.name);
       val("pf-email", user.email);
       val("pf-phone", user.phone || tr("p_none"));
@@ -319,21 +333,25 @@
       val("pf-filters", parts.length ? parts.join(" · ") : tr("p_none"));
       var cartList = load("yello_cart", []);
       val("pf-cart", String(Array.isArray(cartList) ? cartList.reduce(function (n, i) { return n + (i && i.title ? (parseInt(i.qty, 10) || 1) : 0); }, 0) : 0));
-      document.getElementById("pf-avatar").textContent = user.name.charAt(0).toUpperCase();
+      var av = document.getElementById("pf-avatar");
+      if (av) av.textContent = user.name.charAt(0).toUpperCase();
     }
     render();
-    document.getElementById("logout-btn").addEventListener("click", function () {
-      localStorage.removeItem("yello_current");
-      window.yelloMsg("👋 " + tr("ok_logout"));
-      setTimeout(function () { location.href = "index.html"; }, 900);
-    });
+    var logoutBtn = document.getElementById("logout-btn");
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", function () {
+        localStorage.removeItem("yello_current");
+        window.yelloMsg("👋 " + tr("ok_logout"));
+        setTimeout(function () { location.href = "index.html"; }, 900);
+      });
+    }
     document.querySelectorAll(".site-lang-btn").forEach(function (b) { b.addEventListener("click", render); });
   }
 
   // ---------- navbar: login/profile link + mobile menu ----------
   function initNav() {
     var tools = document.querySelector(".nav-tools");
-    if (tools) {
+    if (tools && !tools.querySelector(".auth-link")) {
       var user = currentUser(), a = document.createElement("a");
       a.className = "nav-tool-btn auth-link";
       a.style.textDecoration = "none";
@@ -348,7 +366,7 @@
       tools.insertBefore(a, tools.firstChild);
     }
     var box = document.querySelector(".navbar-container");
-    if (box) {
+    if (box && !box.querySelector(".nav-toggler")) {
       var btn = document.createElement("button");
       btn.type = "button"; btn.className = "nav-toggler"; btn.textContent = "☰";
       btn.setAttribute("aria-label", tr("n_menu")); btn.setAttribute("aria-expanded", "false");
@@ -358,7 +376,7 @@
         btn.textContent = open ? "✕" : "☰";
       });
       var brand = box.querySelector(".navbar-brand");
-      brand.parentNode.insertBefore(btn, brand.nextSibling);
+      if (brand) brand.parentNode.insertBefore(btn, brand.nextSibling);
     }
   }
 
@@ -368,7 +386,9 @@
     if (!stars.length) return;
     var note = document.createElement("p");
     note.className = "rating-note small text-muted mb-0 mt-1";
-    stars[0].parentNode.parentNode.appendChild(note);
+    if (stars[0].parentNode && stars[0].parentNode.parentNode) {
+      stars[0].parentNode.parentNode.appendChild(note);
+    }
     function paint(v) {
       stars.forEach(function (s, i) { s.style.color = i < v ? "#ffc107" : "#ccc"; });
       note.textContent = v ? tr("r_saved") + " " + v + "/5" : "";
@@ -400,11 +420,9 @@
       if (!phone) ok = fail(f.userphone, "e_req"); else if (!RE.phone.test(phone)) ok = fail(f.userphone, "e_phone");
       if (!msg) ok = fail(f.message, "e_req"); else if (msg.length < 10) ok = fail(f.message, "e_msg");
       if (!ok) return;
-      // keep a copy of the sent message (simple "saved results" in localStorage)
       var sent = load("yello_messages", []);
       sent.push({ name: name, email: email, phone: phone, skin: f.skintype.value, message: msg, date: new Date().toISOString() });
       save("yello_messages", sent);
-      // the jQuery handler in script.js shows the spinner + success toast and resets the form
       if (window.jQuery) window.jQuery(form).trigger("formOk");
     });
   }
@@ -421,11 +439,11 @@
       if (list.indexOf(value) < 0) { list.push(value); save("yello_subscribers", list); }
       window.yelloMsg("💌 " + tr("m_thanks"));
       input.value = "";
-      document.getElementById("popup-overlay").style.display = "none";
+      var overlay = document.getElementById("popup-overlay");
+      if (overlay) overlay.style.display = "none";
     });
   }
 
-  // remove an error message as soon as the user edits that field
   function liveClear(form) {
     form.addEventListener("input", function (e) {
       var box = e.target.closest(".mb-3");
@@ -435,7 +453,6 @@
     });
   }
 
-  // ---------- contact form: prefill for logged-in users ----------
   function initContact() {
     var user = currentUser();
     if (!user || !document.getElementById("contact-form")) return;
@@ -448,7 +465,9 @@
     initNav();
     var su = document.getElementById("signup-form"), li = document.getElementById("login-form");
     if (su || li) {
-      if (currentUser()) { go("account.html"); return; }
+      if (currentUser() && location.pathname.indexOf("account.html") < 0) {
+        // Не перенаправляем автоматически, если пользователь просто зашел на страницу авторизации намеренно
+      }
       if (su) initSignup(su);
       if (li) initLogin(li);
     }
