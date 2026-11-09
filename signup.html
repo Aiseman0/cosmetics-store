@@ -4,8 +4,8 @@
   <!-- Developed by Aisulu Amanzhol & Sara Nauash (Group SE-2506) -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yello Beauty — Sign Up</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>Yello Beauty — Log In</title>
+  <link rel="stylesheet" href="css/style.css?v=3">
   <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
 </head>
 <body>
@@ -28,6 +28,7 @@
       <li><a class="nav-link" href="contact.html" data-i18n="nav_contact">Contact</a></li>
     </ul>
     <div class="nav-tools">
+      <a href="cart.html" class="nav-tool-btn text-decoration-none" title="Cart">🛒 <span id="cart-count">0</span></a>
       <button type="button" id="theme-btn" class="nav-tool-btn" title="Light / Dark">🌙</button>
       <button type="button" class="nav-tool-btn site-lang-btn" data-lang="en">EN</button>
       <button type="button" class="nav-tool-btn site-lang-btn" data-lang="ru">RU</button>
@@ -39,18 +40,11 @@
 <main class="container py-4" style="flex: 1;">
   <div class="auth-wrap">
     <section class="hero-banner text-center mb-4">
-      <h1 class="hero-title" data-t="s_title">Create Account</h1>
-      <p class="hero-lead" data-t="s_lead">Join Yello Beauty and save your favourites</p>
+      <h1 class="hero-title" data-t="l_title">Log In</h1>
+      <p class="hero-lead" data-t="l_lead">Welcome back to Yello Beauty</p>
     </section>
     <section class="content-box">
-      <form id="signup-form" novalidate>
-        <div class="mb-3">
-          <label for="name" class="fw-bold mb-1" style="display: block;" data-t="f_name">Full Name</label>
-          <div class="custom-input-group">
-            <span class="custom-input-icon">👤</span>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Aisulu Amanzhol" autocomplete="name">
-          </div>
-        </div>
+      <form id="login-form" novalidate>
         <div class="mb-3">
           <label for="email" class="fw-bold mb-1" style="display: block;" data-t="f_email">Email Address</label>
           <div class="custom-input-group">
@@ -59,30 +53,15 @@
           </div>
         </div>
         <div class="mb-3">
-          <label for="phone" class="fw-bold mb-1" style="display: block;" data-t="f_phone2">Phone Number</label>
-          <div class="custom-input-group">
-            <span class="custom-input-icon">📞</span>
-            <input type="text" inputmode="tel" class="form-control" id="phone" name="phone" placeholder="+7 777 123 45 67" autocomplete="tel">
-          </div>
-        </div>
-        <div class="mb-3">
           <label for="password" class="fw-bold mb-1" style="display: block;" data-t="f_pass">Password</label>
           <div class="custom-input-group">
             <span class="custom-input-icon">🔒</span>
-            <input type="password" class="form-control" id="password" name="password" placeholder="" autocomplete="new-password">
+            <input type="password" class="form-control" id="password" name="password" placeholder="" autocomplete="current-password">
           </div>
         </div>
-        <p class="small text-muted mb-3" data-t="s_hint">At least 8 characters with an uppercase letter, a lowercase letter and a digit.</p>
-        <div class="mb-3">
-          <label for="password2" class="fw-bold mb-1" style="display: block;" data-t="f_pass2">Confirm Password</label>
-          <div class="custom-input-group">
-            <span class="custom-input-icon">🔒</span>
-            <input type="password" class="form-control" id="password2" name="password2" placeholder="" autocomplete="new-password">
-          </div>
-        </div>
-        <button type="submit" class="btn btn-warning w-100 fw-bold py-2" data-t="s_btn">Sign Up</button>
+        <button type="submit" class="btn btn-warning w-100 fw-bold py-2" data-t="l_btn">Log In</button>
       </form>
-      <p class="text-center small mt-3 mb-0"><span data-t="s_have">Already have an account?</span> <a href="login.html" class="fw-bold" data-t="n_login">Log In</a></p>
+      <p class="text-center small mt-3 mb-0"><span data-t="l_no">Don't have an account?</span> <a href="signup.html" class="fw-bold" data-t="l_link">Sign Up</a></p>
     </section>
   </div>
 </main>
@@ -94,8 +73,8 @@
   </div>
 </footer>
 
-<script src="js/script.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/cart.js"></script>
+<script src="js/script.js?v=3"></script>
+<script src="js/auth.js?v=3"></script>
+<script src="js/cart.js?v=3"></script>
 </body>
 </html>
