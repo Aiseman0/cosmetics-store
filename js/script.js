@@ -105,13 +105,14 @@ document.addEventListener("DOMContentLoaded", function() {
   var savedColor = localStorage.getItem("yello_bg_color");
   var savedIndex = localStorage.getItem("yello_bg_index");
 
-  if (savedColor) {
+  if (savedColor && !document.body.classList.contains("dark-mode")) {
     document.body.style.setProperty("background-color", savedColor, "important");
   }
 
   if (bgColorBtn) {
     var colorIndex = savedIndex ? parseInt(savedIndex) : 0;
     bgColorBtn.addEventListener("click", function() {
+      if (document.body.classList.contains("dark-mode")) return; // Не меняем цвет в темном режиме
       colorIndex = colorIndex + 1;
       if (colorIndex >= colors.length) {
         colorIndex = 0;
@@ -328,7 +329,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
-  // E. Keyboard Event Handling (Arrow navigation + Enter to open page)
+  // E. Keyboard Event Handling
   var navLinks = document.querySelectorAll(".navbar-nav .nav-link");
   var currentFocusIndex = 0;
 
@@ -371,5 +372,76 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
   }
+
+  // ==========================================
+  // 7. ЛОГИКА ТЕМНОЙ ТЕМЫ И КНОПОК
+  // ==========================================
+  var themeBtn = document.getElementById("theme-btn");
+  if (themeBtn) {
+    if (localStorage.getItem("yello_theme") === "dark") {
+      document.body.classList.add("dark-mode");
+      themeBtn.innerText = "☀️";
+    }
+
+    themeBtn.addEventListener("click", function() {
+      document.body.classList.toggle("dark-mode");
+      var isDark = document.body.classList.contains("dark-mode");
+
+      if (isDark) {
+        localStorage.setItem("yello_theme", "dark");
+        themeBtn.innerText = "☀️";
+      } else {
+        localStorage.setItem("yello_theme", "light");
+        themeBtn.innerText = "🌙";
+      }
+    });
+  }
+
+  // --- 8. Кнопки выбора языка ---
+  var siteLangButtons = document.querySelectorAll(".site-lang-btn");
+  var savedLang = localStorage.getItem("yello_lang") || "en";
+
+  siteLangButtons.forEach(function(btn) {
+    if (btn.getAttribute("data-lang") === savedLang) {
+      btn.classList.add("active-lang");
+    }
+
+    btn.addEventListener("click", function() {
+      siteLangButtons.forEach(b => b.classList.remove("active-lang"));
+      this.classList.add("active-lang");
+
+      var selectedLang = this.getAttribute("data-lang");
+      localStorage.setItem("yello_lang", selectedLang);
+
+      if (window.yelloMsg) {
+        window.yelloMsg("Language changed to: " + selectedLang.toUpperCase());
+      }
+    });
+  });
+
+  // --- 9. Розово-фиолетово-синяя линия прогресса скролла ---
+  var scrollLine = document.getElementById("scroll-progress-line");
+  if (!scrollLine) {
+    scrollLine = document.createElement("div");
+    scrollLine.id = "scroll-progress-line";
+    scrollLine.style.position = "fixed";
+    scrollLine.style.top = "0";
+    scrollLine.style.left = "0";
+    scrollLine.style.height = "4px";
+    scrollLine.style.width = "0%";
+    scrollLine.style.background = "linear-gradient(to right, #ff758c, #ff7eb3, #764ba2, #667eea)";
+    scrollLine.style.zIndex = "99999";
+    scrollLine.style.transition = "width 0.1s ease-out";
+    document.body.prepend(scrollLine);
+  }
+
+  window.addEventListener("scroll", function() {
+    var winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    if (height > 0) {
+      var scrolled = (winScroll / height) * 100;
+      scrollLine.style.width = scrolled + "%";
+    }
+  });
 
 });
