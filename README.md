@@ -1,8 +1,8 @@
 # Yello Beauty — Cosmetics Web Store
 
-Yello Beauty is a responsive e-commerce web application for an online cosmetics store. The project features skincare, makeup, and lip care products with an intuitive user interface, interactive category navigation, product showcases, and contact options.
+Yello Beauty is a responsive, multi-language e-commerce web application for an online cosmetics store. The project features skincare, makeup, and lip care products with an intuitive user interface, real-time external API integrations, interactive filtering, shopping cart with promo codes, and user account management.
 
-Created as part of the Front-End Web Development course project (Group SE-2506).
+Created as part of the Front-End Web Development course project (Group SE-2506)[cite: 12, 13, 14, 15].
 
 ---
 
@@ -15,47 +15,55 @@ Created as part of the Front-End Web Development course project (Group SE-2506).
 
 ## 👥 Team Members & Contribution
 
-In accordance with course requirements (minimum 2 HTML pages per team member), our team built 4 complete pages:
+Our team designed and developed a full 8-page web application with modular JavaScript architecture:
 
-| Student Name | Role | Created Pages | Key Responsibilities |
+| Student Name | Role | Created Pages & Modules | Key Responsibilities |
 | :--- | :--- | :--- | :--- |
-| **Aisulu Amanzhol** | Front-End Developer | `index.html`, `catalog.html` | Home page layout, interactive product carousel, cosmetics catalog with category filters, design theme & CSS styling. |
-| **Sara Nauash** | Front-End Developer | `about.html`, `contact.html` | Brand story, creators showcase, delivery pricing table, interactive contact form with validation, and direct channels. |
+| **Aisulu Amanzhol** | Front-End Developer | `index.html`, `catalog.html`, `cart.html`, `catalog.js`, `cart.js`, `weather.js` | Home page & carousel, 42-item catalog with multi-criteria filtering & sorting, Open Beauty Facts & Open-Meteo API integrations, shopping cart, promo code checkout (`YELLO15`), theme & CSS styling[cite: 14, 16, 17, 18, 20]. |
+| **Sara Nauash** | Front-End Developer | `about.html`, `contact.html`, `login.html`, `signup.html`, `account.html`, `auth.js`, `script.js` | Brand story, shipping rates, interactive FAQ with live search highlighting, user authentication & profile management (`localStorage`), form validations, EN/RU/KZ localization, and jQuery UX effects[cite: 12, 13, 15, 19, 20]. |
 
 ---
 
 ## 📄 Project Structure & Pages
 
 1. **`index.html` (Home Page)**
-   - Hero banner with promotional announcements.
-   - Animated ticker banner (`@keyframes marquee`).
-   - Core value highlights and brand guarantees.
-   - Featured Brand section (SKIN1004).
-   - Full 9-item interactive product carousel built with Bootstrap Carousel.
+  - Hero banner with dynamic time-of-day greetings and animated promotional ticker (`@keyframes marquee`)[cite: 12, 20].
+  - **Live Skin Weather Widget (`weather.js`)**: Fetches real-time temperature, humidity, and UV index in Astana via Open-Meteo API to provide tailored daily SPF and hydration advice[cite: 16].
+  - Core brand guarantees, Featured Brand section (SKIN1004), interactive store star rating, and animated statistics counters[cite: 19, 20].
+  - Interactive product showcase carousel and newsletter subscription modal[cite: 19, 20].
 
 2. **`catalog.html` (Products Catalog)**
-   - Sticky sidebar navigation for smooth scrolling to categories.
-   - 15 products categorized into Skincare & Serums, Face & Eye Makeup, and Lip Care & Tints.
-   - Product cards with hover effects and price details.
+  - Sticky sidebar navigation and multi-criteria filtering (by category, price range, and ascending/descending price sorting) saved automatically in `localStorage`[cite: 17].
+  - Real-time search bar with visual autocomplete suggestions and lazy-loaded product images[cite: 17, 20].
+  - **Global Makeup Explorer (`catalog.js`)**: Integrates the Open Beauty Facts API to fetch real cosmetics from around the world (highlighting CIS brands) with offline caching[cite: 17].
 
-3. **`about.html` (About Us)**
-   - Brand origin story ("Yello Beauty").
-   - Co-founders presentation cards (Sara & Aisulu).
-   - Responsive delivery options table with shipping rates across Kazakhstan.
+3. **`cart.html` (Shopping Cart & Checkout)**
+  - Dynamic cart management (add items, adjust quantities, remove items, live subtotal calculation) with Web Audio API sound feedback[cite: 14, 18].
+  - Interactive checkout modal with input masks (16-digit card number, `MM/YY` expiry, 3-digit CVV), delivery address validation, and live promo code discount (`YELLO15` for -15%)[cite: 14, 18].
 
-4. **`contact.html` (Contact Us)**
-   - Store address and working hours in Astana.
-   - Functional contact form with native HTML5 validation (`required`, `type="email"`, `<select>`, `<input type="color">`).
-   - Quick contact buttons (WhatsApp, Telegram, Direct Call).
+4. **`login.html`, `signup.html`, & `account.html` (User Authentication & Profile)**
+  - Client-side registration and login system with strict regex validation (name, email, `+7` phone format, password complexity) and password hashing[cite: 12, 13, 19].
+  - Personal profile dashboard displaying user details, saved store rating, last catalog search filters, active cart count, and full **Order History**[cite: 15, 18, 19].
+
+5. **`about.html` (About Us)**
+  - Brand origin story ("Yello Beauty") and co-founders showcase[cite: 20].
+  - Responsive delivery options table across Kazakhstan[cite: 20].
+  - Interactive FAQ accordion with live keyword highlighting (`<mark>`)[cite: 20].
+
+6. **`contact.html` (Contact Us)**
+  - Store location in Astana, working hours, and one-click "Copy to Clipboard" buttons[cite: 20].
+  - Contact form pre-filled for logged-in users with inline validation and loading spinner state[cite: 19, 20].
 
 ---
 
 ## 🛠️ Technical Stack & Features
 
-- **HTML5:** Semantic element architecture (`<header>`, `<nav>`, `<aside>`, `<main>`, `<section>`, `<footer>`).
-- **CSS3 & Bootstrap 5.3:** Custom CSS variables, responsive typography using relative units (`rem`, `em`), custom Flexbox layouts, and Bootstrap framework utilities.
-- **Responsiveness:** Full cross-device layout adaptation using mobile-first media queries (`@media (min-width: 768px)` and `@media (min-width: 992px)`).
-- **Interactivity:** Custom CSS hover transformations, smooth scrolling (`scroll-behavior: smooth`), and Bootstrap JavaScript components (Collapsible Navbar, Carousel).
+- **HTML5 & CSS3:** Semantic markup (`<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`), CSS custom properties, Flexbox/Grid layouts, and responsive mobile-first design[cite: 12, 13, 14, 15].
+- **JavaScript (ES6+) & jQuery 4.0:** Modular architecture split into functional scripts, `localStorage` state persistence, `AbortController` API timeouts, and smooth DOM animations[cite: 12, 16, 17, 20].
+- **Localization & Themes:** Instant switching between **English (EN)**, **Russian (RU)**, and **Kazakh (KZ)** across all pages, plus persistent **Light / Dark Mode**[cite: 12, 19, 20].
+- **External APIs:**
+  - [Open-Meteo API](https://open-meteo.com/) — Live meteorological data for skincare recommendations[cite: 16].
+  - [Open Beauty Facts API](https://world.openbeautyfacts.org/) — Open cosmetics database for global product discovery[cite: 17].
 
 ---
 
@@ -63,11 +71,21 @@ In accordance with course requirements (minimum 2 HTML pages per team member), o
 
 ```text
 cosmetics-store/
-├── index.html        # Main Landing Page
-├── catalog.html      # Product Catalog Page
-├── about.html        # Brand Story & Shipping Info Page
-├── contact.html      # Contact Form & Location Page
+├── index.html          # Main Landing Page & Skin Weather Widget
+├── catalog.html        # Product Catalog, Filters & Open Beauty Facts API
+├── cart.html           # Shopping Cart & Checkout Modal
+├── login.html          # User Login Page
+├── signup.html         # User Registration Page
+├── account.html        # User Profile Dashboard & Order History
+├── about.html          # Brand Story, Shipping Table & Searchable FAQ
+├── contact.html        # Contact Form & Store Location
 ├── css/
-│   └── style.css     # Main Custom Stylesheet
-├── img/              # Team member photos and project assets
-└── README.md         # Project Documentation
+│   └── style.css       # Custom Stylesheet, Dark Mode & Responsive Rules
+├── js/
+│   ├── script.js       # Core UI, i18n (EN/RU/KZ), Theme, Carousel & jQuery UX
+│   ├── auth.js         # Authentication, Profile, Form Validation & Ratings
+│   ├── catalog.js      # Catalog Filtering, Sorting & Open Beauty Facts API
+│   ├── cart.js         # Cart State, Checkout Validation & Order History
+│   └── weather.js      # Open-Meteo Weather API & Skincare Tips
+├── img/                # Team photos and product assets
+└── README.md           # Project Documentation
