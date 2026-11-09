@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Developed by Aisulu Amanzhol & Sara Nauash (Group SE-2506) -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yello Beauty — Cart</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+</head>
+<body>
+<script>try{if(localStorage.getItem("yello_theme")==="dark")document.body.classList.add("dark-mode");}catch(e){}</script>
+
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="ticker-item" data-i18n="t_promo">✨ Get -15% off with promo code YELLO15!</span>
+    <span class="ticker-item" data-i18n="t_welcome">💛 Welcome to Yello Beauty Store!</span>
+  </div>
+</div>
+
+<header class="navbar">
+  <div class="container navbar-container">
+    <a class="navbar-brand" href="index.html">Yello <span class="text-warning">Beauty</span></a>
+    <ul class="navbar-nav">
+      <li><a class="nav-link" href="index.html" data-i18n="nav_home">Home</a></li>
+      <li><a class="nav-link" href="catalog.html" data-i18n="nav_catalog">Catalog</a></li>
+      <li><a class="nav-link" href="about.html" data-i18n="nav_about">About Us</a></li>
+      <li><a class="nav-link" href="contact.html" data-i18n="nav_contact">Contact</a></li>
+    </ul>
+    <div class="nav-tools">
+      <a href="cart.html" class="nav-tool-btn text-decoration-none" title="Cart">🛒 <span id="cart-count">0</span></a>
+      <button type="button" id="theme-btn" class="nav-tool-btn" title="Light / Dark">🌙</button>
+      <button type="button" class="nav-tool-btn site-lang-btn" data-lang="en">EN</button>
+      <button type="button" class="nav-tool-btn site-lang-btn" data-lang="ru">RU</button>
+      <button type="button" class="nav-tool-btn site-lang-btn" data-lang="kz">KZ</button>
+    </div>
+  </div>
+</header>
+
+<main class="container py-4" style="flex: 1;">
+  <section class="hero-banner text-center mb-4">
+    <h1 class="hero-title" data-i18n="cart_title">Your Cart</h1>
+    <p class="hero-lead" data-t="c_sub">Review your selected cosmetics before checkout</p>
+  </section>
+
+  <div class="content-box">
+    <!-- filled by js/cart.js -->
+    <div id="cart-page-items"></div>
+
+    <div class="cart-footer">
+      <div class="cart-total-line"><span data-i18n="cart_total">Total:</span> <strong><span id="cart-page-total">0</span> ₸</strong></div>
+      <div class="cart-footer-actions">
+        <button type="button" id="clear-cart-btn" class="btn btn-outline-dark" data-t="c_clear">Clear cart</button>
+        <button type="button" id="open-checkout-modal" class="btn btn-warning" data-i18n="cart_checkout">Checkout</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Checkout: address, promo code, card details -->
+<div id="checkout-modal" class="popup-overlay">
+  <div class="popup-content ck-modal">
+    <span id="close-checkout-modal" class="popup-close" role="button" aria-label="Close">&times;</span>
+    <h3 class="ck-title" data-t="ck_title">Checkout</h3>
+
+    <form id="checkout-form" novalidate>
+      <div class="mb-3 ck-field">
+        <label for="order-address" class="fw-bold small ck-label" data-t="ck_address">Delivery address</label>
+        <input type="text" class="form-control" id="order-address" data-t-ph="ck_address_ph" placeholder="Astana, Mangilik El Ave 55" autocomplete="street-address">
+      </div>
+
+      <div class="mb-3 ck-field">
+        <label for="order-promo" class="fw-bold small ck-label" data-t="ck_promo">Promo code</label>
+        <div class="ck-promo-row">
+          <input type="text" class="form-control" id="order-promo" data-t-ph="ck_promo_ph" placeholder="e.g. YELLO15" autocomplete="off">
+          <button type="button" id="apply-promo" class="btn btn-outline-dark" data-t="ck_apply">Apply</button>
+        </div>
+        <small id="promo-hint" class="text-muted" data-t="ck_promo_hint">Enter YELLO15 for a 15% discount</small>
+      </div>
+
+      <div class="mb-3 ck-field">
+        <label for="order-card" class="fw-bold small ck-label" data-t="ck_card">Card number</label>
+        <input type="text" class="form-control" id="order-card" placeholder="4000 0000 0000 0000" inputmode="numeric" maxlength="19" autocomplete="cc-number">
+      </div>
+
+      <div class="ck-row">
+        <div class="mb-3 ck-field">
+          <label for="order-exp" class="fw-bold small ck-label" data-t="ck_exp">Expiry (MM/YY)</label>
+          <input type="text" class="form-control" id="order-exp" placeholder="12/28" inputmode="numeric" maxlength="5" autocomplete="cc-exp">
+        </div>
+        <div class="mb-3 ck-field">
+          <label for="order-cvv" class="fw-bold small ck-label" data-t="ck_cvv">CVV</label>
+          <input type="password" class="form-control" id="order-cvv" placeholder="123" inputmode="numeric" maxlength="3" autocomplete="cc-csc">
+        </div>
+      </div>
+
+      <div class="ck-summary">
+        <div><span data-t="ck_sub">Subtotal:</span> <span><span id="modal-subtotal">0</span> ₸</span></div>
+        <div><span data-t="ck_disc">Discount:</span> <span>−<span id="modal-discount">0</span> ₸</span></div>
+        <div class="ck-grand"><span data-t="ck_total">Total to pay:</span> <span><span id="modal-final-total">0</span> ₸</span></div>
+      </div>
+
+      <button type="submit" class="btn btn-warning w-100 fw-bold py-2" data-t="ck_pay">Confirm and pay</button>
+      <p class="small text-muted ck-note" data-t="ck_demo">Demo store: no real payment is made and card data is never saved.</p>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p class="mb-1" data-i18n="foot_rights">&copy; 2026 Yello Beauty Cosmetics. All rights reserved.</p>
+    <p class="mb-0 text-warning fw-semibold" data-i18n="foot_team">Team Members: Aisulu Amanzhol, Sara Nauash (Group SE-2506)</p>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/cart.js"></script>
+</body>
+</html>

@@ -119,7 +119,49 @@
     w_h_ok: ["Comfortable humidity: your usual routine works well.", "Комфортная влажность: подойдёт привычный уход.", "Ылғалдылық қолайлы: әдеттегі күтім жарайды."],
     w_h_wet: ["Humid air: choose light gel textures.", "Влажный воздух: выбирайте лёгкие гелевые текстуры.", "Ауа ылғалды: жеңіл гель құрылымын таңдаңыз."],
     w_cold: ["Cold weather: protect your skin barrier with a balm.", "Холодно: защитите барьер кожи бальзамом.", "Суық: тері тосқауылын бальзаммен қорғаңыз."],
-    pf_menu: ["Menu", "Меню", "Мәзір"]
+    pf_menu: ["Menu", "Меню", "Мәзір"],
+    // ---- cart / checkout / orders ----
+    c_sub: ["Review your selected cosmetics before checkout", "Проверьте выбранную косметику перед оформлением", "Тапсырыс беру алдында таңдалған косметиканы тексеріңіз"],
+    c_empty: ["Your cart is empty.", "Ваша корзина пуста.", "Себетіңіз бос."],
+    c_remove: ["Remove", "Удалить", "Жою"],
+    c_clear: ["Clear cart", "Очистить корзину", "Себетті тазалау"],
+    c_added: ["added to cart", "добавлен в корзину", "себетке қосылды"],
+    c_login_first: ["Please log in to add items to your cart!", "Пожалуйста, войдите в аккаунт, чтобы добавлять товары в корзину!", "Себетке тауар қосу үшін аккаунтқа кіріңіз!"],
+    c_login_pay: ["Please log in to place an order.", "Войдите в аккаунт, чтобы оформить заказ.", "Тапсырыс беру үшін аккаунтқа кіріңіз."],
+    p_to_cart: ["Go to Cart", "Перейти в корзину", "Себетке өту"],
+    ck_title: ["Checkout", "Оформление заказа", "Тапсырысты рәсімдеу"],
+    ck_address: ["Delivery address", "Адрес доставки", "Жеткізу мекенжайы"],
+    ck_address_ph: ["Astana, Mangilik El Ave 55", "г. Астана, пр. Мангилик Ел, 55", "Астана қ., Мәңгілік Ел даңғ., 55"],
+    ck_promo: ["Promo code", "Промокод", "Промокод"],
+    ck_promo_ph: ["e.g. YELLO15", "Например, YELLO15", "Мысалы, YELLO15"],
+    ck_apply: ["Apply", "Применить", "Қолдану"],
+    ck_promo_hint: ["Enter YELLO15 for a 15% discount", "Введите YELLO15 для скидки 15%", "15% жеңілдік үшін YELLO15 енгізіңіз"],
+    ck_promo_ok: ["✅ Promo code applied: -15%", "✅ Промокод применён: -15%", "✅ Промокод қолданылды: -15%"],
+    ck_promo_bad: ["❌ Promo code not found", "❌ Промокод не найден", "❌ Промокод табылмады"],
+    ck_card: ["Card number", "Номер банковской карты", "Банк картасының нөмірі"],
+    ck_exp: ["Expiry (MM/YY)", "Срок (ММ/ГГ)", "Мерзімі (АА/ЖЖ)"],
+    ck_cvv: ["CVV", "CVV", "CVV"],
+    ck_sub: ["Subtotal:", "Сумма:", "Сомасы:"],
+    ck_disc: ["Discount:", "Скидка:", "Жеңілдік:"],
+    ck_total: ["Total to pay:", "Итого к оплате:", "Төленетін сома:"],
+    ck_pay: ["Confirm and pay", "Подтвердить и оплатить", "Растау және төлеу"],
+    ck_processing: ["Processing...", "Обработка...", "Өңделуде..."],
+    ck_demo: ["Demo store: no real payment is made and card data is never saved.", "Учебный магазин: реальная оплата не производится, данные карты не сохраняются.", "Оқу дүкені: нақты төлем жасалмайды, карта деректері сақталмайды."],
+    ck_e_addr: ["Enter a delivery address (at least 5 characters).", "Введите адрес доставки (минимум 5 символов).", "Жеткізу мекенжайын енгізіңіз (кемінде 5 таңба)."],
+    ck_e_card: ["Card number must have 16 digits.", "Номер карты должен содержать 16 цифр.", "Карта нөмірі 16 саннан тұруы керек."],
+    ck_e_exp: ["Enter a valid expiry date, e.g. 12/28.", "Введите корректный срок, например 12/28.", "Дұрыс мерзімін енгізіңіз, мысалы 12/28."],
+    ck_e_exp_old: ["The card has expired.", "Срок действия карты истёк.", "Картаның мерзімі өткен."],
+    ck_e_cvv: ["CVV must have 3 digits.", "CVV должен содержать 3 цифры.", "CVV 3 саннан тұруы керек."],
+    ck_done: ["🎉 Order placed! Total:", "🎉 Заказ оформлен! Сумма:", "🎉 Тапсырыс рәсімделді! Сомасы:"],
+    ord_title: ["Order history", "История заказов", "Тапсырыстар тарихы"],
+    ord_none: ["You have no orders yet.", "У вас пока нет оформленных заказов.", "Сізде әлі тапсырыс жоқ."],
+    ord_n: ["Order", "Заказ", "Тапсырыс"],
+    ord_addr: ["Address:", "Адрес:", "Мекенжайы:"],
+    ord_card: ["Card:", "Карта:", "Карта:"],
+    ord_promo: ["Promo code:", "Промокод:", "Промокод:"],
+    ord_status: ["Status:", "Статус:", "Күйі:"],
+    ord_paid: ["Paid", "Оплачен", "Төленді"],
+    ord_total: ["Total:", "Итого:", "Барлығы:"]
   };
   function langIndex() { var l = localStorage.getItem("yello_lang") || "en"; return l === "ru" ? 1 : l === "kz" ? 2 : 0; }
   function tr(key) { return D[key] ? D[key][langIndex()] : key; }
@@ -254,7 +296,7 @@
         if (fl.price && fl.price !== "all") parts.push(tr("pr_" + fl.price));
       }
       val("pf-filters", parts.length ? parts.join(" · ") : tr("p_none"));
-      val("pf-cart", String(load("yello_cart", []).length));
+      val("pf-cart", String(load("yello_cart", []).reduce(function (n, i) { return n + (parseInt(i.qty, 10) || 1); }, 0)));
       document.getElementById("pf-avatar").textContent = user.name.charAt(0).toUpperCase();
     }
     render();

@@ -28,6 +28,7 @@
       <li><a class="nav-link" href="contact.html" data-i18n="nav_contact">Contact</a></li>
     </ul>
     <div class="nav-tools">
+      <a href="cart.html" class="nav-tool-btn text-decoration-none" title="Cart">🛒 <span id="cart-count">0</span></a>
       <button type="button" id="theme-btn" class="nav-tool-btn" title="Light / Dark">🌙</button>
       <button type="button" class="nav-tool-btn site-lang-btn" data-lang="en">EN</button>
       <button type="button" class="nav-tool-btn site-lang-btn" data-lang="ru">RU</button>
@@ -37,13 +38,13 @@
 </header>
 
 <main class="container py-4" style="flex: 1;">
-  <div class="auth-wrap">
+  <div class="auth-wrap" style="max-width: 800px;">
     <section class="hero-banner text-center mb-4">
       <h1 class="hero-title" data-t="p_title">My Profile</h1>
       <p class="hero-lead" data-t="p_lead">Your account details</p>
     </section>
-    <!-- Filled from localStorage by initProfile() in js/auth.js; guests are redirected to login.html -->
-    <section class="content-box" id="profile-box">
+
+    <section class="content-box mb-4" id="profile-box">
       <div class="profile-avatar" id="pf-avatar">?</div>
       <div class="profile-row"><span class="profile-label" data-t="p_name">Name</span><span class="profile-value" id="pf-name"></span></div>
       <div class="profile-row"><span class="profile-label" data-t="p_email">Email</span><span class="profile-value" id="pf-email"></span></div>
@@ -54,8 +55,15 @@
       <div class="profile-row"><span class="profile-label" data-t="p_cart">Items in cart</span><span class="profile-value" id="pf-cart"></span></div>
       <div class="profile-actions">
         <a href="catalog.html" class="btn btn-warning" data-t="p_shop">Go to Catalog</a>
+        <a href="cart.html" class="btn btn-outline-dark" data-t="p_to_cart">Go to Cart</a>
         <button type="button" id="logout-btn" class="btn btn-dark" style="width:auto;" data-t="p_logout">Log Out</button>
       </div>
+    </section>
+
+    <!-- Order history (filled by js/cart.js) -->
+    <section class="content-box">
+      <h2 class="box-title border-bottom-warning" data-t="ord_title">Order history</h2>
+      <div id="orders-history-list"></div>
     </section>
   </div>
 </main>
@@ -69,5 +77,6 @@
 
 <script src="js/script.js"></script>
 <script src="js/auth.js"></script>
+<script src="js/cart.js"></script>
 </body>
 </html>

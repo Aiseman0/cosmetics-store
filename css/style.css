@@ -1313,3 +1313,71 @@ body.dark-mode { background-color: #121212; }
 .api-img img { padding: 8px; object-fit: contain; }
 .dark-mode .api-img { background: #f5f5f5; }  /* product photos stay readable in dark mode */
 .api-credit a { color: inherit; font-weight: 700; }
+
+
+/* ==========================================
+   Cart, checkout and order history
+   ========================================== */
+.cart-empty { text-align: center; padding: 1.5rem 0; }
+.cart-empty p { margin-bottom: .75rem; }
+.cart-row {
+  display: grid; grid-template-columns: 1fr auto auto auto; gap: 12px; align-items: center;
+  padding: .7rem 0; border-bottom: 1px solid rgba(128,128,128,.3);
+}
+.cart-name { display: block; font-weight: 700; }
+.cart-unit { font-size: .8rem; color: #6c757d; }
+.dark-mode .cart-unit { color: #b8b8b8; }
+.cart-qty { display: inline-flex; align-items: center; gap: 8px; }
+.qty-btn {
+  width: 28px; height: 28px; border-radius: 50%; border: 1px solid currentColor;
+  background: transparent; color: inherit; font-size: 1rem; line-height: 1; cursor: pointer;
+}
+.qty-btn:hover { background: #ffc107; border-color: #ffc107; color: #212529; }
+.cart-qty-num { min-width: 1.5rem; text-align: center; font-weight: 700; }
+.cart-line-total { font-weight: 700; min-width: 90px; text-align: right; }
+.btn-outline-danger { color: #b02a37; border-color: #b02a37; background: transparent; font-weight: 600; }
+.btn-outline-danger:hover { background: #b02a37; color: #fff; }
+.dark-mode .btn-outline-danger { color: #ff8a8a; border-color: #ff8a8a; }
+.dark-mode .btn-outline-danger:hover { background: #b02a37; color: #fff; }
+.cart-footer {
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(128,128,128,.3);
+}
+.cart-total-line { font-size: 1.1rem; }
+.cart-footer-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.cart-footer .btn { padding: .4rem 1rem; }
+@media (max-width: 600px) {
+  .cart-row { grid-template-columns: 1fr auto; }
+  .cart-line-total { text-align: left; }
+}
+
+/* checkout modal */
+.ck-modal { max-width: 480px; max-height: 92vh; overflow-y: auto; text-align: left; }
+.ck-title { font-size: 1.1rem; font-weight: 700; margin-bottom: .9rem; padding-right: 24px; }
+.ck-label { display: block; margin-bottom: 4px; }
+.ck-field .form-control { margin-bottom: 0; }
+.ck-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ck-promo-row { display: flex; gap: 8px; margin-bottom: 4px; }
+.ck-promo-row .form-control { flex: 1; }
+.ck-ok { color: #198754 !important; font-weight: 600; }
+.ck-bad { color: #b02a37 !important; font-weight: 600; }
+.dark-mode .ck-ok { color: #6fd29b !important; }
+.dark-mode .ck-bad { color: #ff8a8a !important; }
+.ck-summary { background: rgba(255,193,7,.18); border-radius: 6px; padding: 10px 12px; margin-bottom: .75rem; font-size: .9rem; }
+.ck-summary > div { display: flex; justify-content: space-between; gap: 8px; }
+.ck-summary .ck-grand { font-weight: 700; border-top: 1px solid rgba(128,128,128,.35); margin-top: 4px; padding-top: 4px; }
+.ck-note { margin-top: .6rem; text-align: center; }
+.dark-mode .ck-label, .dark-mode .ck-title, .dark-mode .ck-summary { color: #f1f1f1; }
+
+/* order history */
+.order-card { border: 1px solid rgba(128,128,128,.35); border-radius: 8px; padding: 12px; margin-bottom: 12px; }
+.order-head { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; font-weight: 700; margin-bottom: 6px; }
+.order-date { color: #8a6100; }
+.dark-mode .order-date { color: #ffc107; }
+.order-meta { font-size: .82rem; color: #6c757d; margin-bottom: 2px; word-break: break-word; }
+.dark-mode .order-meta { color: #b8b8b8; }
+.order-items { list-style: none; margin: 8px 0; font-size: .88rem; }
+.order-items li { display: flex; justify-content: space-between; gap: 8px; padding: 2px 0; }
+.order-foot { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; border-top: 1px solid rgba(128,128,128,.3); padding-top: 8px; font-weight: 700; font-size: .9rem; }
+.order-status { color: #198754; }
+.dark-mode .order-status { color: #6fd29b; }
