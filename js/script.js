@@ -1,144 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-  // ==========================================
-  // 0. ТЁМНЫЙ / ДНЕВНОЙ РЕЖИМ И ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА (EN / RU / KZ)
-  // ==========================================
-  var themeBtn = document.getElementById("theme-btn");
-  if (localStorage.getItem("yello_theme") === "dark") {
-    document.body.classList.add("dark-mode");
-    if (themeBtn) themeBtn.textContent = "☀️";
-  }
-
-  if (themeBtn) {
-    themeBtn.addEventListener("click", function() {
-      var isDark = document.body.classList.toggle("dark-mode");
-      localStorage.setItem("yello_theme", isDark ? "dark" : "light");
-      themeBtn.textContent = isDark ? "☀️" : "🌙";
-    });
-  }
-
-  var I18N = {
-    t_glow: ["✨ Glow like the Sun, shine like the Moon!", "✨ Сияй как Солнце, свети как Луна!", "✨ Күндей жарқыра, Айдай сәуле шаш!"],
-    t_ship2: ["🚚 Free shipping on orders over 15,000 ₸!", "🚚 Бесплатная доставка при заказе от 15 000 ₸!", "🚚 15 000 ₸-ден жоғары тапсырыстарға тегін жеткізу!"],
-    t_welcome: ["💛 Welcome to Yello Beauty Store!", "💛 Добро пожаловать в Yello Beauty Store!", "💛 Yello Beauty дүкеніне қош келдіңіз!"],
-    nav_home: ["Home", "Главная", "Басты бет"],
-    nav_catalog: ["Catalog", "Каталог", "Каталог"],
-    nav_about: ["About Us", "О нас", "Біз туралы"],
-    nav_contact: ["Contact", "Контакты", "Байланыс"],
-    sb_quick: ["Quick Navigation", "Быстрая навигация", "Жылдам шарлау"],
-    a_nav_story: ["Our Story", "Наша история", "Біздің тарих"],
-    a_nav_creators: ["Creators", "Создатели", "Құрушылар"],
-    a_nav_ship: ["Shipping Options", "Доставка", "Жеткізу"],
-    a_nav_faq: ["FAQ Accordion", "Частые вопросы", "Жиі қойылатын сұрақтар"],
-    a_hero: ["About Our Brand", "О нашем бренде", "Біздің бренд туралы"],
-    a_hero_lead: ["Glow like the Sun, shine like the Moon", "Сияй как Солнце, свети как Луна", "Күндей жарқыра, Айдай сәуле шаш"],
-    a_story_title: ["The Story of Yello Beauty", "История Yello Beauty", "Yello Beauty тарихы"],
-    a_story: [
-      "The name Yello Beauty combines the warmth of sunlight (Yellow) and the aesthetics of its two creators — Sara and Aisulu. The name Aisulu translates to 'moon beauty,' and our brand was born at the intersection of two harmonies.",
-      "Название Yello Beauty объединяет тепло солнечного света (Yellow) и эстетику двух создательниц — Сары и Айсулу. Имя Айсулу переводится как «лунная красавица», и наш бренд родился на стыке двух гармоний.",
-      "Yello Beauty атауы күн сәулесінің жылуы (Yellow) мен оның екі негізін қалаушы — Сара мен Айсұлудың эстетикасын біріктіреді."
-    ],
-    rm_about_text: [
-      "Our team believes that skincare should be simple, honest, and enjoyable. Every product in our catalog is picked by Sara and Aisulu personally.",
-      "Наша команда верит, что уход за кожей должен быть простым, честным и приятным. Каждый продукт в каталоге подобран Сарой и Айсулу лично.",
-      "Біздің команда тері күтімі қарапайым, адал және жағымды болуы керек деп санайды. Каталогтағы әрбір өнімді Сара мен Айсұлу жеке таңдаған."
-    ],
-    a_creators: ["Our Creators", "Наши создатели", "Біздің құрушылар"],
-    a_sara_role: ["Co-Founder & Developer", "Сооснователь и разработчик", "Тең құрылтайшы және әзірлеуші"],
-    a_sara_d: [
-      "Sara designed the brand structure, feedback systems, and delivery network to make beauty ordering seamless.",
-      "Сара разработала структуру бренда, систему обратной связи и логистику для удобного заказа косметики.",
-      "Сара косметикаға тапсырыс беруді ыңғайлы ету үшін бренд құрылымын, кері байланыс жүйесін және жеткізу желісін жасады."
-    ],
-    a_ais_role: ["Co-Founder & Designer", "Сооснователь и дизайнер", "Тең құрылтайшы және дизайнер"],
-    a_ais_d: [
-      "Aisulu curated the yellow-pearl aesthetic, layout structure, and catalog experience for every visitor.",
-      "Айсулу создала солнечно-жемчужную эстетику, дизайн страниц и подборку каталога для каждого гостя.",
-      "Айсұлу әрбір келушіге арналған сары-інжу эстетикасын, бет дизайнын және каталог тәжірибесін жасады."
-    ],
-    a_ship_title: ["Shipping & Delivery Options", "Варианты доставки", "Жеткізу түрлері"],
-    th1: ["Delivery Method", "Способ доставки", "Жеткізу әдісі"],
-    th2: ["Estimated Time", "Срок доставки", "Мерзімі"],
-    th3: ["Coverage Area", "Зона покрытия", "Аймақ"],
-    th4: ["Price (₸)", "Цена (₸)", "Бағасы (₸)"],
-    r1c1: ["Standard Courier", "Стандартный курьер", "Стандартты курьер"],
-    r1c2: ["2-3 Business Days", "2-3 рабочих дня", "2-3 жұмыс күні"],
-    r1c3: ["Astana & Almaty", "Астана и Алматы", "Астана және Алматы"],
-    r2c1: ["Express Shipping", "Экспресс-доставка", "Экспресс жеткізу"],
-    r2c2: ["Same Day Delivery", "В день заказа", "Тапсырыс күні"],
-    r2c3: ["Astana City", "г. Астана", "Астана қ."],
-    r3c1: ["Regional Kazpost", "Казпочта по регионам", "Аймақтарға Қазпошта"],
-    r3c2: ["4-7 Business Days", "4-7 рабочих дней", "4-7 жұмыс күні"],
-    r3c3: ["All Regions of Kazakhstan", "Все регионы Казахстана", "Қазақстанның барлық аймақтары"],
-    faq_title: ["Frequently Asked Questions", "Часто задаваемые вопросы", "Жиі қойылатын сұрақтар"],
-    faq_ph: ["🔍 Search in FAQ...", "🔍 Поиск по вопросам...", "🔍 Сұрақтардан іздеу..."],
-    q1: ["Are all products 100% original?", "Вся продукция на 100% оригинальная?", "Барлық өнімдер 100% түпнұсқа ма?"],
-    a1: ["Yes! We source cosmetics directly from official brand distributors in South Korea, USA, and Europe.", "Да! Мы закупаем косметику напрямую у официальных дистрибьюторов в Южной Корее, США и Европе.", "Иә! Біз косметиканы Оңтүстік Корея, АҚШ және Еуропадағы ресми дистрибьюторлардан тікелей аламыз."],
-    q2: ["How can I track my shipment?", "Как отследить мой заказ?", "Тапсырысымды қалай бақылауға болады?"],
-    a2: ["Once your order is dispatched, you will receive a tracking number via SMS or email.", "После отправки заказа вы получите трек-номер по SMS или на электронную почту.", "Тапсырысыңыз жіберілгеннен кейін SMS немесе электрондық пошта арқылы бақылау нөмірін аласыз."],
-    q3: ["What skin type are these cosmetics suitable for?", "Для какого типа кожи подходит косметика?", "Бұл косметика қандай тері түріне сәйкес келеді?"],
-    a3: ["Our store offers dedicated product lines for dry, sensitive, oily, combination, and normal skin types.", "В нашем магазине есть линейки для сухой, чувствительной, жирной, комбинированной и нормальной кожи.", "Біздің дүкенде құрғақ, сезімтал, майлы, аралас және қалыпты тері түрлеріне арналған желілер бар."],
-    foot_rights: ["© 2026 Yello Beauty Cosmetics. All rights reserved.", "© 2026 Yello Beauty Cosmetics. Все права защищены.", "© 2026 Yello Beauty Cosmetics. Барлық құқықтар қорғалған."],
-    foot_team: ["Team Members: Aisulu Amanzhol, Sara Nauash (Group SE-2506)", "Команда: Айсулу Аманжол, Сара Науаш (Группа SE-2506)", "Топ мүшелері: Айсұлу Аманжол, Сара Науаш (SE-2506 тобы)"]
-  };
-
-  function applySiteLanguage(lang) {
-    localStorage.setItem("yello_lang", lang);
-    var idx = lang === "ru" ? 1 : lang === "kz" ? 2 : 0;
-
-    document.querySelectorAll("[data-i18n]").forEach(function(el) {
-      var key = el.getAttribute("data-i18n");
-      if (I18N[key]) el.textContent = I18N[key][idx];
-    });
-
-    document.querySelectorAll("[data-i18n-ph]").forEach(function(el) {
-      var key = el.getAttribute("data-i18n-ph");
-      if (I18N[key]) el.placeholder = I18N[key][idx];
-    });
-
-    document.querySelectorAll(".site-lang-btn").forEach(function(btn) {
-      btn.classList.toggle("active-lang", btn.getAttribute("data-lang") === lang);
-    });
-
-    var greetingElem = document.getElementById("time-greeting");
-    if (greetingElem && window.yelloT) {
-      var hour = new Date().getHours();
-      var gKey = hour < 12 ? "greet_m" : hour < 18 ? "greet_a" : "greet_e";
-      greetingElem.innerText = window.yelloT(gKey);
-    }
-  }
-
-  var currentLang = localStorage.getItem("yello_lang") || "en";
-  applySiteLanguage(currentLang);
-
-  document.querySelectorAll(".site-lang-btn").forEach(function(btn) {
-    btn.addEventListener("click", function() {
-      applySiteLanguage(this.getAttribute("data-lang"));
-    });
-  });
-
-  // --- Read More кнопка в About Us ---
-  document.querySelectorAll(".read-more-btn").forEach(function(btn) {
-    btn.addEventListener("click", function() {
-      var target = document.getElementById(this.getAttribute("data-target"));
-      if (!target) return;
-      var hidden = target.style.display === "none";
-      target.style.display = hidden ? "block" : "none";
-      this.textContent = hidden ? "Show Less" : "Read More";
-    });
-  });
-
-  // --- FAQ поиск ---
-  var faqSearch = document.getElementById("faq-search");
-  if (faqSearch) {
-    faqSearch.addEventListener("input", function() {
-      var q = this.value.toLowerCase().trim();
-      document.querySelectorAll(".accordion-item-custom").forEach(function(item) {
-        item.style.display = item.textContent.toLowerCase().indexOf(q) > -1 ? "block" : "none";
-      });
-    });
-  }
-
   // --- 1. Form validation (Форма контактов) ---
   var contactForm = document.getElementById("contact-form");
   if (contactForm) {
@@ -244,18 +105,13 @@ document.addEventListener("DOMContentLoaded", function() {
   var savedColor = localStorage.getItem("yello_bg_color");
   var savedIndex = localStorage.getItem("yello_bg_index");
 
-  if (savedColor && !document.body.classList.contains("dark-mode")) {
+  if (savedColor) {
     document.body.style.setProperty("background-color", savedColor, "important");
   }
 
   if (bgColorBtn) {
     var colorIndex = savedIndex ? parseInt(savedIndex) : 0;
     bgColorBtn.addEventListener("click", function() {
-      if (document.body.classList.contains("dark-mode")) {
-        document.body.classList.remove("dark-mode");
-        localStorage.setItem("yello_theme", "light");
-        if (themeBtn) themeBtn.textContent = "🌙";
-      }
       colorIndex = colorIndex + 1;
       if (colorIndex >= colors.length) {
         colorIndex = 0;
@@ -379,7 +235,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   // C. Interactive Shopping Cart & Add-to-Cart Logic with Sound & Animation
-  var cart = JSON.parse(localStorage.getItem("yello_cart") || "[]");
+  var cart = [];
   var cartCountElem = document.getElementById("cart-count");
   var cartItemsList = document.getElementById("cart-items-list");
   var cartTotalElem = document.getElementById("cart-total");
@@ -408,14 +264,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
           cart.push({ title: title, price: price });
           updateCartUI();
-          if (window.yelloMsg) window.yelloMsg("🛒 " + title + " added to cart!");
         }
       }
     });
   });
 
   function updateCartUI() {
-    localStorage.setItem("yello_cart", JSON.stringify(cart));
     if (!cartCountElem || !cartItemsList || !cartTotalElem) return;
 
     cartCountElem.innerText = cart.length;
@@ -429,7 +283,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var html = "";
     var total = 0;
 
-    cart.forEach(function(item) {
+    cart.forEach(function(item, index) {
       total += item.price;
       html += `<li class="d-flex justify-content-between align-items-center mb-1">
                  <span>${item.title}</span>
@@ -441,17 +295,13 @@ document.addEventListener("DOMContentLoaded", function() {
     cartTotalElem.innerText = total.toLocaleString();
   }
 
-  updateCartUI();
-
   if (checkoutBtn) {
     checkoutBtn.addEventListener("click", function() {
       if (cart.length === 0) {
-        if (window.yelloMsg) window.yelloMsg("Your cart is empty!");
-        else alert("Your cart is empty!");
+        alert("Your cart is empty!");
         return;
       }
-      if (window.yelloMsg) window.yelloMsg("Thank you for your order! Total amount: " + cartTotalElem.innerText + " ₸");
-      else alert("Thank you for your order! Total amount: " + cartTotalElem.innerText + " ₸");
+      alert("Thank you for your order! Total amount: " + cartTotalElem.innerText + " ₸");
       cart = [];
       updateCartUI();
     });

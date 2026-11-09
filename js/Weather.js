@@ -1,4 +1,4 @@
-/* Yello Beauty - Weather.js
+/* Yello Beauty - weather.js
    External API #2: Open-Meteo (https://open-meteo.com, free, no API key).
    Shows today's weather in Astana and turns it into skincare advice (SPF, hydration).
    Has a loading state, an 8 s timeout, error handling and an offline fallback from localStorage. */
