@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yello Beauty — My Profile</title>
   <link rel="stylesheet" href="css/style.css">
-  <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 <script>try{if(localStorage.getItem("yello_theme")==="dark")document.body.classList.add("dark-mode");}catch(e){}</script>
@@ -42,7 +42,7 @@
       <h1 class="hero-title" data-t="p_title">My Profile</h1>
       <p class="hero-lead" data-t="p_lead">Your account details</p>
     </section>
-    <!-- Filled from localStorage by initProfile() in js/auth.js; guests are redirected to login.html -->
+    <!-- Filled from localStorage by initProfile() in js/Auth.js; guests are redirected to login.html -->
     <section class="content-box" id="profile-box">
       <div class="profile-avatar" id="pf-avatar">?</div>
       <div class="profile-row"><span class="profile-label" data-t="p_name">Name</span><span class="profile-value" id="pf-name"></span></div>
@@ -68,6 +68,6 @@
 </footer>
 
 <script src="js/script.js"></script>
-<script src="js/auth.js"></script>
+<script src="js/Auth.js"></script>
 </body>
 </html>

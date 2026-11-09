@@ -6,26 +6,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yello Beauty — Contact Us</title>
   <link rel="stylesheet" href="css/style.css">
-  <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
-<script>try{if(localStorage.getItem("yello_theme")==="dark")document.body.classList.add("dark-mode");}catch(e){}</script>
 
+<!-- Ticker Banner -->
 <div class="ticker-wrap">
   <div class="ticker">
-    <span class="ticker-item" data-i18n="t_glow">✨ Glow like the Sun, shine like the Moon!</span>
-    <span class="ticker-item" data-i18n="t_touch">Get in touch with us for personalized beauty advice! 💛</span>
+    <span class="ticker-item">✨ Glow like the Sun, shine like the Moon!</span>
+    <span class="ticker-item">Get in touch with us for personalized beauty advice! 💛</span>
   </div>
 </div>
 
+<!-- Navigation Bar -->
 <header class="navbar">
   <div class="container navbar-container">
     <a class="navbar-brand" href="index.html">Yello <span class="text-warning">Beauty</span></a>
     <ul class="navbar-nav">
-      <li><a class="nav-link" href="index.html" data-i18n="nav_home">Home</a></li>
-      <li><a class="nav-link" href="catalog.html" data-i18n="nav_catalog">Catalog</a></li>
-      <li><a class="nav-link" href="about.html" data-i18n="nav_about">About Us</a></li>
-      <li><a class="nav-link active" href="contact.html" data-i18n="nav_contact">Contact</a></li>
+      <li><a class="nav-link" href="index.html">Home</a></li>
+      <li><a class="nav-link" href="catalog.html">Catalog</a></li>
+      <li><a class="nav-link" href="about.html">About Us</a></li>
+      <li><a class="nav-link active" href="contact.html">Contact</a></li>
     </ul>
     <div class="nav-tools">
       <button type="button" id="theme-btn" class="nav-tool-btn" title="Light / Dark">🌙</button>
@@ -36,106 +37,119 @@
   </div>
 </header>
 
+<!-- Main Container -->
 <main class="container py-4" style="flex: 1;">
   <div class="row">
+
+    <!-- Sidebar Navigation -->
     <aside class="col-12 col-md-3 mb-4">
       <div class="sidebar-box">
-        <h3 class="sidebar-title" data-i18n="sb_quick">Quick Navigation</h3>
+        <h3 class="sidebar-title">Quick Navigation</h3>
         <ul class="sidebar-list">
-          <li><a href="#location" class="sidebar-link" data-i18n="ct_loc_nav">Store Location</a></li>
-          <li><a href="#message-form" class="sidebar-link" data-i18n="ct_msg_nav">Send Message</a></li>
+          <li><a href="#location" class="sidebar-link">Store Location</a></li>
+          <li><a href="#message-form" class="sidebar-link">Send Message</a></li>
         </ul>
       </div>
     </aside>
 
+    <!-- Main Content Section -->
     <section class="col-12 col-md-9">
+
+      <!-- Hero Banner -->
       <div class="hero-banner mb-4">
-        <h1 class="hero-title" data-i18n="ct_hero">Contact Us</h1>
-        <p class="hero-lead" data-i18n="ct_lead">We are here to answer your questions and help you pick the best skincare</p>
+        <h1 class="hero-title">Contact Us</h1>
+        <p class="hero-lead">We are here to answer your questions and help you pick the best skincare</p>
       </div>
 
+      <!-- Store Location -->
       <div id="location" class="content-box mb-4">
-        <h2 class="section-title border-bottom-warning" data-i18n="ct_loc_title">Store Location & Details</h2>
+        <h2 class="section-title border-bottom-warning">Store Location & Details</h2>
         <div class="row">
           <div class="col-12 col-md-6 mb-2">
-            <p class="mb-1"><strong data-i18n="ct_addr">Address:</strong> <span class="copy-text">Mangilik El Ave 55, Astana, Kazakhstan</span> <button type="button" class="copy-btn"><span class="copy-icon">📋</span></button></p>
-            <p class="mb-1"><strong data-i18n="ct_phone">Phone:</strong> <span class="copy-text">+7 (777) 123-4567</span> <button type="button" class="copy-btn"><span class="copy-icon">📋</span></button></p>
+            <p class="mb-1"><strong>Address:</strong> Mangilik El Ave 55, Astana, Kazakhstan</p>
+            <p class="mb-1"><strong>Phone:</strong> +7 (777) 123-4567</p>
           </div>
           <div class="col-12 col-md-6 mb-2">
-            <p class="mb-1"><strong data-i18n="ct_email">Email:</strong> <span class="copy-text">support@yellobeauty.kz</span> <button type="button" class="copy-btn"><span class="copy-icon">📋</span></button></p>
-            <p class="mb-1"><strong data-i18n="ct_hours">Working Hours:</strong> <span data-i18n="ct_hours_val">Mon - Sun: 09:00 AM - 09:00 PM</span></p>
+            <p class="mb-1"><strong>Email:</strong> support@yellobeauty.kz</p>
+            <p class="mb-1"><strong>Working Hours:</strong> Mon - Sun: 09:00 AM - 09:00 PM</p>
           </div>
         </div>
       </div>
 
+      <!-- Send Message Form -->
       <section id="message-form" class="content-box">
-        <h2 class="section-title border-bottom-warning text-center" data-i18n="ct_form_title">Send Us a Message</h2>
+        <h2 class="section-title border-bottom-warning text-center">Send Us a Message</h2>
         <form id="contact-form" novalidate>
           <div class="mb-3">
-            <label for="username" class="fw-bold mb-1" style="display: block;" data-i18n="ct_name">Your Full Name:</label>
+            <label for="username" class="fw-bold mb-1" style="display: block;">Your Full Name:</label>
             <div class="custom-input-group">
               <span class="custom-input-icon">👤</span>
-              <input type="text" class="form-control" id="username" name="username" placeholder="Enter your full name" data-i18n-ph="ct_name_ph">
+              <input type="text" class="form-control" id="username" name="username" placeholder="Enter your full name" required>
             </div>
           </div>
 
           <div class="mb-3">
-            <label for="useremail" class="fw-bold mb-1" style="display: block;" data-i18n="ct_mail">Email Address:</label>
+            <label for="useremail" class="fw-bold mb-1" style="display: block;">Email Address:</label>
             <div class="custom-input-group">
               <span class="custom-input-icon">@</span>
-              <input type="text" inputmode="email" class="form-control" id="useremail" name="useremail" placeholder="example@mail.com">
+              <input type="email" class="form-control" id="useremail" name="useremail" placeholder="example@mail.com" required>
             </div>
           </div>
 
           <div class="mb-3">
-            <label for="userphone" class="fw-bold mb-1" style="display: block;" data-t="f_phone">Phone Number:</label>
+            <label for="userphone" class="fw-bold mb-1" style="display: block;">Phone Number:</label>
             <div class="custom-input-group">
               <span class="custom-input-icon">📞</span>
-              <input type="text" inputmode="tel" class="form-control" id="userphone" name="userphone" placeholder="+7 777 123 45 67">
+              <input type="tel" class="form-control" id="userphone" name="userphone" placeholder="+7 777 123 45 67" required>
             </div>
           </div>
 
           <div class="mb-3">
-            <label for="skintype" class="fw-bold mb-1" style="display: block;" data-i18n="ct_skin">Select Your Skin Type:</label>
+            <label for="skintype" class="fw-bold mb-1" style="display: block;">Select Your Skin Type:</label>
             <select id="skintype" name="skintype" class="form-control">
-              <option value="dry" data-i18n="ct_opt1">Dry / Sensitive Skin</option>
-              <option value="oily" data-i18n="ct_opt2">Oily / Combination Skin</option>
-              <option value="normal" data-i18n="ct_opt3">Normal Skin</option>
+              <option value="dry">Dry / Sensitive Skin</option>
+              <option value="oily">Oily / Combination Skin</option>
+              <option value="normal">Normal Skin</option>
             </select>
           </div>
 
           <div class="mb-3">
-            <label for="favcolor" class="fw-bold mb-1" style="display: block;" data-i18n="ct_color">Preferred Packaging Shade:</label>
+            <label for="favcolor" class="fw-bold mb-1" style="display: block;">Preferred Packaging Shade:</label>
             <input type="color" class="form-control" id="favcolor" name="favcolor" value="#FFCC00" style="height: 40px; cursor: pointer;">
           </div>
 
           <div class="mb-3">
-            <label for="message" class="fw-bold mb-1" style="display: block;" data-i18n="ct_msg_label">Message / Product Request:</label>
-            <textarea class="form-control" id="message" name="message" rows="4" placeholder="Write your message here..." data-i18n-ph="ct_msg_ph"></textarea>
+            <label for="message" class="fw-bold mb-1" style="display: block;">Message / Product Request:</label>
+            <textarea class="form-control" id="message" name="message" rows="4" placeholder="Write your message here..." required></textarea>
           </div>
 
-          <button type="submit" class="btn btn-warning w-100 fw-bold py-2" data-i18n="ct_submit">Submit Message</button>
+          <button type="submit" class="btn btn-warning w-100 fw-bold py-2">Submit Message</button>
         </form>
 
+        <!-- Quick Instant Channels -->
         <div style="border-top: 1px solid #dee2e6; margin-top: 1.5rem; padding-top: 1rem; text-align: center;">
-          <p class="small text-muted mb-2" data-i18n="ct_instant">Need immediate assistance? Connect directly via instant channels:</p>
+          <p class="small text-muted mb-2">Need immediate assistance? Connect directly via instant channels:</p>
           <div class="btn-group">
+            <button type="button" class="btn btn-outline-dark btn-sm">WhatsApp</button>
             <a href="https://t.me/yello_beauty_store_bot" target="_blank" class="btn btn-outline-dark btn-sm text-decoration-none">Telegram</a>
+            <button type="button" class="btn btn-outline-dark btn-sm">Direct Call</button>
           </div>
         </div>
       </section>
+
     </section>
   </div>
 </main>
 
+<!-- Footer -->
 <footer>
   <div class="container">
-    <p class="mb-1" data-i18n="foot_rights">&copy; 2026 Yello Beauty Cosmetics. All rights reserved.</p>
-    <p class="mb-0 text-warning fw-semibold" data-i18n="foot_team">Team Members: Aisulu Amanzhol, Sara Nauash (Group SE-2506)</p>
+    <p class="mb-1">&copy; 2026 Yello Beauty Cosmetics. All rights reserved.</p>
+    <p class="mb-0 text-warning fw-semibold">Team Members: Aisulu Amanzhol, Sara Nauash (Group SE-2506)</p>
   </div>
 </footer>
 
 <script src="js/script.js"></script>
-<script src="js/auth.js"></script>
+<script src="js/Auth.js"></script>
 </body>
 </html>
