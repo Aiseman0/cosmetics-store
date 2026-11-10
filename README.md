@@ -2,14 +2,16 @@
 
 Yello Beauty is a responsive, multi-language e-commerce web application for an online cosmetics store. The project features skincare, makeup, and lip care products with an intuitive user interface, real-time external API integrations, interactive filtering, shopping cart with promo codes, and user account management.
 
-Created as part of the Front-End Web Development course project (Group SE-2506).
+Created as part of the Front-End Web Development course final project (Group SE-2506).
+
+**Target audience:** young adults in Kazakhstan who buy skincare and makeup online and want a simple store with delivery information, a cart and a personal account.
 
 ---
 
 ## 🔗 Live Demo & Links
 
-- **GitHub Pages (Live Site):** [https://aiseman0.github.io/cosmetics-store/]
-- **Repository:** [https://github.com/Aiseman0/cosmetics-store.git]
+- **Live Website (GitHub Pages):** [https://aiseman0.github.io/cosmetics-store/](https://aiseman0.github.io/cosmetics-store/)
+- **Repository:** [https://github.com/Aiseman0/cosmetics-store](https://github.com/Aiseman0/cosmetics-store)
 
 ---
 
@@ -19,8 +21,20 @@ Our team designed and developed a full 8-page web application with modular JavaS
 
 | Student Name | Role | Created Pages & Modules | Key Responsibilities |
 | :--- | :--- | :--- | :--- |
-| **Aisulu Amanzhol** | Front-End Developer | `index.html`, `catalog.html`, `cart.html`, `catalog.js`, `cart.js`, `weather.js` | Home page & carousel, 42-item catalog with multi-criteria filtering & sorting, Open Beauty Facts & Open-Meteo API integrations, shopping cart, promo code checkout (`YELLO15`), theme & CSS styling. |
+| **Aisulu Amanzhol** | Front-End Developer, Designer | `index.html`, `catalog.html`, `cart.html`, `catalog.js`, `cart.js`, `weather.js` | Home page & carousel, 42-item catalog with multi-criteria filtering & sorting, Open Beauty Facts & Open-Meteo API integrations, shopping cart, promo code checkout (`YELLO15`), theme & CSS styling. |
 | **Sara Nauash** | Front-End Developer | `about.html`, `contact.html`, `login.html`, `signup.html`, `account.html`, `auth.js`, `script.js` | Brand story, shipping rates, interactive FAQ with live search highlighting, user authentication & profile management (`localStorage`), form validations, EN/RU/KZ localization, and jQuery UX effects. |
+
+### Work division
+
+| Area | Responsible |
+| :--- | :--- |
+| Design, color palette, CSS and dark theme | Aisulu Amanzhol |
+| Home, catalog, cart and checkout pages | Aisulu Amanzhol |
+| External APIs (Open-Meteo, Open Beauty Facts) | Aisulu Amanzhol |
+| About, Contact, Login, Sign Up and Profile pages | Sara Nauash |
+| Authentication, form validation and order history | Sara Nauash |
+| Localization (EN/RU/KZ) and jQuery UX effects | Sara Nauash |
+| Testing, hosting on GitHub Pages, documentation | Both team members |
 
 ---
 
@@ -67,6 +81,23 @@ Our team designed and developed a full 8-page web application with modular JavaS
 
 ---
 
+## ✅ Project Requirements Checklist
+
+| Requirement | Where it is implemented |
+| :--- | :--- |
+| 6+ connected pages | 8 pages, linked through the navigation bar |
+| Responsiveness | Flexbox, CSS Grid and media queries in `css/style.css` |
+| Light / Dark mode | Toggle button, saved in `localStorage` (`yello_theme`) on every page |
+| Authentication simulation | `signup.html`, `login.html`, `account.html` (`localStorage`) |
+| Form validation | `js/auth.js` and `js/cart.js`: email, phone, password, required fields; errors shown on the page, forms use `novalidate` |
+| Search / filtering | Catalog search, category, price and sorting; last filters saved in `localStorage` |
+| Animations and hover effects | Buttons, cards, ticker, counters and carousel |
+| External API | Open-Meteo and Open Beauty Facts with loading state and error handling |
+
+> Note: the demo store does not process real payments. Card data is only validated and never saved (only the last 4 digits are kept in the order history).
+
+---
+
 ## 📁 Repository File Structure
 
 ```text
@@ -87,5 +118,5 @@ cosmetics-store/
 │   ├── catalog.js      # Catalog Filtering, Sorting & Open Beauty Facts API
 │   ├── cart.js         # Cart State, Checkout Validation & Order History
 │   └── weather.js      # Open-Meteo Weather API & Skincare Tips
-├── img/                # Team photos and product assets
+├── img/                # Team photos 
 └── README.md           # Project Documentation
